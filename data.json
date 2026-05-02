@@ -1,14 +1,20 @@
 [
   {
-    "name": "Shubham Kumar",
-    "email": "shubham.kumar.cs27@iilm.edu",
+    "name": "Test User",
+    "email": "testuser@example.com",
     "phone": "1234567890",
-    "password": "123456788"
+    "password": "password123"
   },
   {
-    "name": "John Smith",
-    "email": "newtestuser@example.com",
-    "phone": "1112223333",
+    "name": "Tester",
+    "email": "tester@test.com",
+    "phone": "1234567890",
+    "password": "password123"
+  },
+  {
+    "name": "okji",
+    "email": "okji@example.com",
+    "phone": "1234567890",
     "password": "password123"
   }
 ]

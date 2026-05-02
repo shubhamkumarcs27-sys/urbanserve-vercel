@@ -50,7 +50,7 @@ function renderNav() {
     if (AppState.user) {
         html += `
             <a href="dashboard.html" class="btn-primary" style="text-decoration:none;"><i data-lucide="user"></i> ${AppState.user.name.split(' ')[0]}</a>
-            <button class="icon-btn" onclick="logout()"><i data-lucide="log-out"></i></button>
+            <button class="icon-btn" style="color:#ef4444;" onclick="logout()"><i data-lucide="log-out"></i></button>
         `;
     } else {
         html += `<button class="btn-primary" onclick="ui.show('auth-modal')"><i data-lucide="user"></i> Sign In</button>`;
@@ -95,10 +95,8 @@ function toggleTheme() {
 }
 
 function logout() {
-    if(confirm("Logout from UrbanServe?")) {
-        localStorage.removeItem('urbanServeUser');
-        location.reload();
-    }
+    localStorage.removeItem('urbanServeUser');
+    window.location.href = 'index.html';
 }
 
 function attachBookButtons() {
@@ -151,6 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => ui.hide('booking-modal'), 3000);
     };
 
+    // Auth Tab Switching
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+        tab.onclick = () => {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.target).classList.add('active');
+        };
+    });
+
     // Auth Forms
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
@@ -162,6 +170,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     emailOrPhone: document.getElementById('login-email').value,
                     password: document.getElementById('login-password').value
+                })
+            });
+            const data = await res.json();
+            if (res.ok) { saveUser(data.user); location.reload(); }
+            else alert(data.error);
+        };
+    }
+
+    const regForm = document.getElementById('register-form');
+    if (regForm) {
+        regForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const res = await fetch('/api/register/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: document.getElementById('reg-name').value,
+                    email: document.getElementById('reg-email').value,
+                    phone: document.getElementById('reg-phone').value,
+                    password: document.getElementById('reg-password').value
                 })
             });
             const data = await res.json();

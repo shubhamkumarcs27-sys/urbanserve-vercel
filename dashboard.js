@@ -1,6 +1,11 @@
 // Initialize Icons
 lucide.createIcons();
 
+function logout() {
+    localStorage.removeItem('urbanServeUser');
+    window.location.href = 'index.html';
+}
+
 // --- THEME PERSISTENCE ---
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
@@ -101,14 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (err) {
             alert('Server error.');
-        }
-    });
-
-    // Logout Logic
-    document.getElementById('logout-btn').addEventListener('click', () => {
-        if (confirm("Are you sure you want to log out?")) {
-            localStorage.removeItem('urbanServeUser');
-            window.location.href = 'index.html';
         }
     });
 
