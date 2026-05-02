@@ -366,6 +366,55 @@ body.dark-mode .modal-container { background: var(--bg-card); border-color: var(
 .welcome-toast.show { transform: translateX(0); }
 .welcome-toast i { color: var(--accent-primary); }
 
+/* --- MOBILE RESPONSIVENESS (PHONES) --- */
+@media (max-width: 768px) {
+    /* Navbar Polish */
+    .navbar .container { padding: 0.5rem 1rem; }
+    .nav-links { display: none; } /* Hide secondary links */
+    .actions { gap: 0.5rem; }
+    .actions .icon-btn:not(#theme-toggle) { display: none; } /* Hide extra icons to save space */
+    .btn-primary { padding: 0.6rem 1rem; font-size: 0.9rem; }
+
+    /* Hero Polish */
+    .hero { padding: 4rem 0 2rem; min-height: auto; }
+    .heading-1 { font-size: 2.25rem !important; line-height: 1.2; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+
+    /* Search Card Polish */
+    .smart-search-card { padding: 1.5rem; margin: 0 1rem; }
+    .search-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .search-btn-hero { width: 100%; margin-top: 1rem; }
+
+    /* Notification Polish */
+    #notification-container {
+        top: auto; bottom: 2rem; left: 1rem; right: 1rem;
+        align-items: center;
+    }
+    .welcome-toast {
+        width: 100%; max-width: none;
+        transform: translateY(150%);
+        padding: 0.75rem 1rem;
+    }
+    .welcome-toast.show { transform: translateY(0); }
+
+    /* Modal Polish */
+    .modal-content { width: 95%; padding: 1.5rem; margin: 10% auto; }
+    .booking-step h4 { font-size: 1.25rem; }
+
+    /* Service Cards Polish */
+    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .container { padding: 0 1.25rem; }
+
+    /* Dashboard Mobile Polish */
+    .dashboard-container { flex-direction: column; padding: 1rem; }
+    .dashboard-sidebar { width: 100%; margin-bottom: 2rem; border-right: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; }
+    .sidebar-menu { display: flex; overflow-x: auto; gap: 1rem; padding-bottom: 0.5rem; }
+    .menu-item { margin-bottom: 0; white-space: nowrap; padding: 0.5rem 1rem; }
+    .dashboard-content { padding: 0; }
+    .profile-header { flex-direction: column; text-align: center; gap: 1.5rem; }
+    .profile-info { align-items: center; }
+}
+
 /* Landing Page Animations */
 .reveal {
     opacity: 0;
