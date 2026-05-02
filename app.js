@@ -423,12 +423,3 @@ document.getElementById('final-book-btn').addEventListener('click', () => {
         bookingModal.classList.add('hidden');
     }, 3000);
 });
-
-// --- ABOUT US INTERACTION ---
-const aboutUsLink = document.getElementById('about-us-link');
-if (aboutUsLink) {
-    aboutUsLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("Shubham Kumar\nCS-2341589");
-    });
-}
