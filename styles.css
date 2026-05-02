@@ -201,28 +201,40 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
 .time-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .time-slot { padding: 0.875rem; border: 1px solid var(--glass-border); border-radius: var(--border-radius-sm); background: var(--bg-secondary); color: var(--text-primary); font-weight: 500; transition: 0.2s; }
 .time-slot:hover, .time-slot.selected { border-color: var(--accent-primary); background: rgba(37, 99, 235, 0.05); color: var(--accent-primary); }
-/* GPay Style Success Animation */
+/* GPay Style Success Animation (Enhanced) */
 .success-icon-wrap {
-    width: 100px; height: 100px; margin: 0 auto 1.5rem;
+    width: 120px; height: 120px; margin: 0 auto 2rem;
     background: #10b981; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-    animation: gpayPulse 2s infinite, gpayPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    animation: gpayPulse 2s infinite, gpayPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    position: relative;
 }
-.success-icon-wrap i { color: white; width: 60px; height: 60px; transform: scale(0); animation: gpayCheck 0.4s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.5) forwards; }
+.success-icon-wrap i { color: white; width: 70px; height: 70px; transform: scale(0); animation: gpayCheck 0.5s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+.success-bg-glow {
+    position: absolute; width: 100%; height: 100%;
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: 50%; z-index: -1;
+    animation: gpayGlow 2s infinite;
+}
 
 @keyframes gpayPulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+    70% { box-shadow: 0 0 0 30px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 @keyframes gpayPop {
-    0% { transform: scale(0); opacity: 0; }
+    0% { transform: scale(0.5); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
 @keyframes gpayCheck {
-    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    0% { transform: scale(0) rotate(-45deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes gpayGlow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 0; }
 }
 
 /* Footer Styles */
@@ -299,3 +311,12 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
   .logo { font-size: 1.2rem; }
   .hero { padding: 2rem 0; }
 }
+
+/* Final Polish & Global Utilities */
+.hidden { display: none !important; }
+
+body.dark-mode .sidebar { background: var(--bg-card); border-right: 1px solid var(--glass-border); }
+body.dark-mode .menu-item:hover { background: rgba(255, 255, 255, 0.05); }
+body.dark-mode .info-group { border-color: rgba(255, 255, 255, 0.1); }
+body.dark-mode input, body.dark-mode select { background: var(--bg-secondary); border-color: var(--glass-border); color: var(--text-primary); }
+body.dark-mode .modal-container { background: var(--bg-card); border-color: var(--glass-border); }
