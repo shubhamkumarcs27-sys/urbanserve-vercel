@@ -96,7 +96,7 @@ def add_booking():
             
     return jsonify({'error': 'User not found'}), 404
 
-@app.route('/api/favorites/toggle', methods=['POST'])
+@app.route('/api/favorites/toggle/', methods=['POST'])
 def toggle_favorite():
     users = read_data()
     data = request.json

@@ -2,7 +2,29 @@
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
 }
-lucide.createIcons();
+
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+    updateNavState();
+    renderServices(services);
+    initAllEventListeners();
+});
+
+function initAllEventListeners() {
+    // Authentication
+    const closeAuthBtn = document.getElementById('close-auth-btn');
+    if (closeAuthBtn) closeAuthBtn.onclick = () => authModal.classList.add('hidden');
+    
+    const authTabs = document.querySelectorAll('.auth-tab');
+    authTabs.forEach(tab => {
+        tab.onclick = () => {
+            authTabs.forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.target).classList.add('active');
+        };
+    });
+}
 
 // --- MOCK DATA ---
 const services = [
@@ -34,7 +56,7 @@ function initMap() {
 }
 
 function updateMapMarkers(filteredServices) {
-    if (!markerGroup) return;
+    if (typeof L === 'undefined' || !markerGroup) return;
     markerGroup.clearLayers();
     if (filteredServices.length === 0) return;
 
@@ -104,7 +126,7 @@ function renderServices(filteredServices) {
                     <div class="card-price">
                         Starting at <br><span>₹${service.price}</span>
                     </div>
-                    <button class="book-btn">Book Now</button>
+                    <button class="book-btn" data-id="${service.id}">Book Now</button>
                 </div>
             </div>
         `;
@@ -125,7 +147,7 @@ function renderServices(filteredServices) {
             favBtn.classList.toggle('active');
             
             try {
-                const response = await fetch('/api/favorites/toggle', {
+                const response = await fetch('/api/favorites/toggle/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: currentUser.email, serviceId: service.id })
@@ -144,7 +166,6 @@ function renderServices(filteredServices) {
     });
     lucide.createIcons();
     updateMapMarkers(filteredServices);
-    attachBookButtons();
 }
 
 // Initial render
@@ -429,47 +450,42 @@ const summaryTotal = document.getElementById('summary-total');
 let currentBookingService = null;
 
 // Add event listener to Book Now buttons (needs to be attached inside renderServices)
-function attachBookButtons() {
-    document.querySelectorAll('.book-btn').forEach((btn, index) => {
-        // Find the service based on DOM structure
-        btn.addEventListener('click', (e) => {
-            const cardName = e.target.closest('.card-content').querySelector('.card-title').innerText;
-            currentBookingService = services.find(s => s.name === cardName);
+// Event Delegation for Book Buttons (Reliable)
+const servicesContainer = document.getElementById('services-container');
+if (servicesContainer) {
+    servicesContainer.addEventListener('click', (e) => {
+        const bookBtn = e.target.closest('.book-btn');
+        if (!bookBtn) return;
+        
+        e.preventDefault();
+        const serviceId = bookBtn.dataset.id;
+        currentBookingService = services.find(s => s.id == serviceId);
+        
+        if (currentBookingService) {
+            document.getElementById('booking-title').innerText = `Book ${currentBookingService.name}`;
+            summaryPrice.innerText = `₹${currentBookingService.price}`;
+            summaryTotal.innerText = `₹${currentBookingService.price + 49}`;
             
-            if (currentBookingService) {
-                document.getElementById('booking-title').innerText = `Book ${currentBookingService.name}`;
-                summaryPrice.innerText = `₹${currentBookingService.price}`;
-                summaryTotal.innerText = `₹${currentBookingService.price + 49}`;
-                
-                // Reset steps
-                step1.classList.remove('hidden');
-                step2.classList.add('hidden');
-                step3.classList.add('hidden');
-                step4.classList.add('hidden');
-                
-                // Reset selections
-                document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
-                document.getElementById('booking-date').value = '';
-                document.getElementById('booking-name').value = '';
-                document.getElementById('booking-phone').value = '';
-                document.getElementById('booking-address').value = '';
-                document.getElementById('booking-landmark').value = '';
-                
-                bookingModal.classList.remove('hidden');
-            }
-        });
+            // Reset steps
+            step1.classList.remove('hidden');
+            step2.classList.add('hidden');
+            step3.classList.add('hidden');
+            step4.classList.add('hidden');
+            
+            // Reset selections
+            document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+            document.getElementById('booking-date').value = '';
+            document.getElementById('booking-name').value = '';
+            document.getElementById('booking-phone').value = '';
+            document.getElementById('booking-address').value = '';
+            document.getElementById('booking-landmark').value = '';
+            
+            bookingModal.classList.remove('hidden');
+        }
     });
 }
 
-// Call this right after rendering services
-const originalRenderServices = renderServices;
-renderServices = function(filtered) {
-    originalRenderServices(filtered);
-    attachBookButtons();
-};
-// Re-render initially to attach
-renderServices(services);
-
+// Close Booking Modal
 if (closeBookingBtn) closeBookingBtn.addEventListener('click', () => bookingModal.classList.add('hidden'));
 
 // Time slots selection
