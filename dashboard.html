@@ -121,10 +121,10 @@
             <p class="text-secondary" id="profile-email-small">user@example.com</p>
             
             <div class="sidebar-menu">
-                <button class="menu-item active"><i data-lucide="user"></i> Personal Info</button>
-                <button class="menu-item"><i data-lucide="calendar"></i> My Bookings</button>
-                <button class="menu-item"><i data-lucide="heart"></i> Saved Services</button>
-                <button class="menu-item"><i data-lucide="settings"></i> Settings</button>
+                <button class="menu-item active" id="menu-info"><i data-lucide="user"></i> Personal Info</button>
+                <button class="menu-item" id="menu-bookings"><i data-lucide="calendar"></i> My Bookings</button>
+                <button class="menu-item" id="menu-saved"><i data-lucide="heart"></i> Saved Services</button>
+                <button class="menu-item" id="menu-settings"><i data-lucide="settings"></i> Settings</button>
             </div>
         </aside>
 
@@ -164,7 +164,7 @@
 
             <!-- Edit Profile Section -->
             <div id="settings-view" class="hidden">
-                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Settings</h2>
+                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Edit Profile</h2>
                 <form id="edit-profile-form">
                     <div class="input-group" style="margin-bottom: 1.25rem;">
                         <label for="edit-name" class="info-label">Full Name</label>
@@ -186,6 +186,47 @@
                         <button type="button" class="btn-secondary" id="cancel-edit-btn">Cancel</button>
                     </div>
                 </form>
+            </div>
+
+            <!-- My Bookings Section -->
+            <div id="bookings-view" class="hidden">
+                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">My Bookings</h2>
+                <div class="empty-state" style="text-align: center; padding: 4rem 2rem;">
+                    <i data-lucide="calendar-x" style="width: 48px; height: 48px; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                    <p class="text-secondary">You have no upcoming or past bookings.</p>
+                </div>
+            </div>
+
+            <!-- Saved Services Section -->
+            <div id="saved-view" class="hidden">
+                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Saved Services</h2>
+                <div class="empty-state" style="text-align: center; padding: 4rem 2rem;">
+                    <i data-lucide="heart" style="width: 48px; height: 48px; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                    <p class="text-secondary">You haven't saved any services yet.</p>
+                </div>
+            </div>
+
+            <!-- App Settings Section -->
+            <div id="app-settings-view" class="hidden">
+                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">App Settings</h2>
+                <div class="info-group">
+                    <div class="flex-between">
+                        <div>
+                            <div class="info-value">Push Notifications</div>
+                            <div class="info-label">Stay updated on your booking status</div>
+                        </div>
+                        <input type="checkbox" checked style="width: 20px; height: 20px;">
+                    </div>
+                </div>
+                <div class="info-group" style="border: none;">
+                    <div class="flex-between">
+                        <div>
+                            <div class="info-value">Newsletter</div>
+                            <div class="info-label">Receive offers and new service alerts</div>
+                        </div>
+                        <input type="checkbox" style="width: 20px; height: 20px;">
+                    </div>
+                </div>
             </div>
         </main>
     </div>

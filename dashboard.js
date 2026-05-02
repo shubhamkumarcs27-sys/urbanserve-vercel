@@ -102,4 +102,34 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'index.html';
         }
     });
+
+    // Sidebar Navigation Logic
+    const menuItems = {
+        'menu-info': ['profile-view'],
+        'menu-bookings': ['bookings-view'],
+        'menu-saved': ['saved-view'],
+        'menu-settings': ['app-settings-view']
+    };
+
+    const allViews = ['profile-view', 'settings-view', 'bookings-view', 'saved-view', 'app-settings-view'];
+
+    Object.keys(menuItems).forEach(id => {
+        document.getElementById(id).addEventListener('click', () => {
+            // Update active state in sidebar
+            document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+
+            // Hide all views and show the relevant one
+            const targetViews = menuItems[id];
+            allViews.forEach(viewId => {
+                const view = document.getElementById(viewId);
+                if (view) view.classList.add('hidden');
+            });
+
+            targetViews.forEach(viewId => {
+                const view = document.getElementById(viewId);
+                if (view) view.classList.remove('hidden');
+            });
+        });
+    });
 });

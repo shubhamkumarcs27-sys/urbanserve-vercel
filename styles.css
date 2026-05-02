@@ -222,6 +222,15 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
   
   .map-container { height: 280px; }
 
+  /* Dashboard Mobile Adjustments */
+  .dashboard-container { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0; }
+  .sidebar { padding: 1.5rem; text-align: center; }
+  .profile-avatar { margin: 0 auto 1rem; }
+  .sidebar-menu { flex-direction: row; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; }
+  .sidebar-menu::-webkit-scrollbar { display: none; }
+  .menu-item { white-space: nowrap; padding: 0.6rem 1rem; }
+  .content-panel { padding: 1.5rem; }
+
   .footer { padding: 2.5rem 0 1.5rem; }
   .footer-logo-section { margin-bottom: 2rem; }
   .footer-grid { gap: 2rem; }
