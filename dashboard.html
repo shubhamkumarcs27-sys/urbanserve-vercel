@@ -176,7 +176,7 @@
                     
                     <div class="input-group" style="margin-bottom: 2rem;">
                         <label for="edit-phone" class="info-label">Phone Number</label>
-                        <input type="tel" id="edit-phone" required>
+                        <input type="tel" id="edit-phone" required pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" placeholder="10-digit mobile number">
                     </div>
 
                     <div style="display: flex; gap: 1rem;">
