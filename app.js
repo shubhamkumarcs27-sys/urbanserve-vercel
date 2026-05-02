@@ -1,22 +1,8 @@
-// Initialize Icons
-lucide.createIcons();
-
-// --- THEME TOGGLE LOGIC ---
-const themeToggle = document.getElementById('theme-toggle');
+// Initial Theme Setup
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
-    if (themeToggle) themeToggle.innerHTML = '<i data-lucide="sun"></i>';
 }
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        themeToggle.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-        lucide.createIcons();
-    });
-}
+lucide.createIcons();
 
 // --- MOCK DATA ---
 const services = [
@@ -82,12 +68,26 @@ function renderServices(filteredServices) {
         return;
     }
 
-    filteredServices.forEach((service) => {
+    const savedUser = JSON.parse(localStorage.getItem('urbanServeUser')) || {};
+    const favorites = savedUser.favorites || [];
+
+    // Sort: Favorites first
+    const sortedServices = [...filteredServices].sort((a, b) => {
+        const aFav = favorites.includes(a.id) ? 1 : 0;
+        const bFav = favorites.includes(b.id) ? 1 : 0;
+        return bFav - aFav;
+    });
+
+    sortedServices.forEach((service) => {
+        const isFav = favorites.includes(service.id);
         const card = document.createElement('div');
         card.className = 'service-card';
         card.innerHTML = `
             <div class="card-image">
                 <img src="${service.image}" alt="${service.name}" loading="lazy">
+                <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${service.id}">
+                    <i data-lucide="heart"></i>
+                </button>
             </div>
             <div class="card-content">
                 <h3 class="card-title">${service.name}</h3>
@@ -108,6 +108,38 @@ function renderServices(filteredServices) {
                 </div>
             </div>
         `;
+        
+        // Favorite Logic
+        const favBtn = card.querySelector('.fav-btn');
+        favBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const currentUser = JSON.parse(localStorage.getItem('urbanServeUser'));
+            if (!currentUser || !currentUser.email) {
+                alert('Please sign in to favorite services');
+                return;
+            }
+            
+            // Toggle UI locally first for instant feedback
+            favBtn.classList.toggle('active');
+            
+            try {
+                const response = await fetch('/api/favorites/toggle', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: currentUser.email, serviceId: service.id })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    currentUser.favorites = data.favorites;
+                    localStorage.setItem('urbanServeUser', JSON.stringify(currentUser));
+                }
+            } catch (err) {
+                console.error("Favorite toggle failed:", err);
+            }
+        });
+
         container.appendChild(card);
     });
     lucide.createIcons();
@@ -168,15 +200,71 @@ authTabs.forEach(tab => {
 // Check Auth State on Load
 function updateNavState() {
     const savedUser = JSON.parse(localStorage.getItem('urbanServeUser'));
-    if (savedUser) {
+    const navActions = document.getElementById('nav-actions');
+    if (!navActions) return;
+
+    // We only want to replace the auth-related part, but for simplicity we'll keep theme and search buttons.
+    // Let's find the current theme and search buttons or just redraw them.
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    let html = `
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i data-lucide="${isDark ? 'sun' : 'moon'}"></i></button>
+        <button class="icon-btn" id="search-btn" aria-label="Search"><i data-lucide="search"></i></button>
+    `;
+
+    if (savedUser && savedUser.name) {
         const firstName = savedUser.name.split(' ')[0];
-        const authBtn = document.getElementById('open-auth-btn');
-        if (authBtn) {
-            authBtn.outerHTML = `<a href="dashboard.html" class="btn-primary" id="open-auth-btn" style="text-decoration:none;"><i data-lucide="user"></i> ${firstName}</a>`;
+        html += `
+            <a href="dashboard.html" class="btn-primary" style="text-decoration:none;"><i data-lucide="user"></i> ${firstName}</a>
+            <button class="icon-btn" id="logout-quick" title="Logout"><i data-lucide="log-out" style="width: 18px;"></i></button>
+        `;
+    } else {
+        html += `<button class="btn-primary" id="open-auth-btn"><i data-lucide="user"></i> Sign In</button>`;
+    }
+
+    navActions.innerHTML = html;
+    lucide.createIcons();
+    
+    // Re-attach listeners because we replaced the buttons
+    attachNavbarListeners();
+}
+
+function attachNavbarListeners() {
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        themeBtn.onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
             lucide.createIcons();
-        }
+        };
+    }
+
+    const searchBtn = document.getElementById('search-btn');
+    if (searchBtn) {
+        searchBtn.onclick = () => {
+            const searchOverlay = document.getElementById('search-overlay');
+            if (searchOverlay) searchOverlay.classList.remove('hidden');
+        };
+    }
+
+    const openAuthBtn = document.getElementById('open-auth-btn');
+    if (openAuthBtn) {
+        openAuthBtn.onclick = () => authModal.classList.remove('hidden');
+    }
+    
+    const logoutQuick = document.getElementById('logout-quick');
+    if (logoutQuick) {
+        logoutQuick.onclick = () => {
+            if (confirm("Logout from UrbanServe?")) {
+                localStorage.removeItem('urbanServeUser');
+                updateNavState();
+            }
+        };
     }
 }
+
 updateNavState();
 
 // Login Form Submit
@@ -199,7 +287,12 @@ if (loginForm) {
                 localStorage.setItem('urbanServeUser', JSON.stringify(data.user));
                 authModal.classList.add('hidden');
                 updateNavState();
-                alert('Welcome back, ' + data.user.name + '!');
+                // Success feedback without blocking
+                const msg = document.createElement('div');
+                msg.style = "position: fixed; top: 20px; right: 20px; background: #10b981; color: white; padding: 1rem 2rem; border-radius: 8px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.1);";
+                msg.innerText = `Welcome back, ${data.user.name}!`;
+                document.body.appendChild(msg);
+                setTimeout(() => msg.remove(), 3000);
             } else {
                 alert(data.error || 'Invalid credentials');
             }
@@ -242,21 +335,24 @@ if (registerForm) {
 }
 
 // --- SEARCH OVERLAY LOGIC ---
-const searchBtn = document.getElementById('search-btn');
 const searchOverlay = document.getElementById('search-overlay');
 const searchClose = document.getElementById('search-close');
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 
+if (searchClose) searchClose.onclick = closeSearch;
+
 function openSearch() {
-    searchOverlay.classList.remove('hidden');
-    searchInput.value = '';
-    searchResults.innerHTML = '';
-    setTimeout(() => searchInput.focus(), 50);
+    if (searchOverlay) searchOverlay.classList.remove('hidden');
+    if (searchInput) {
+        searchInput.value = '';
+        setTimeout(() => searchInput.focus(), 50);
+    }
+    if (searchResults) searchResults.innerHTML = '';
 }
 
 function closeSearch() {
-    searchOverlay.classList.add('hidden');
+    if (searchOverlay) searchOverlay.classList.add('hidden');
 }
 
 function renderSearchResults(query) {
@@ -414,7 +510,35 @@ document.getElementById('confirm-details-btn').addEventListener('click', () => {
 });
 
 // Step 3 -> Step 4
-document.getElementById('final-book-btn').addEventListener('click', () => {
+document.getElementById('final-book-btn').addEventListener('click', async () => {
+    // Save booking
+    const savedUser = JSON.parse(localStorage.getItem('urbanServeUser'));
+    if (savedUser && savedUser.email) {
+        const bookingData = {
+            serviceName: currentBookingService.name,
+            price: currentBookingService.price,
+            date: document.getElementById('booking-date').value,
+            time: document.querySelector('.time-slot.selected').innerText,
+            address: document.getElementById('booking-address').value,
+            timestamp: new Date().toISOString()
+        };
+        
+        try {
+            const response = await fetch('/api/bookings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: savedUser.email, booking: bookingData })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                savedUser.bookings = data.bookings;
+                localStorage.setItem('urbanServeUser', JSON.stringify(savedUser));
+            }
+        } catch (err) {
+            console.error("Failed to save booking:", err);
+        }
+    }
+
     step3.classList.add('hidden');
     step4.classList.remove('hidden');
     

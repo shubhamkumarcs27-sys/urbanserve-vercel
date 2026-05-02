@@ -67,13 +67,53 @@ def update_profile():
     
     for idx, u in enumerate(users):
         if u.get('email') == old_email:
-            # preserve password
+            # preserve sensitive and persistent data
             password = u.get('password')
-            users[idx] = {**updated_user, 'password': password}
+            bookings = u.get('bookings', [])
+            favorites = u.get('favorites', [])
+            
+            users[idx] = {**updated_user, 'password': password, 'bookings': bookings, 'favorites': favorites}
             write_data(users)
             
             user_without_password = {k: v for k, v in users[idx].items() if k != 'password'}
             return jsonify({'message': 'Profile updated', 'user': user_without_password}), 200
+            
+    return jsonify({'error': 'User not found'}), 404
+
+@app.route('/api/bookings', methods=['POST'])
+def add_booking():
+    users = read_data()
+    data = request.json
+    email = data.get('email')
+    booking = data.get('booking')
+    
+    for u in users:
+        if u.get('email') == email:
+            if 'bookings' not in u: u['bookings'] = []
+            u['bookings'].append(booking)
+            write_data(users)
+            return jsonify({'message': 'Booking saved', 'bookings': u['bookings']}), 200
+            
+    return jsonify({'error': 'User not found'}), 404
+
+@app.route('/api/favorites/toggle', methods=['POST'])
+def toggle_favorite():
+    users = read_data()
+    data = request.json
+    email = data.get('email')
+    service_id = data.get('serviceId')
+    
+    for u in users:
+        if u.get('email') == email:
+            if 'favorites' not in u: u['favorites'] = []
+            if service_id in u['favorites']:
+                u['favorites'].remove(service_id)
+                msg = 'Removed from favorites'
+            else:
+                u['favorites'].append(service_id)
+                msg = 'Added to favorites'
+            write_data(users)
+            return jsonify({'message': msg, 'favorites': u['favorites']}), 200
             
     return jsonify({'error': 'User not found'}), 404
 
