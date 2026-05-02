@@ -132,7 +132,12 @@
         <main class="content-panel">
             <!-- View Profile Section -->
             <div id="profile-view">
-                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Personal Information</h2>
+                <div class="flex-between" style="margin-bottom: 2rem; align-items: center;">
+                    <h2 class="heading-2" style="font-size: 1.8rem; margin: 0;">Personal Information</h2>
+                    <button class="btn-secondary" id="open-edit-btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                        <i data-lucide="edit-3" style="width: 16px;"></i> Edit Profile
+                    </button>
+                </div>
                 
                 <div class="info-group">
                     <div class="info-label">Full Name</div>
@@ -155,8 +160,6 @@
                         <i data-lucide="check-circle" style="width: 18px;"></i> Verified
                     </div>
                 </div>
-                
-                <button class="btn-primary" id="open-edit-btn" style="margin-top: 1rem;">Edit Profile</button>
             </div>
 
             <!-- Edit Profile Section -->
