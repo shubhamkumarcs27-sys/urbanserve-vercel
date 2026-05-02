@@ -8,15 +8,32 @@ CORS(app)
 
 DB_PATH = os.path.join(os.path.dirname(__file__), 'data.json')
 
+TMP_DB_PATH = '/tmp/data.json'
+_MEMORY_DB = None
+
 def load_db():
-    if not os.path.exists(DB_PATH):
-        with open(DB_PATH, 'w') as f: json.dump([], f)
+    global _MEMORY_DB
+    if os.path.exists(TMP_DB_PATH):
+        try:
+            with open(TMP_DB_PATH, 'r') as f: return json.load(f)
+        except: pass
+    if _MEMORY_DB is not None: return _MEMORY_DB
     try:
-        with open(DB_PATH, 'r') as f: return json.load(f)
-    except: return []
+        if os.path.exists(DB_PATH):
+            with open(DB_PATH, 'r') as f: _MEMORY_DB = json.load(f)
+        else: _MEMORY_DB = []
+    except: _MEMORY_DB = []
+    return _MEMORY_DB
 
 def save_db(data):
-    with open(DB_PATH, 'w') as f: json.dump(data, f, indent=2)
+    global _MEMORY_DB
+    _MEMORY_DB = data
+    try:
+        with open(TMP_DB_PATH, 'w') as f: json.dump(data, f, indent=2)
+    except: pass
+    try:
+        with open(DB_PATH, 'w') as f: json.dump(data, f, indent=2)
+    except: pass
 
 @app.route('/api/register/', methods=['POST'])
 def register():
