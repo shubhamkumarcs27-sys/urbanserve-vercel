@@ -320,3 +320,64 @@ body.dark-mode .menu-item:hover { background: rgba(255, 255, 255, 0.05); }
 body.dark-mode .info-group { border-color: rgba(255, 255, 255, 0.1); }
 body.dark-mode input, body.dark-mode select { background: var(--bg-secondary); border-color: var(--glass-border); color: var(--text-primary); }
 body.dark-mode .modal-container { background: var(--bg-card); border-color: var(--glass-border); }
+
+/* Loading Overlay */
+#loading-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-primary); z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+    backdrop-filter: blur(20px);
+}
+#loading-overlay.fade-out { 
+    opacity: 0; 
+    visibility: hidden; 
+    pointer-events: none; 
+}
+
+.loader-content { text-align: center; }
+.loader-spinner {
+    width: 60px; height: 60px; margin: 0 auto 1.5rem;
+    border: 4px solid var(--glass-border);
+    border-top: 4px solid var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+.loader-text {
+    font-size: 2rem; font-weight: 800; letter-spacing: -1px;
+    background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: pulse 2s infinite;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Notifications */
+#notification-container {
+    position: fixed; top: 2rem; right: 2rem; z-index: 10000;
+    display: flex; flex-direction: column; gap: 1rem;
+}
+.welcome-toast {
+    background: var(--bg-card); border: 1px solid var(--glass-border);
+    padding: 1rem 2rem; border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg); backdrop-filter: blur(20px);
+    display: flex; align-items: center; gap: 1rem;
+    transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.welcome-toast.show { transform: translateX(0); }
+.welcome-toast i { color: var(--accent-primary); }
+
+/* Landing Page Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.2s; }
+.stagger-2 { transition-delay: 0.4s; }
+.stagger-3 { transition-delay: 0.6s; }
+.stagger-4 { transition-delay: 0.8s; }

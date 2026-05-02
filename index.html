@@ -20,6 +20,17 @@
     <link rel="stylesheet" href="styles.css?v=3.0">
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <h2 class="loader-text">UrbanServe</h2>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container flex-between">
@@ -37,14 +48,14 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero reveal stagger-1" id="hero-section">
         <div class="hero-bg"></div>
-        <div class="container hero-content">
-            <h1 class="heading-1">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
+        <div class="container hero-content text-center">
+            <h1 class="heading-1 hero-title">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
             <p class="hero-subtitle">Your trusted destination for booking top-tier professionals for home repair, cleaning, and salon services.</p>
             
             <!-- Smart Recommendation Card -->
-            <div class="smart-search-card">
+            <div class="smart-search-card reveal stagger-2">
                 <div class="search-grid">
                     <div class="input-group">
                         <label for="event-type">What service do you need?</label>
@@ -84,7 +95,7 @@
     </header>
 
     <!-- Categories Scroller -->
-    <section class="categories-section" style="padding: 2rem 0; border-bottom: 1px solid var(--glass-border);">
+    <section class="categories-section reveal stagger-3" style="padding: 2rem 0; border-bottom: 1px solid var(--glass-border);">
         <div class="container">
             <div class="categories-scroll" id="category-scroller">
                 <button class="category-pill active" data-filter="all"><i data-lucide="grid"></i> All</button>
@@ -99,7 +110,7 @@
     </section>
 
     <!-- Offers Section -->
-    <section class="offers-section" style="padding-top: 4rem;">
+    <section class="offers-section reveal stagger-4" style="padding-top: 4rem;">
         <div class="container">
             <div class="offers-grid">
                 <div class="offer-card" style="background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);">
@@ -121,7 +132,7 @@
     </section>
 
     <!-- Services Grid -->
-    <section id="services" class="section">
+    <section id="services" class="section reveal">
         <div class="container">
             <div class="section-header">
                 <h2 class="heading-2">Recommended <span class="text-gradient">Services</span></h2>
@@ -134,7 +145,7 @@
     </section>
 
     <!-- Map Section -->
-    <section id="map-section" class="section bg-secondary">
+    <section id="map-section" class="section bg-secondary reveal">
         <div class="container">
             <div class="section-header">
                 <h2 class="heading-2">Services <span class="text-gradient">Near You</span></h2>
