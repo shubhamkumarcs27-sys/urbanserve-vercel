@@ -824,11 +824,25 @@ button {
   gap: 0.5rem;
 }
 
-/* Responsive */
+/* Responsive & Mobile Compatibility */
 @media (max-width: 768px) {
-  .search-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .heading-1 { font-size: 2.5rem; }
+  .search-grid { 
+    grid-template-columns: 1fr; 
+  }
+  .nav-links { 
+    display: none; 
+  }
+  .heading-1 { 
+    font-size: 2.2rem; 
+  }
+  .hero {
+    padding: 6rem 0 4rem;
+    min-height: 60vh;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+  }
   
   .chat-window {
     position: fixed;
@@ -839,7 +853,48 @@ button {
   
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section {
+    padding: 4rem 0;
+  }
+  
+  .modal-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .grid-auto {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading-1 {
+    font-size: 1.8rem;
+  }
+  .actions .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  .logo {
+    font-size: 1.4rem;
+  }
+  .smart-search-card {
+    padding: 1.25rem;
+  }
+  .input-group select {
+    padding: 0.75rem 1rem;
+  }
+  .card-image {
+    height: 180px;
   }
 }
 
