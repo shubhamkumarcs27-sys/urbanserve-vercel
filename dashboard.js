@@ -1,6 +1,11 @@
 // Initialize Icons
 lucide.createIcons();
 
+// --- THEME PERSISTENCE ---
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const savedUser = JSON.parse(localStorage.getItem('urbanServeUser'));
 
