@@ -4,5 +4,11 @@
     "email": "shubham.kumar.cs27@iilm.edu",
     "phone": "1234567890",
     "password": "123456788"
+  },
+  {
+    "name": "John Smith",
+    "email": "newtestuser@example.com",
+    "phone": "1112223333",
+    "password": "password123"
   }
 ]

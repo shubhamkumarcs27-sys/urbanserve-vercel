@@ -6,122 +6,61 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
-# Use /tmp directory if running on Vercel (read-only filesystem)
-if os.environ.get('VERCEL') or os.environ.get('VERCEL_ENV'):
-    DATA_FILE = '/tmp/data.json'
-else:
-    DATA_FILE = os.path.join(os.path.dirname(__file__), 'data.json')
+DB_PATH = os.path.join(os.path.dirname(__file__), 'data.json')
 
-def read_data():
-    if not os.path.exists(DATA_FILE):
-        with open(DATA_FILE, 'w', encoding='utf-8') as f:
-            json.dump([], f)
-    with open(DATA_FILE, 'r', encoding='utf-8') as f:
-        try:
-            return json.load(f)
-        except json.JSONDecodeError:
-            return []
+def load_db():
+    if not os.path.exists(DB_PATH):
+        with open(DB_PATH, 'w') as f: json.dump([], f)
+    try:
+        with open(DB_PATH, 'r') as f: return json.load(f)
+    except: return []
 
-def write_data(data):
-    with open(DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2)
+def save_db(data):
+    with open(DB_PATH, 'w') as f: json.dump(data, f, indent=2)
 
-@app.route('/api/register', methods=['POST'])
+@app.route('/api/register/', methods=['POST'])
 def register():
-    users = read_data()
-    new_user = request.json
-    
-    if not new_user.get('password') or len(new_user.get('password')) < 8:
-        return jsonify({'error': 'Password must be at least 8 characters long.'}), 400
-        
-    for u in users:
-        if u.get('email') == new_user.get('email') or u.get('phone') == new_user.get('phone'):
-            return jsonify({'error': 'User with this email or phone already exists'}), 400
-            
-    users.append(new_user)
-    write_data(users)
-    
-    # Do not return password to client
-    user_without_password = {k: v for k, v in new_user.items() if k != 'password'}
-    return jsonify({'message': 'Registration successful', 'user': user_without_password}), 201
+    db = load_db()
+    data = request.json
+    email = data.get('email', '').lower()
+    if any(u['email'].lower() == email for u in db):
+        return jsonify({'error': 'User already exists'}), 400
+    user = {
+        'name': data.get('name'),
+        'email': email,
+        'phone': data.get('phone'),
+        'password': data.get('password')
+    }
+    db.append(user)
+    save_db(db)
+    return jsonify({'user': {k:v for k,v in user.items() if k != 'password'}}), 201
 
-@app.route('/api/login', methods=['POST'])
+@app.route('/api/login/', methods=['POST'])
 def login():
-    users = read_data()
-    credentials = request.json
-    email_or_phone = credentials.get('emailOrPhone')
-    password = credentials.get('password')
-    
-    for u in users:
-        if (u.get('email') == email_or_phone or u.get('phone') == email_or_phone) and u.get('password') == password:
-            user_without_password = {k: v for k, v in u.items() if k != 'password'}
-            return jsonify({'message': 'Login successful', 'user': user_without_password}), 200
-            
+    db = load_db()
+    data = request.json
+    login_id = data.get('emailOrPhone', '').lower()
+    for u in db:
+        if (u['email'].lower() == login_id or u.get('phone') == login_id) and u['password'] == data.get('password'):
+            return jsonify({'user': {k:v for k,v in u.items() if k != 'password'}}), 200
     return jsonify({'error': 'Invalid credentials'}), 401
 
-@app.route('/api/users', methods=['PUT'])
+@app.route('/api/profile/', methods=['PUT'])
 def update_profile():
-    users = read_data()
-    updated_user = request.json
-    old_email = request.headers.get('user-email')
-    
-    for idx, u in enumerate(users):
-        if u.get('email') == old_email:
-            # preserve sensitive and persistent data
-            password = u.get('password')
-            bookings = u.get('bookings', [])
-            favorites = u.get('favorites', [])
-            
-            users[idx] = {**updated_user, 'password': password, 'bookings': bookings, 'favorites': favorites}
-            write_data(users)
-            
-            user_without_password = {k: v for k, v in users[idx].items() if k != 'password'}
-            return jsonify({'message': 'Profile updated', 'user': user_without_password}), 200
-            
-    return jsonify({'error': 'User not found'}), 404
-
-@app.route('/api/bookings', methods=['POST'])
-def add_booking():
-    users = read_data()
+    db = load_db()
     data = request.json
-    email = data.get('email')
-    booking = data.get('booking')
-    
-    for u in users:
-        if u.get('email') == email:
-            if 'bookings' not in u: u['bookings'] = []
-            u['bookings'].append(booking)
-            write_data(users)
-            return jsonify({'message': 'Booking saved', 'bookings': u['bookings']}), 200
-            
-    return jsonify({'error': 'User not found'}), 404
-
-@app.route('/api/favorites/toggle/', methods=['POST'])
-def toggle_favorite():
-    users = read_data()
-    data = request.json
-    email = data.get('email')
-    service_id = data.get('serviceId')
-    
-    for u in users:
-        if u.get('email') == email:
-            if 'favorites' not in u: u['favorites'] = []
-            if service_id in u['favorites']:
-                u['favorites'].remove(service_id)
-                msg = 'Removed from favorites'
-            else:
-                u['favorites'].append(service_id)
-                msg = 'Added to favorites'
-            write_data(users)
-            return jsonify({'message': msg, 'favorites': u['favorites']}), 200
-            
+    old_email = request.headers.get('user-email', '').lower()
+    for idx, u in enumerate(db):
+        if u['email'].lower() == old_email:
+            # Update fields but preserve critical ones
+            pw = u['password']
+            db[idx] = {**data, 'password': pw}
+            save_db(db)
+            return jsonify({'user': {k:v for k,v in db[idx].items() if k != 'password'}}), 200
     return jsonify({'error': 'User not found'}), 404
 
 @app.route('/')
-def index():
-    return send_from_directory('.', 'index.html')
+def index(): return send_from_directory('.', 'index.html')
 
 if __name__ == '__main__':
-    PORT = int(os.environ.get('PORT', 3005))
-    print(f"Server running at http://localhost:{PORT}")
-    app.run(host='0.0.0.0', port=PORT, debug=False)
+    app.run(host='0.0.0.0', port=3005, debug=False)

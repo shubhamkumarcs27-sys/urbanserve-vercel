@@ -38,58 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('display-name').textContent = user.name;
         document.getElementById('display-email').textContent = user.email;
         document.getElementById('display-phone').textContent = user.phone;
-
-        // Render Bookings
-        const bookingsView = document.getElementById('bookings-view');
-        if (user.bookings && user.bookings.length > 0) {
-            let bookingsHtml = `<h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">My Bookings</h2>`;
-            user.bookings.slice().reverse().forEach(b => {
-                bookingsHtml += `
-                    <div class="card" style="background: var(--bg-secondary); border: 1px solid var(--glass-border); border-radius: var(--border-radius-md); padding: 1.5rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <h4 style="margin: 0; font-size: 1.1rem;">${b.serviceName}</h4>
-                            <p style="margin: 0.3rem 0; color: var(--text-secondary); font-size: 0.9rem;"><i data-lucide="calendar" style="width: 14px;"></i> ${b.date} at ${b.time}</p>
-                            <div style="display: flex; align-items: center; gap: 0.4rem; color: #10b981; font-size: 0.85rem; font-weight: 600;">
-                                <i data-lucide="check-circle" style="width: 14px;"></i> Confirmed
-                            </div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-weight: 700; font-size: 1.2rem;">₹${b.price}</div>
-                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Paid</div>
-                        </div>
-                    </div>
-                `;
-            });
-            bookingsView.innerHTML = bookingsHtml;
-        }
-
-        // Render Favorites
-        const savedView = document.getElementById('saved-view');
-        if (user.favorites && user.favorites.length > 0) {
-            let favsHtml = `<h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Saved Services</h2>`;
-            favsHtml += `<div class="grid-auto" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">`;
-            
-            user.favorites.forEach(favId => {
-                // Use loose comparison or Number() to ensure it works even if stored as string
-                const service = services.find(s => Number(s.id) === Number(favId));
-                if (service) {
-                    favsHtml += `
-                        <div class="service-card" style="padding-bottom: 1rem; position: relative;">
-                            <div class="card-image" style="height: 150px;">
-                                <img src="${service.image}" alt="${service.name}" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="card-content" style="padding: 1rem;">
-                                <h4 style="margin: 0; font-size: 1.1rem;">${service.name}</h4>
-                                <div style="color: var(--accent-secondary); font-size: 0.9rem; margin: 0.5rem 0;">★ ${service.rating}</div>
-                                <div style="font-weight: 700; font-size: 1.1rem;">₹${service.price}</div>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-            favsHtml += `</div>`;
-            savedView.innerHTML = favsHtml;
-        }
+        
         lucide.createIcons();
     }
 
@@ -130,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         try {
-            const response = await fetch('/api/users', {
+            const response = await fetch('/api/profile/', {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -142,29 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             if (response.ok) {
-                // Save updated session to localStorage
                 localStorage.setItem('urbanServeUser', JSON.stringify(data.user));
-                
-                // Update UI
                 populateData(data.user);
-                
-                // Switch views
                 settingsView.classList.add('hidden');
                 profileView.classList.remove('hidden');
-                
                 alert('Profile updated successfully!');
             } else {
                 alert(data.error || 'Failed to update profile');
             }
         } catch (err) {
-            alert('Server error. Please make sure the backend is running.');
+            alert('Server error.');
         }
     });
 
     // Logout Logic
     document.getElementById('logout-btn').addEventListener('click', () => {
-        const confirmLogout = confirm("Are you sure you want to log out?");
-        if (confirmLogout) {
+        if (confirm("Are you sure you want to log out?")) {
             localStorage.removeItem('urbanServeUser');
             window.location.href = 'index.html';
         }
@@ -173,26 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sidebar Navigation Logic
     const menuItems = {
         'menu-info': ['profile-view'],
-        'menu-bookings': ['bookings-view'],
-        'menu-saved': ['saved-view'],
         'menu-settings': ['app-settings-view']
     };
 
-    const allViews = ['profile-view', 'settings-view', 'bookings-view', 'saved-view', 'app-settings-view'];
+    const allViews = ['profile-view', 'settings-view', 'app-settings-view'];
 
     Object.keys(menuItems).forEach(id => {
-        document.getElementById(id).addEventListener('click', () => {
-            // Update active state in sidebar
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', () => {
             document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-
-            // Hide all views and show the relevant one
-            const targetViews = menuItems[id];
+            el.classList.add('active');
             allViews.forEach(viewId => {
                 const view = document.getElementById(viewId);
                 if (view) view.classList.add('hidden');
             });
-
+            const targetViews = menuItems[id];
             targetViews.forEach(viewId => {
                 const view = document.getElementById(viewId);
                 if (view) view.classList.remove('hidden');
