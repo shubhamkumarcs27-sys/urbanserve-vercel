@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initAllEventListeners() {
-    // Authentication
+    // Navbar Actions
+    attachNavbarListeners();
+
+    // Authentication Modal
     const closeAuthBtn = document.getElementById('close-auth-btn');
     if (closeAuthBtn) closeAuthBtn.onclick = () => authModal.classList.add('hidden');
     
@@ -21,9 +24,123 @@ function initAllEventListeners() {
             authTabs.forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
             tab.classList.add('active');
-            document.getElementById(tab.dataset.target).classList.add('active');
+            const target = document.getElementById(tab.dataset.target);
+            if (target) target.classList.add('active');
         };
     });
+
+    // Search Logic
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
+    }
+    if (searchClose) searchClose.onclick = closeSearch;
+
+    // Booking Delegation
+    const servicesContainer = document.getElementById('services-container');
+    if (servicesContainer) {
+        servicesContainer.addEventListener('click', (e) => {
+            const bookBtn = e.target.closest('.book-btn');
+            if (!bookBtn) return;
+            
+            e.preventDefault();
+            const serviceId = bookBtn.dataset.id;
+            currentBookingService = services.find(s => s.id == serviceId);
+            
+            if (currentBookingService) {
+                document.getElementById('booking-title').innerText = `Book ${currentBookingService.name}`;
+                summaryPrice.innerText = `₹${currentBookingService.price}`;
+                summaryTotal.innerText = `₹${currentBookingService.price + 49}`;
+                
+                // Reset steps
+                step1.classList.remove('hidden');
+                step2.classList.add('hidden');
+                step3.classList.add('hidden');
+                step4.classList.add('hidden');
+                
+                // Reset selections
+                document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+                document.getElementById('booking-date').value = '';
+                document.getElementById('booking-name').value = '';
+                document.getElementById('booking-phone').value = '';
+                document.getElementById('booking-address').value = '';
+                document.getElementById('booking-landmark').value = '';
+                
+                bookingModal.classList.remove('hidden');
+            }
+        });
+    }
+
+    // Category Pills
+    const categoryPills = document.querySelectorAll('.category-pill');
+    categoryPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            categoryPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const filter = pill.dataset.filter;
+            renderServices(filter === 'all' ? services : services.filter(s => s.category === filter));
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Smart Recommendations
+    const recBtn = document.getElementById('recommend-btn');
+    if (recBtn) {
+        recBtn.addEventListener('click', () => {
+            const eventType = document.getElementById('event-type').value;
+            const budget = document.getElementById('budget').value;
+            let filtered = services;
+            if (eventType) filtered = filtered.filter(s => s.category === eventType);
+            if (budget) {
+                filtered = filtered.filter(s => {
+                    if (budget === 'budget') return s.price < 1000;
+                    if (budget === 'standard') return s.price >= 1000 && s.price < 5000;
+                    if (budget === 'mid') return s.price >= 5000 && s.price < 15000;
+                    if (budget === 'premium') return s.price >= 15000 && s.price < 50000;
+                    if (budget === 'luxury') return s.price >= 50000;
+                    return true;
+                });
+            }
+            renderServices(filtered);
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+}
+
+function attachNavbarListeners() {
+    const navActions = document.getElementById('nav-actions');
+    if (!navActions) return;
+
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        themeBtn.onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+            lucide.createIcons();
+        };
+    }
+
+    const searchBtn = document.getElementById('search-btn');
+    if (searchBtn) {
+        searchBtn.onclick = () => openSearch();
+    }
+
+    const openAuthBtn = document.getElementById('open-auth-btn');
+    if (openAuthBtn) {
+        openAuthBtn.onclick = () => authModal.classList.remove('hidden');
+    }
+    
+    const logoutQuick = document.getElementById('logout-quick');
+    if (logoutQuick) {
+        logoutQuick.onclick = () => {
+            if (confirm("Logout from UrbanServe?")) {
+                localStorage.removeItem('urbanServeUser');
+                updateNavState();
+                location.reload();
+            }
+        };
+    }
 }
 
 // --- MOCK DATA ---
@@ -200,94 +317,8 @@ if (recBtn) {
     });
 }
 
-// --- AUTHENTICATION LOGIC ---
-const authModal = document.getElementById('auth-modal');
-const openAuthBtn = document.getElementById('open-auth-btn');
-const closeAuthBtn = document.getElementById('close-auth-btn');
-const authTabs = document.querySelectorAll('.auth-tab');
-const authForms = document.querySelectorAll('.auth-form');
-
-if (openAuthBtn) openAuthBtn.addEventListener('click', () => authModal.classList.remove('hidden'));
-if (closeAuthBtn) closeAuthBtn.addEventListener('click', () => authModal.classList.add('hidden'));
-
-authTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        authTabs.forEach(t => t.classList.remove('active'));
-        authForms.forEach(f => f.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.target).classList.add('active');
-    });
-});
-
-// Check Auth State on Load
-function updateNavState() {
-    const savedUser = JSON.parse(localStorage.getItem('urbanServeUser'));
-    const navActions = document.getElementById('nav-actions');
-    if (!navActions) return;
-
-    // We only want to replace the auth-related part, but for simplicity we'll keep theme and search buttons.
-    // Let's find the current theme and search buttons or just redraw them.
-    const isDark = document.body.classList.contains('dark-mode');
-    
-    let html = `
-        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i data-lucide="${isDark ? 'sun' : 'moon'}"></i></button>
-        <button class="icon-btn" id="search-btn" aria-label="Search"><i data-lucide="search"></i></button>
-    `;
-
-    if (savedUser && savedUser.name) {
-        const firstName = savedUser.name.split(' ')[0];
-        html += `
-            <a href="dashboard.html" class="btn-primary" style="text-decoration:none;"><i data-lucide="user"></i> ${firstName}</a>
-            <button class="icon-btn" id="logout-quick" title="Logout"><i data-lucide="log-out" style="width: 18px;"></i></button>
-        `;
-    } else {
-        html += `<button class="btn-primary" id="open-auth-btn"><i data-lucide="user"></i> Sign In</button>`;
-    }
-
-    navActions.innerHTML = html;
-    lucide.createIcons();
-    
-    // Re-attach listeners because we replaced the buttons
-    attachNavbarListeners();
-}
-
-function attachNavbarListeners() {
-    const themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-        themeBtn.onclick = () => {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            themeBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-            lucide.createIcons();
-        };
-    }
-
-    const searchBtn = document.getElementById('search-btn');
-    if (searchBtn) {
-        searchBtn.onclick = () => {
-            const searchOverlay = document.getElementById('search-overlay');
-            if (searchOverlay) searchOverlay.classList.remove('hidden');
-        };
-    }
-
-    const openAuthBtn = document.getElementById('open-auth-btn');
-    if (openAuthBtn) {
-        openAuthBtn.onclick = () => authModal.classList.remove('hidden');
-    }
-    
-    const logoutQuick = document.getElementById('logout-quick');
-    if (logoutQuick) {
-        logoutQuick.onclick = () => {
-            if (confirm("Logout from UrbanServe?")) {
-                localStorage.removeItem('urbanServeUser');
-                updateNavState();
-            }
-        };
-    }
-}
-
-updateNavState();
+// Re-render initially to attach
+renderServices(services);
 
 // Login Form Submit
 const loginForm = document.getElementById('login-form');
