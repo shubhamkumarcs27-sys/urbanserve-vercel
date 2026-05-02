@@ -167,35 +167,45 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .container { padding: 0 1.5rem; }
-  .heading-1 { font-size: 2.5rem; }
-  .heading-2 { font-size: 1.8rem; }
-  .hero { padding: 4rem 0 3rem; min-height: auto; }
-  .hero-subtitle { font-size: 1rem; margin-bottom: 2.5rem; }
+  .container { padding: 0 1.25rem; }
+  .heading-1 { font-size: 2.2rem; }
+  .heading-2 { font-size: 1.6rem; }
+  .hero { padding: 3rem 0; min-height: auto; }
+  .hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
   
-  .search-grid { grid-template-columns: 1fr; gap: 1rem; }
+  /* Manage Boxes (Search Grid) */
+  .smart-search-card { padding: 1.5rem; }
+  .search-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .input-group select, .input-group input { padding: 0.875rem; font-size: 0.95rem; }
+  .search-submit { width: 100%; margin-top: 0.5rem; }
+
+  /* Navbar & Sign In Button */
   .nav-links { display: none; }
-  .navbar { padding: 1rem 0; }
-  .logo { font-size: 1.4rem; }
-  .actions { gap: 0.75rem; }
-  .btn-primary { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
+  .navbar { padding: 0.75rem 0; }
+  .logo { font-size: 1.3rem; }
+  .actions { gap: 0.5rem; }
+  #open-auth-btn { padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: var(--border-radius-sm); }
   
-  .grid-auto { grid-template-columns: 1fr; }
-  .categories-scroll { padding: 0.5rem 0 1.5rem; margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .grid-auto { grid-template-columns: 1fr; gap: 1.5rem; }
+  .categories-scroll { padding: 0.5rem 0 1rem; margin: 0 -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
   
   .offers-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .offer-card { padding: 2rem 1.5rem; }
+  .offer-card { padding: 1.5rem; }
   
-  .modal-container { padding: 1.5rem; width: 95%; margin: 1rem; }
-  .time-slots { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .modal-container { padding: 1.25rem; width: 92%; margin: 1rem; }
+  .time-slots { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
   
-  .map-container { height: 350px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-  .footer-logo-section { text-align: center; margin-bottom: 2rem; }
+  .map-container { height: 300px; }
+
+  /* Fix Bottom of Site (Footer) */
+  .footer { padding: 3rem 0; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+  .footer-logo-section { text-align: center; margin-bottom: 1.5rem; }
+  .footer-bottom { margin-top: 2rem; padding-top: 1.5rem; text-align: center; font-size: 0.85rem; }
 }
 
 @media (max-width: 480px) {
-  .heading-1 { font-size: 2.2rem; }
-  .actions .btn-primary span { display: none; } /* Hide text on very small screens, show icon only */
-  .actions .btn-primary { width: 45px; height: 45px; padding: 0; justify-content: center; border-radius: 50%; }
+  .heading-1 { font-size: 2rem; }
+  .logo { font-size: 1.2rem; }
+  #open-auth-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
 }
