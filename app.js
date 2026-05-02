@@ -114,6 +114,14 @@ function openBooking(sid) {
     ui.updateText('summary-price', `₹${AppState.activeBooking.price}`);
     ui.updateText('summary-total', `₹${AppState.activeBooking.price + 49}`);
     
+    // Pre-fill user data if logged in
+    if (AppState.user) {
+        const nameInput = document.getElementById('booking-name');
+        const phoneInput = document.getElementById('booking-phone');
+        if (nameInput) nameInput.value = AppState.user.name;
+        if (phoneInput) phoneInput.value = AppState.user.phone;
+    }
+    
     document.querySelectorAll('.booking-step').forEach(s => s.classList.add('hidden'));
     ui.show('step-1');
     ui.show('booking-modal');
@@ -202,4 +210,40 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('close-booking-btn').onclick = () => ui.hide('booking-modal');
     document.getElementById('close-auth-btn').onclick = () => ui.hide('auth-modal');
     document.getElementById('search-close').onclick = () => ui.hide('search-overlay');
+
+    // Loading & Welcome Logic
+    setTimeout(() => {
+        const overlay = document.getElementById('loading-overlay');
+        if (overlay) overlay.classList.add('fade-out');
+        
+        // Trigger reveal animations
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+        
+        if (AppState.user) {
+            showWelcome(AppState.user.name);
+        }
+    }, 1500);
 });
+
+function showWelcome(name) {
+    const container = document.getElementById('notification-container');
+    if (!container) return;
+    
+    const toast = document.createElement('div');
+    toast.className = 'welcome-toast';
+    toast.innerHTML = `
+        <i data-lucide="sparkles"></i>
+        <div>
+            <div style="font-weight: 700; font-size: 1.1rem;">Welcome back, ${name.split(' ')[0]}!</div>
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">Ready for your next service?</div>
+        </div>
+    `;
+    container.appendChild(toast);
+    lucide.createIcons();
+    
+    setTimeout(() => toast.classList.add('show'), 100);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+    }, 5000);
+}
