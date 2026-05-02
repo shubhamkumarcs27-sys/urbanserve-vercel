@@ -144,6 +144,7 @@ function renderServices(filteredServices) {
     });
     lucide.createIcons();
     updateMapMarkers(filteredServices);
+    attachBookButtons();
 }
 
 // Initial render
