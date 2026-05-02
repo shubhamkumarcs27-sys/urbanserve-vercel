@@ -17,20 +17,9 @@
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader-content">
-            <div class="loader-logo">Urban<span>Serve</span></div>
-            <div class="loader-bar-wrap">
-                <div class="loader-bar"></div>
-            </div>
-            <p class="loader-text">Finding the best professionals for you…</p>
-        </div>
-    </div>
-
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container flex-between">
@@ -40,6 +29,7 @@
                 <a href="#map-section" class="nav-link"><i data-lucide="map-pin"></i> Map</a>
             </div>
             <div class="actions" id="nav-actions">
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i data-lucide="moon"></i></button>
                 <button class="icon-btn" id="search-btn" aria-label="Search"><i data-lucide="search"></i></button>
                 <button class="btn-primary" id="open-auth-btn"><i data-lucide="user"></i> Sign In</button>
             </div>
@@ -50,11 +40,11 @@
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content">
-            <h1 class="heading-1 animate-fade-in">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
-            <p class="hero-subtitle animate-fade-in animate-delay-1">Your trusted destination for booking top-tier professionals for home repair, cleaning, and salon services.</p>
+            <h1 class="heading-1">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
+            <p class="hero-subtitle">Your trusted destination for booking top-tier professionals for home repair, cleaning, and salon services.</p>
             
             <!-- Smart Recommendation Card -->
-            <div class="smart-search-card animate-fade-in animate-delay-2">
+            <div class="smart-search-card">
                 <div class="search-grid">
                     <div class="input-group">
                         <label for="event-type">What service do you need?</label>
@@ -91,6 +81,43 @@
         </div>
     </header>
 
+    <!-- Categories Scroller -->
+    <section class="categories-section" style="padding: 2rem 0; border-bottom: 1px solid var(--glass-border);">
+        <div class="container">
+            <div class="categories-scroll" id="category-scroller">
+                <button class="category-pill active" data-filter="all"><i data-lucide="grid"></i> All</button>
+                <button class="category-pill" data-filter="cleaning_pest"><i data-lucide="spray-can"></i> Cleaning</button>
+                <button class="category-pill" data-filter="plumber"><i data-lucide="wrench"></i> Plumber</button>
+                <button class="category-pill" data-filter="electrician"><i data-lucide="zap"></i> Electrician</button>
+                <button class="category-pill" data-filter="appliance_repair"><i data-lucide="fan"></i> AC Repair</button>
+                <button class="category-pill" data-filter="hair_salon"><i data-lucide="scissors"></i> Salon</button>
+                <button class="category-pill" data-filter="driver"><i data-lucide="car"></i> Driver</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section class="offers-section" style="padding-top: 4rem;">
+        <div class="container">
+            <div class="offers-grid">
+                <div class="offer-card" style="background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);">
+                    <div class="offer-content">
+                        <span class="offer-badge" style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: #000;">NEW USER</span>
+                        <h3 style="color: #000; font-size: 1.8rem; margin: 0.5rem 0;">Flat 50% Off</h3>
+                        <p style="color: rgba(0,0,0,0.7); margin-bottom: 1rem;">On your first salon booking</p>
+                    </div>
+                </div>
+                <div class="offer-card" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+                    <div class="offer-content">
+                        <span class="offer-badge" style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: #000;">SUMMER SPECIAL</span>
+                        <h3 style="color: #000; font-size: 1.8rem; margin: 0.5rem 0;">AC Servicing</h3>
+                        <p style="color: rgba(0,0,0,0.7); margin-bottom: 1rem;">Starting at just ₹499</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Grid -->
     <section id="services" class="section">
         <div class="container">
@@ -121,61 +148,16 @@
             <div class="footer-logo-section">
                 <a href="#" class="logo" style="font-size: 2rem;">Urban<span class="text-gradient">Serve</span></a>
             </div>
-            
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4 class="footer-heading">Company</h4>
                     <ul class="footer-links">
                         <li><a href="#">About us</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms & conditions</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Anti-discrimination policy</a></li>
                         <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-col">
-                    <h4 class="footer-heading">For customers</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">UC reviews</a></li>
-                        <li><a href="#">Categories near you</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4 class="footer-heading">For professionals</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Register as a professional</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4 class="footer-heading">Social links</h4>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Twitter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="WhatsApp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                        </a>
-                    </div>
-                    <div class="app-links">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" class="app-badge">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" class="app-badge">
-                    </div>
-                </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>* As on December 31, 2024</p>
                 <p>&copy; Copyright 2026 UrbanServe Limited. All rights reserved.</p>
             </div>
         </div>
@@ -185,77 +167,108 @@
     <div class="modal-overlay hidden" id="auth-modal">
         <div class="modal-container">
             <button class="icon-btn modal-close" id="close-auth-btn"><i data-lucide="x"></i></button>
-            
             <div class="auth-tabs">
                 <button class="auth-tab active" data-target="login-form">Login</button>
                 <button class="auth-tab" data-target="register-form">Register</button>
             </div>
-            
-            <!-- Login Form -->
             <form id="login-form" class="auth-form active">
-                <h3 class="heading-2" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Welcome Back</h3>
                 <div class="input-group">
-                    <label for="login-email">Email or Phone Number</label>
-                    <input type="text" id="login-email" required placeholder="Enter your email or phone">
+                    <label>Email or Phone Number</label>
+                    <input type="text" id="login-email" required>
                 </div>
                 <div class="input-group" style="margin-top: 1rem;">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" required placeholder="Enter your password">
+                    <label>Password</label>
+                    <input type="password" id="login-password" required>
                 </div>
-                <div style="text-align: right; margin-top: 0.5rem;">
-                    <a href="#" id="forgot-password-link" style="font-size: 0.85rem; color: var(--accent-primary); text-decoration: none;">Forgot Password?</a>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1.5rem;">Sign In</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Sign In</button>
             </form>
-            
-            <!-- Register Form -->
             <form id="register-form" class="auth-form">
-                <h3 class="heading-2" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Create Account</h3>
                 <div class="input-group">
-                    <label for="reg-name">Full Name</label>
-                    <input type="text" id="reg-name" required placeholder="John Doe">
+                    <label>Full Name</label>
+                    <input type="text" id="reg-name" required>
                 </div>
                 <div class="input-group" style="margin-top: 1rem;">
-                    <label for="reg-email">Email Address</label>
-                    <input type="email" id="reg-email" required placeholder="john@example.com">
+                    <label>Email Address</label>
+                    <input type="email" id="reg-email" required>
                 </div>
                 <div class="input-group" style="margin-top: 1rem;">
-                    <label for="reg-phone">Phone Number</label>
-                    <input type="tel" id="reg-phone" required placeholder="+91 9876543210">
+                    <label>Phone Number</label>
+                    <input type="tel" id="reg-phone" required>
                 </div>
                 <div class="input-group" style="margin-top: 1rem;">
-                    <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" required minlength="8" placeholder="Min. 8 characters">
+                    <label>Password</label>
+                    <input type="password" id="reg-password" required minlength="8">
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1.5rem;">Register</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Register</button>
             </form>
         </div>
     </div>
 
-    <!-- Chat Widget -->
-    <div class="chat-widget" id="chat-widget">
-        <button class="chat-toggle" id="chat-toggle" aria-label="Open Chat">
-            <i data-lucide="message-circle"></i>
-        </button>
-        
-        <div class="chat-window hidden" id="chat-window">
-            <div class="chat-header">
-                <div class="flex-center" style="gap: 10px;">
-                    <div class="avatar">US</div>
-                    <div>
-                        <h4 style="margin: 0;">UrbanServe Support</h4>
-                        <span class="text-secondary" style="font-size: 0.8rem;">Online</span>
+    <!-- Booking Modal -->
+    <div class="modal-overlay hidden" id="booking-modal">
+        <div class="modal-container booking-container">
+            <button class="icon-btn modal-close" id="close-booking-btn"><i data-lucide="x"></i></button>
+            <h2 class="heading-2" id="booking-title" style="margin-bottom: 1rem; font-size: 1.8rem;">Book Service</h2>
+            
+            <div class="booking-step" id="step-1">
+                <h4 style="margin-bottom: 1rem;">Select a Date & Time</h4>
+                <div class="input-group" style="margin-bottom: 1.5rem;">
+                    <input type="date" id="booking-date" required>
+                </div>
+                <div class="time-slots">
+                    <button class="time-slot">09:00 AM</button>
+                    <button class="time-slot">11:30 AM</button>
+                    <button class="time-slot">02:00 PM</button>
+                    <button class="time-slot">04:30 PM</button>
+                </div>
+                <button class="btn-primary" id="confirm-time-btn" style="width: 100%; margin-top: 2rem;">Continue to Summary</button>
+            </div>
+
+            <div class="booking-step hidden" id="step-2">
+                <h4 style="margin-bottom: 1rem;">Customer Details</h4>
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <label>Full Name <span style="color: #ef4444;">*</span></label>
+                    <input type="text" id="booking-name" required placeholder="e.g. Rahul Sharma">
+                </div>
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <label>Phone Number <span style="color: #ef4444;">*</span></label>
+                    <input type="tel" id="booking-phone" required placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}">
+                </div>
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <label>Service Address <span style="color: #ef4444;">*</span></label>
+                    <textarea id="booking-address" required placeholder="House/Flat No., Building Name, Street Area" rows="2" style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.75rem 1.25rem; border-radius: var(--border-radius-sm); font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <label>Landmark <span style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 400;">(Optional)</span></label>
+                    <input type="text" id="booking-landmark" placeholder="e.g. Near Apollo Hospital">
+                </div>
+                <button class="btn-primary" id="confirm-details-btn" style="width: 100%; margin-top: 1rem;">Review Booking</button>
+            </div>
+
+            <div class="booking-step hidden" id="step-3">
+                <h4 style="margin-bottom: 1rem;">Booking Summary</h4>
+                <div class="summary-card" style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+                    <div class="flex-between" style="margin-bottom: 0.5rem;">
+                        <span>Service Fee</span>
+                        <span id="summary-price">₹0</span>
+                    </div>
+                    <div class="flex-between" style="margin-bottom: 0.5rem;">
+                        <span>Taxes & Fees</span>
+                        <span>₹49</span>
+                    </div>
+                    <div class="flex-between" style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem; font-weight: 700; font-size: 1.2rem;">
+                        <span>Total</span>
+                        <span id="summary-total">₹0</span>
                     </div>
                 </div>
-                <button class="icon-btn" id="chat-close"><i data-lucide="x"></i></button>
+                <button class="btn-primary" id="final-book-btn" style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Confirm & Pay</button>
             </div>
-            <div class="chat-body" id="chat-body">
-                <div class="message agent-message">Hi there! Need help booking a home service?</div>
+            
+            <div class="booking-step hidden" id="step-4" style="text-align: center; padding: 2rem 0;">
+                <div class="success-icon" style="animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;"><i data-lucide="check-circle" style="width: 80px; height: 80px; color: #10b981; margin: 0 auto;"></i></div>
+                <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.8rem;">Booking Confirmed!</h3>
+                <p class="text-secondary">Your professional will arrive on time.</p>
             </div>
-            <form class="chat-footer" id="chat-form">
-                <input type="text" class="chat-input" id="chat-input" placeholder="Type your message...">
-                <button type="submit" class="send-btn" id="chat-send"><i data-lucide="send"></i></button>
-            </form>
         </div>
     </div>
 
@@ -273,7 +286,6 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
-    <script src="app.js"></script>
+    <script src="app.js?v=3"></script>
 </body>
 </html>
