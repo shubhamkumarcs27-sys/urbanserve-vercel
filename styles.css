@@ -58,6 +58,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: var(--transition-normal); box-shadow: 0 4px 14px rgba(37, 99, 235, 0.39);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); }
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  color: white; padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius-sm); font-weight: 600; display: flex; align-items: center; gap: 0.5rem;
+  transition: var(--transition-normal); box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+}
+.btn-danger:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4); }
+
+.btn-secondary {
+  background: var(--bg-secondary); color: var(--text-primary); padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius-sm); font-weight: 600; display: flex; align-items: center; gap: 0.5rem;
+  border: 1px solid var(--glass-border); transition: var(--transition-normal);
+}
+.btn-secondary:hover { background: var(--glass-border); }
+
 .icon-btn { color: var(--text-secondary); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
 .icon-btn:hover { color: var(--text-primary); }
 
