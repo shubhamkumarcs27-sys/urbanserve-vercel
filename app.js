@@ -132,9 +132,11 @@ if (recBtn) {
         
         if (budget) {
             filtered = filtered.filter(s => {
-                if (budget === 'low') return s.price < 10000;
-                if (budget === 'medium') return s.price >= 10000 && s.price <= 50000;
-                if (budget === 'high') return s.price > 50000;
+                if (budget === 'budget') return s.price < 1000;
+                if (budget === 'standard') return s.price >= 1000 && s.price < 5000;
+                if (budget === 'mid') return s.price >= 5000 && s.price < 15000;
+                if (budget === 'premium') return s.price >= 15000 && s.price < 50000;
+                if (budget === 'luxury') return s.price >= 50000;
                 return true;
             });
         }
@@ -176,6 +178,68 @@ function updateNavState() {
     }
 }
 updateNavState();
+
+// Login Form Submit
+const loginForm = document.getElementById('login-form');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await response.json();
+            
+            if (response.ok) {
+                localStorage.setItem('urbanServeUser', JSON.stringify(data.user));
+                authModal.classList.add('hidden');
+                updateNavState();
+                alert('Welcome back, ' + data.user.name + '!');
+            } else {
+                alert(data.error || 'Invalid credentials');
+            }
+        } catch (err) {
+            alert('Server error. Please make sure the backend is running.');
+        }
+    });
+}
+
+// Register Form Submit
+const registerForm = document.getElementById('register-form');
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+        const phone = document.getElementById('reg-phone').value;
+        const password = document.getElementById('reg-password').value;
+        
+        try {
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone, password })
+            });
+            const data = await response.json();
+            
+            if (response.ok) {
+                localStorage.setItem('urbanServeUser', JSON.stringify(data.user));
+                authModal.classList.add('hidden');
+                updateNavState();
+                alert('Registration successful! Welcome, ' + name);
+            } else {
+                alert(data.error || 'Registration failed');
+            }
+        } catch (err) {
+            alert('Server error. Please try again.');
+        }
+    });
+}
 
 // --- SEARCH OVERLAY LOGIC ---
 const searchBtn = document.getElementById('search-btn');
@@ -280,13 +344,6 @@ function attachBookButtons() {
                 summaryPrice.innerText = `₹${currentBookingService.price}`;
                 summaryTotal.innerText = `₹${currentBookingService.price + 49}`;
                 
-                // Pre-fill user data if available
-                const savedUser = JSON.parse(localStorage.getItem('urbanServeUser'));
-                if (savedUser) {
-                    document.getElementById('booking-name').value = savedUser.name || '';
-                    document.getElementById('booking-phone').value = savedUser.phone || '';
-                }
-
                 // Reset steps
                 step1.classList.remove('hidden');
                 step2.classList.add('hidden');
@@ -296,7 +353,10 @@ function attachBookButtons() {
                 // Reset selections
                 document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
                 document.getElementById('booking-date').value = '';
+                document.getElementById('booking-name').value = '';
+                document.getElementById('booking-phone').value = '';
                 document.getElementById('booking-address').value = '';
+                document.getElementById('booking-landmark').value = '';
                 
                 bookingModal.classList.remove('hidden');
             }
@@ -363,3 +423,12 @@ document.getElementById('final-book-btn').addEventListener('click', () => {
         bookingModal.classList.add('hidden');
     }, 3000);
 });
+
+// --- ABOUT US INTERACTION ---
+const aboutUsLink = document.getElementById('about-us-link');
+if (aboutUsLink) {
+    aboutUsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("Shubham Kumar\nCS-2341589");
+    });
+}

@@ -165,47 +165,54 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
 .time-slot:hover, .time-slot.selected { border-color: var(--accent-primary); background: rgba(37, 99, 235, 0.05); color: var(--accent-primary); }
 @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
+/* Footer Styles */
+.footer { padding: 5rem 0 3rem; background: var(--bg-card); border-top: 1px solid var(--glass-border); }
+.footer-logo-section { text-align: center; margin-bottom: 4rem; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; }
+.footer-heading { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-primary); }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.footer-links a { color: var(--text-secondary); transition: 0.2s; font-size: 0.95rem; }
+.footer-links a:hover { color: var(--accent-primary); transform: translateX(5px); display: inline-block; }
+.footer-bottom { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+
 /* Responsive */
 @media (max-width: 768px) {
-  .container { padding: 0 1.25rem; }
-  .heading-1 { font-size: 2.2rem; }
-  .heading-2 { font-size: 1.6rem; }
-  .hero { padding: 3rem 0; min-height: auto; }
-  .hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+  .container { padding: 0 1rem; }
+  .heading-1 { font-size: 2rem; margin-bottom: 1rem; }
+  .heading-2 { font-size: 1.5rem; }
+  .hero { padding: 2.5rem 0; }
+  .hero-subtitle { font-size: 0.95rem; margin-bottom: 1.5rem; }
   
-  /* Manage Boxes (Search Grid) */
-  .smart-search-card { padding: 1.5rem; }
-  .search-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-  .input-group select, .input-group input { padding: 0.875rem; font-size: 0.95rem; }
-  .search-submit { width: 100%; margin-top: 0.5rem; }
+  .smart-search-card { padding: 1.25rem; border-radius: var(--border-radius-md); }
+  .search-grid { gap: 0.5rem; }
+  .input-group label { font-size: 0.8rem; }
+  .input-group select, .input-group input { padding: 0.75rem; font-size: 0.9rem; }
+  .search-submit { height: 48px; font-size: 0.95rem; }
 
-  /* Navbar & Sign In Button */
-  .nav-links { display: none; }
-  .navbar { padding: 0.75rem 0; }
-  .logo { font-size: 1.3rem; }
-  .actions { gap: 0.5rem; }
-  #open-auth-btn { padding: 0.6rem 1rem; font-size: 0.85rem; border-radius: var(--border-radius-sm); }
+  .navbar { padding: 0.5rem 0; }
+  .logo { font-size: 1.2rem; }
+  .actions { gap: 0.4rem; }
+  #open-auth-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+  #theme-toggle { width: 36px; height: 36px; }
   
-  .grid-auto { grid-template-columns: 1fr; gap: 1.5rem; }
-  .categories-scroll { padding: 0.5rem 0 1rem; margin: 0 -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+  .grid-auto { gap: 1rem; }
+  .categories-scroll { margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
   
-  .offers-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .offer-card { padding: 1.5rem; }
+  .offer-card { padding: 1.25rem; border-radius: var(--border-radius-md); }
+  .offer-card h3 { font-size: 1.5rem; }
   
-  .modal-container { padding: 1.25rem; width: 92%; margin: 1rem; }
-  .time-slots { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .modal-container { width: 95%; padding: 1rem; margin: 0.5rem; }
+  .booking-container h2 { font-size: 1.5rem; }
   
-  .map-container { height: 300px; }
+  .map-container { height: 280px; }
 
-  /* Fix Bottom of Site (Footer) */
-  .footer { padding: 3rem 0; }
-  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
-  .footer-logo-section { text-align: center; margin-bottom: 1.5rem; }
-  .footer-bottom { margin-top: 2rem; padding-top: 1.5rem; text-align: center; font-size: 0.85rem; }
+  .footer { padding: 2.5rem 0 1.5rem; }
+  .footer-logo-section { margin-bottom: 2rem; }
+  .footer-grid { gap: 2rem; }
+  .footer-bottom { margin-top: 3rem; padding-top: 1rem; }
 }
 
 @media (max-width: 480px) {
-  .heading-1 { font-size: 2rem; }
-  .logo { font-size: 1.2rem; }
-  #open-auth-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+  .heading-1 { font-size: 1.8rem; }
+  .search-grid { grid-template-columns: 1fr; }
 }
