@@ -231,6 +231,12 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
   .menu-item { white-space: nowrap; padding: 0.6rem 1rem; }
   .content-panel { padding: 1.5rem; }
 
+  /* Sign Out Button Mobile Fix */
+  #logout-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+  #logout-btn span { display: none; } /* If I added a span around the text */
+  /* Since I didn't add a span, I'll just change the content or keep it small */
+  #logout-btn { gap: 0.3rem; }
+
   .footer { padding: 2.5rem 0 1.5rem; }
   .footer-logo-section { margin-bottom: 2rem; }
   .footer-grid { gap: 2rem; }
