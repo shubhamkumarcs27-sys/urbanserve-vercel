@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UrbanServe | Expert Local Home Services</title>
-    <meta name="description" content="Book top-rated local home services including cleaning, repair, and salon services easily with UrbanServe.">
-    
+    <title>Urban Needs | Expert Local Home Services</title>
+    <meta name="description"
+        content="Book top-rated local home services including cleaning, repair, and salon services easily with Urban Needs.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Leaflet CSS for Maps -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="styles.css?v=3.0">
 </head>
+
 <body>
     <!-- Loading Overlay -->
     <div id="loading-overlay">
         <div class="loader-content">
             <div class="loader-spinner"></div>
-            <h2 class="loader-text">UrbanServe</h2>
+            <h2 class="loader-text">Urban Needs</h2>
         </div>
     </div>
 
     <!-- Notification Container -->
     <div id="notification-container"></div>
-    
+
     <!-- Page Transition Overlay -->
     <div id="page-transition" class="page-transition-overlay"></div>
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container flex-between">
-            <a href="#" class="logo">Urban<span class="text-gradient">Serve</span></a>
+            <a href="#" class="logo">Urban<span class="text-gradient">Needs</span></a>
             <div class="nav-links">
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#map-section" class="nav-link"><i data-lucide="map-pin"></i> Map</a>
@@ -55,8 +60,9 @@
         <div class="hero-bg"></div>
         <div class="container hero-content text-center">
             <h1 class="heading-1 hero-title">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
-            <p class="hero-subtitle">Your trusted destination for booking top-tier professionals for home repair, cleaning, and salon services.</p>
-            
+            <p class="hero-subtitle">Your trusted destination for booking top-tier professionals for home repair,
+                cleaning, and salon services.</p>
+
             <!-- Smart Recommendation Card -->
             <div class="smart-search-card reveal stagger-2">
                 <div class="search-grid">
@@ -98,14 +104,17 @@
     </header>
 
     <!-- Categories Scroller -->
-    <section class="categories-section reveal stagger-3" style="padding: 2rem 0; border-bottom: 1px solid var(--glass-border);">
+    <section class="categories-section reveal stagger-3"
+        style="padding: 2rem 0; border-bottom: 1px solid var(--glass-border);">
         <div class="container">
             <div class="categories-scroll" id="category-scroller">
                 <button class="category-pill active" data-filter="all"><i data-lucide="grid"></i> All</button>
-                <button class="category-pill" data-filter="cleaning_pest"><i data-lucide="spray-can"></i> Cleaning</button>
+                <button class="category-pill" data-filter="cleaning_pest"><i data-lucide="spray-can"></i>
+                    Cleaning</button>
                 <button class="category-pill" data-filter="plumber"><i data-lucide="wrench"></i> Plumber</button>
                 <button class="category-pill" data-filter="electrician"><i data-lucide="zap"></i> Electrician</button>
-                <button class="category-pill" data-filter="appliance_repair"><i data-lucide="fan"></i> AC Repair</button>
+                <button class="category-pill" data-filter="appliance_repair"><i data-lucide="fan"></i> AC
+                    Repair</button>
                 <button class="category-pill" data-filter="hair_salon"><i data-lucide="scissors"></i> Salon</button>
                 <button class="category-pill" data-filter="driver"><i data-lucide="car"></i> Driver</button>
             </div>
@@ -118,14 +127,18 @@
             <div class="offers-grid">
                 <div class="offer-card" style="background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);">
                     <div class="offer-content">
-                        <span class="offer-badge" style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: #000;">NEW USER</span>
+                        <span class="offer-badge"
+                            style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: #000;">NEW
+                            USER</span>
                         <h3 style="color: #000; font-size: 1.8rem; margin: 0.5rem 0;">Flat 50% Off</h3>
                         <p style="color: rgba(0,0,0,0.7); margin-bottom: 1rem;">On your first salon booking</p>
                     </div>
                 </div>
                 <div class="offer-card" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
                     <div class="offer-content">
-                        <span class="offer-badge" style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: #000;">SUMMER SPECIAL</span>
+                        <span class="offer-badge"
+                            style="background: rgba(0,0,0,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; color: #000;">SUMMER
+                            SPECIAL</span>
                         <h3 style="color: #000; font-size: 1.8rem; margin: 0.5rem 0;">AC Servicing</h3>
                         <p style="color: rgba(0,0,0,0.7); margin-bottom: 1rem;">Starting at just ₹499</p>
                     </div>
@@ -162,7 +175,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-logo-section">
-                <a href="#" class="logo" style="font-size: 2rem;">Urban<span class="text-gradient">Serve</span></a>
+                <a href="#" class="logo" style="font-size: 2rem;">Urban<span class="text-gradient">Needs</span></a>
             </div>
             <div class="footer-grid">
                 <div class="footer-col">
@@ -191,7 +204,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 UrbanServe. All rights reserved.</p>
+                <p>&copy; Copyright 2026 Urban Needs Limited. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -226,7 +239,9 @@
                 </div>
                 <div class="input-group" style="margin-top: 1rem;">
                     <label>Phone Number</label>
-                    <input type="tel" id="reg-phone" required pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" placeholder="10-digit number">
+                    <input type="tel" id="reg-phone" required pattern="[0-9]{10}" maxlength="10"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+                        placeholder="10-digit number">
                 </div>
                 <div class="input-group" style="margin-top: 1rem;">
                     <label>Password</label>
@@ -242,7 +257,7 @@
         <div class="modal-container booking-container">
             <button class="icon-btn modal-close" id="close-booking-btn"><i data-lucide="x"></i></button>
             <h2 class="heading-2" id="booking-title" style="margin-bottom: 1rem; font-size: 1.8rem;">Book Service</h2>
-            
+
             <div class="booking-step" id="step-1">
                 <h4 style="margin-bottom: 1rem;">Select a Date & Time</h4>
                 <div class="input-group" style="margin-bottom: 1.5rem;">
@@ -254,7 +269,8 @@
                     <button class="time-slot">02:00 PM</button>
                     <button class="time-slot">04:30 PM</button>
                 </div>
-                <button class="btn-primary" id="confirm-time-btn" style="width: 100%; margin-top: 2rem;">Continue to Summary</button>
+                <button class="btn-primary" id="confirm-time-btn" style="width: 100%; margin-top: 2rem;">Continue to
+                    Summary</button>
             </div>
 
             <div class="booking-step hidden" id="step-2">
@@ -265,22 +281,28 @@
                 </div>
                 <div class="input-group" style="margin-bottom: 1rem;">
                     <label>Phone Number <span style="color: #ef4444;">*</span></label>
-                    <input type="tel" id="booking-phone" required placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
+                    <input type="tel" id="booking-phone" required placeholder="10-digit mobile number" maxlength="10"
+                        pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
                 </div>
                 <div class="input-group" style="margin-bottom: 1rem;">
                     <label>Service Address <span style="color: #ef4444;">*</span></label>
-                    <textarea id="booking-address" required placeholder="House/Flat No., Building Name, Street Area" rows="2" style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.75rem 1.25rem; border-radius: var(--border-radius-sm); font-family: inherit; resize: vertical;"></textarea>
+                    <textarea id="booking-address" required placeholder="House/Flat No., Building Name, Street Area"
+                        rows="2"
+                        style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.75rem 1.25rem; border-radius: var(--border-radius-sm); font-family: inherit; resize: vertical;"></textarea>
                 </div>
                 <div class="input-group" style="margin-bottom: 1rem;">
-                    <label>Landmark <span style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 400;">(Optional)</span></label>
+                    <label>Landmark <span
+                            style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 400;">(Optional)</span></label>
                     <input type="text" id="booking-landmark" placeholder="e.g. Near Apollo Hospital">
                 </div>
-                <button class="btn-primary" id="confirm-details-btn" style="width: 100%; margin-top: 1rem;">Review Booking</button>
+                <button class="btn-primary" id="confirm-details-btn" style="width: 100%; margin-top: 1rem;">Review
+                    Booking</button>
             </div>
 
             <div class="booking-step hidden" id="step-3">
                 <h4 style="margin-bottom: 1rem;">Booking Summary</h4>
-                <div class="summary-card" style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+                <div class="summary-card"
+                    style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
                     <div class="flex-between" style="margin-bottom: 0.5rem;">
                         <span>Service Fee</span>
                         <span id="summary-price">₹0</span>
@@ -289,16 +311,23 @@
                         <span>Taxes & Fees</span>
                         <span>₹49</span>
                     </div>
-                    <div class="flex-between" style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem; font-weight: 700; font-size: 1.2rem;">
+                    <div class="flex-between"
+                        style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem; font-weight: 700; font-size: 1.2rem;">
                         <span>Total</span>
                         <span id="summary-total">₹0</span>
                     </div>
                 </div>
-                <button class="btn-primary" id="final-book-btn" style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Confirm & Pay</button>
+                <button class="btn-primary" id="final-book-btn"
+                    style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Confirm &
+                    Pay</button>
             </div>
-            
+
             <div class="booking-step hidden" id="step-4" style="text-align: center; padding: 3rem 0;">
                 <div class="success-icon-wrap">
+                    <a href="index.html" class="logo">
+                        <i data-lucide="home"></i>
+                        <span>Urban Needs</span>
+                    </a>
                     <div class="success-bg-glow"></div>
                     <i data-lucide="check"></i>
                 </div>
@@ -313,7 +342,8 @@
         <div class="search-overlay-inner">
             <div class="search-bar-wrap">
                 <i data-lucide="search" class="search-overlay-icon"></i>
-                <input type="text" id="search-input" class="search-overlay-input" placeholder="Search services… e.g. electrician, plumber">
+                <input type="text" id="search-input" class="search-overlay-input"
+                    placeholder="Search services… e.g. electrician, plumber">
                 <button class="icon-btn" id="search-close"><i data-lucide="x"></i></button>
             </div>
             <div class="search-results" id="search-results"></div>
@@ -321,7 +351,9 @@
     </div>
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="app.js?v=3.0"></script>
 </body>
+
 </html>

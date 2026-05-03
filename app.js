@@ -18,7 +18,7 @@ const ALL_SERVICES = [
 
 // App State
 let AppState = {
-    user: JSON.parse(localStorage.getItem('urbanServeUser')),
+    user: JSON.parse(localStorage.getItem('urbanNeedsUser')),
     theme: localStorage.getItem('theme') || 'light',
     activeBooking: null
 };
@@ -33,7 +33,7 @@ const ui = {
 
 function saveUser(user) {
     AppState.user = user;
-    localStorage.setItem('urbanServeUser', JSON.stringify(user));
+    localStorage.setItem('urbanNeedsUser', JSON.stringify(user));
     renderNav();
 }
 
@@ -41,12 +41,12 @@ function saveUser(user) {
 function renderNav() {
     const actions = document.getElementById('nav-actions');
     if (!actions) return;
-    
+
     let html = `
         <button class="icon-btn" onclick="toggleTheme()"><i data-lucide="${AppState.theme === 'dark' ? 'sun' : 'moon'}"></i></button>
         <button class="icon-btn" onclick="ui.show('search-overlay')"><i data-lucide="search"></i></button>
     `;
-    
+
     if (AppState.user) {
         html += `
             <a href="dashboard.html" class="btn-primary" style="text-decoration:none;"><i data-lucide="user"></i> ${AppState.user.name.split(' ')[0]}</a>
@@ -55,7 +55,7 @@ function renderNav() {
     } else {
         html += `<button class="btn-primary" onclick="ui.show('auth-modal')"><i data-lucide="user"></i> Sign In</button>`;
     }
-    
+
     actions.innerHTML = html;
     lucide.createIcons();
 }
@@ -105,7 +105,7 @@ function transitionTo(url) {
 }
 
 function logout() {
-    localStorage.removeItem('urbanServeUser');
+    localStorage.removeItem('urbanNeedsUser');
     transitionTo('index.html');
 }
 
@@ -123,7 +123,7 @@ function openBooking(sid) {
     ui.updateText('booking-title', `Book ${AppState.activeBooking.name}`);
     ui.updateText('summary-price', `₹${AppState.activeBooking.price}`);
     ui.updateText('summary-total', `₹${AppState.activeBooking.price + 49}`);
-    
+
     // Pre-fill user data if logged in
     if (AppState.user) {
         const nameInput = document.getElementById('booking-name');
@@ -131,7 +131,7 @@ function openBooking(sid) {
         if (nameInput) nameInput.value = AppState.user.name;
         if (phoneInput) phoneInput.value = AppState.user.phone;
     }
-    
+
     document.querySelectorAll('.booking-step').forEach(s => s.classList.add('hidden'));
     ui.show('step-1');
     ui.show('booking-modal');
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const res = await fetch('/api/login/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     emailOrPhone: document.getElementById('login-email').value,
                     password: document.getElementById('login-password').value
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const res = await fetch('/api/register/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     name: document.getElementById('reg-name').value,
                     email: document.getElementById('reg-email').value,
@@ -225,10 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const overlay = document.getElementById('loading-overlay');
         if (overlay) overlay.classList.add('fade-out');
-        
+
         // Trigger reveal animations
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-        
+
         if (AppState.user) {
             showWelcome(AppState.user.name);
         }
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function showWelcome(name) {
     const container = document.getElementById('notification-container');
     if (!container) return;
-    
+
     const toast = document.createElement('div');
     toast.className = 'welcome-toast';
     toast.innerHTML = `
@@ -250,7 +250,7 @@ function showWelcome(name) {
     `;
     container.appendChild(toast);
     lucide.createIcons();
-    
+
     setTimeout(() => toast.classList.add('show'), 100);
     setTimeout(() => {
         toast.classList.remove('show');

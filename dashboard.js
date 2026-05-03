@@ -12,7 +12,7 @@ function transitionTo(url) {
 }
 
 function logout() {
-    localStorage.removeItem('urbanServeUser');
+    localStorage.removeItem('urbanNeedsUser');
     transitionTo('index.html');
 }
 
@@ -22,7 +22,7 @@ if (localStorage.getItem('theme') === 'dark') {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedUser = JSON.parse(localStorage.getItem('urbanServeUser'));
+    const savedUser = JSON.parse(localStorage.getItem('urbanNeedsUser'));
 
     // Redirect to home if not logged in
     if (!savedUser) {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('display-name').textContent = user.name;
         document.getElementById('display-email').textContent = user.email;
         document.getElementById('display-phone').textContent = user.phone;
-        
+
         lucide.createIcons();
     }
 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('edit-name').value = user.name;
         document.getElementById('edit-email').value = user.email;
         document.getElementById('edit-phone').value = user.phone;
-        
+
         profileView.classList.add('hidden');
         settingsView.classList.remove('hidden');
     });
@@ -86,27 +86,27 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const user = JSON.parse(localStorage.getItem('urbanServeUser'));
         const oldEmail = user.email;
-        
+
         const updatedData = {
             name: document.getElementById('edit-name').value,
             email: document.getElementById('edit-email').value,
             phone: document.getElementById('edit-phone').value
         };
-        
+
         try {
             const response = await fetch('/api/profile/', {
                 method: 'PUT',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'user-email': oldEmail
                 },
                 body: JSON.stringify(updatedData)
             });
-            
+
             const data = await response.json();
-            
+
             if (response.ok) {
-                localStorage.setItem('urbanServeUser', JSON.stringify(data.user));
+                localStorage.setItem('urbanNeedsUser', JSON.stringify(data.user));
                 populateData(data.user);
                 settingsView.classList.add('hidden');
                 profileView.classList.remove('hidden');
