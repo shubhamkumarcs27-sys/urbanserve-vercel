@@ -1,9 +1,19 @@
 // Initialize Icons
 lucide.createIcons();
 
+function transitionTo(url) {
+    const overlay = document.getElementById('page-transition');
+    if (overlay) {
+        overlay.classList.add('active');
+        setTimeout(() => window.location.href = url, 500);
+    } else {
+        window.location.href = url;
+    }
+}
+
 function logout() {
     localStorage.removeItem('urbanServeUser');
-    window.location.href = 'index.html';
+    transitionTo('index.html');
 }
 
 // --- THEME PERSISTENCE ---

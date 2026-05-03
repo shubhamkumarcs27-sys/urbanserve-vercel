@@ -94,9 +94,19 @@ function toggleTheme() {
     renderNav();
 }
 
+function transitionTo(url) {
+    const overlay = document.getElementById('page-transition');
+    if (overlay) {
+        overlay.classList.add('active');
+        setTimeout(() => window.location.href = url, 500);
+    } else {
+        window.location.href = url;
+    }
+}
+
 function logout() {
     localStorage.removeItem('urbanServeUser');
-    window.location.href = 'index.html';
+    transitionTo('index.html');
 }
 
 function attachBookButtons() {
@@ -181,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
             const data = await res.json();
-            if (res.ok) { saveUser(data.user); location.reload(); }
+            if (res.ok) { saveUser(data.user); transitionTo('index.html'); }
             else alert(data.error);
         };
     }
@@ -201,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
             const data = await res.json();
-            if (res.ok) { saveUser(data.user); location.reload(); }
+            if (res.ok) { saveUser(data.user); transitionTo('index.html'); }
             else alert(data.error);
         };
     }
