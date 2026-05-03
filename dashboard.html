@@ -94,6 +94,29 @@
             font-weight: 500;
         }
 
+        .booking-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-normal);
+        }
+        .booking-card:hover { border-color: var(--accent-primary); transform: translateX(5px); }
+        .booking-info h4 { margin: 0; font-size: 1.1rem; }
+        .booking-info p { margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.4rem; }
+        .booking-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
         @media (max-width: 768px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
@@ -127,6 +150,7 @@
 
             <div class="sidebar-menu">
                 <button class="menu-item active" id="menu-info"><i data-lucide="user"></i> Personal Info</button>
+                <button class="menu-item" id="menu-bookings"><i data-lucide="calendar"></i> My Bookings</button>
                 <button class="menu-item" id="menu-settings"><i data-lucide="settings"></i> Settings</button>
             </div>
         </aside>

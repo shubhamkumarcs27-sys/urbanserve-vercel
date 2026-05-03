@@ -233,7 +233,22 @@ document.addEventListener('DOMContentLoaded', () => {
         ui.hide('step-3'); 
         ui.show('step-4');
         ui.hide('close-booking-btn'); // Hide close button on success
-        lucide.createIcons(); // Ensure check icon is rendered
+        lucide.createIcons(); 
+
+        // Save booking to history
+        const bookingData = {
+            id: txnId,
+            service: AppState.activeBooking.name,
+            amount: amount,
+            date: date,
+            time: time,
+            status: 'Confirmed',
+            userEmail: AppState.user ? AppState.user.email : 'guest'
+        };
+
+        let history = JSON.parse(localStorage.getItem('urbanNeedsBookings')) || [];
+        history.push(bookingData);
+        localStorage.setItem('urbanNeedsBookings', JSON.stringify(history));
     };
 
     // Auth Tab Switching
