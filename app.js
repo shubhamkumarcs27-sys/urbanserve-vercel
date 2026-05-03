@@ -217,9 +217,66 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close Modals
-    document.getElementById('close-booking-btn').onclick = () => ui.hide('booking-modal');
-    document.getElementById('close-auth-btn').onclick = () => ui.hide('auth-modal');
-    document.getElementById('search-close').onclick = () => ui.hide('search-overlay');
+    const closeBookingBtn = document.getElementById('close-booking-btn');
+    if (closeBookingBtn) closeBookingBtn.onclick = () => ui.hide('booking-modal');
+    
+    const closeAuthBtn = document.getElementById('close-auth-btn');
+    if (closeAuthBtn) closeAuthBtn.onclick = () => ui.hide('auth-modal');
+    
+    const searchCloseBtn = document.getElementById('search-close');
+    if (searchCloseBtn) searchCloseBtn.onclick = () => ui.hide('search-overlay');
+
+    const openAuthBtn = document.getElementById('open-auth-btn');
+    if (openAuthBtn) openAuthBtn.onclick = () => ui.show('auth-modal');
+
+    // Recommendation Logic
+    const recommendBtn = document.getElementById('recommend-btn');
+    if (recommendBtn) {
+        recommendBtn.onclick = () => {
+            const type = document.getElementById('event-type').value;
+            const budget = document.getElementById('budget').value;
+
+            let filtered = ALL_SERVICES;
+
+            if (type) {
+                filtered = filtered.filter(s => s.category === type);
+            }
+
+            if (budget) {
+                filtered = filtered.filter(s => {
+                    if (budget === 'budget') return s.price < 1000;
+                    if (budget === 'standard') return s.price >= 1000 && s.price < 5000;
+                    if (budget === 'mid') return s.price >= 5000 && s.price < 15000;
+                    if (budget === 'premium') return s.price >= 15000 && s.price < 50000;
+                    if (budget === 'luxury') return s.price >= 50000;
+                    return true;
+                });
+            }
+
+            renderServices(filtered);
+            
+            // Scroll to services section
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            if (filtered.length === 0) {
+                const container = document.getElementById('services-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem; background: var(--bg-secondary); border-radius: 1.5rem; border: 1px dashed var(--glass-border);">
+                            <i data-lucide="search-x" style="width: 48px; height: 48px; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                            <h3 class="heading-3">No matching services found</h3>
+                            <p style="color: var(--text-secondary);">Try adjusting your filters or browsing all services.</p>
+                            <button class="btn-secondary" style="margin-top: 1.5rem;" onclick="renderServices()">View All Services</button>
+                        </div>
+                    `;
+                    lucide.createIcons();
+                }
+            }
+        };
+    }
 
     // Loading & Welcome Logic
     setTimeout(() => {
