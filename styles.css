@@ -152,8 +152,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .book-btn { background: rgba(37, 99, 235, 0.05); border: 1px solid var(--accent-primary); color: var(--accent-primary); padding: 0.5rem 1.25rem; border-radius: var(--border-radius-sm); font-weight: 500; }
 .service-card:hover .book-btn { background: var(--gradient-primary); color: white; }
 
-/* Map */
-.map-container { height: 500px; width: 100%; border-radius: var(--border-radius-lg); border: 1px solid var(--glass-border); z-index: 1; }
 
 /* Search Overlay */
 .search-overlay {
@@ -285,7 +283,6 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
   .search-bar-wrap { padding: 0.75rem 1rem; }
   .search-overlay-input { font-size: 1rem; }
   
-  .map-container { height: 300px; }
 
   /* Dashboard Mobile */
   .dashboard-container { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0; }
