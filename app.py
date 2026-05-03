@@ -40,6 +40,9 @@ def register():
     db = load_db()
     data = request.json
     email = data.get('email', '').lower()
+    password = data.get('password', '')
+    if len(password) < 8:
+        return jsonify({'error': 'Password must be at least 8 characters long'}), 400
     if any(u['email'].lower() == email for u in db):
         return jsonify({'error': 'User already exists'}), 400
     user = {
