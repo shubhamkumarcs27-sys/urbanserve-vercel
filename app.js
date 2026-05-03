@@ -4,16 +4,71 @@
  */
 
 const ALL_SERVICES = [
-    { id: 1, name: "Elite Electricians", category: "electrician", rating: 4.8, reviews: 124, price: 500, image: "assets/electrician.png" },
-    { id: 2, name: "Premium Plumbing", category: "plumber", rating: 4.9, reviews: 89, price: 800, image: "assets/plumber.png" },
-    { id: 3, name: "Expert AC Repair", category: "appliance_repair", rating: 4.7, reviews: 156, price: 1500, image: "assets/ac_repair.png?v=2" },
-    { id: 4, name: "Pest Control Experts", category: "cleaning_pest", rating: 4.9, reviews: 305, price: 1200, image: "assets/pest_control.png" },
-    { id: 5, name: "Safe Drive Professionals", category: "driver", rating: 4.8, reviews: 210, price: 800, image: "assets/driver.png" },
-    { id: 6, name: "Gourmet Home Cooks", category: "cook", rating: 5.0, reviews: 92, price: 15000, image: "assets/cook.png" },
-    { id: 7, name: "Care & Trust Babysitting", category: "babysitter", rating: 4.9, reviews: 145, price: 1000, image: "assets/babysitter.png" },
-    { id: 8, name: "Relaxing Spa Massage", category: "massage", rating: 4.8, reviews: 320, price: 2000, image: "assets/massage.png" },
-    { id: 9, name: "Painters", category: "painting", rating: 4.7, reviews: 85, price: 8000, image: "assets/painter.png?v=4" },
-    { id: 10, name: "Premium Hair Salon", category: "hair_salon", rating: 4.9, reviews: 412, price: 850, image: "assets/hair_salon.png" }
+    // --- ELECTRICIAN ---
+    { id: 1, name: "Basic Switch Fix", category: "electrician", rating: 4.5, reviews: 124, price: 199, image: "assets/electrician.png", quality: "Budget" },
+    { id: 2, name: "Professional Full Rewiring", category: "electrician", rating: 4.8, reviews: 256, price: 2499, image: "assets/electrician.png", quality: "Standard" },
+    { id: 3, name: "Smart Home Automation", category: "electrician", rating: 5.0, reviews: 45, price: 15000, image: "assets/electrician.png", quality: "Luxury" },
+    
+    // --- PLUMBER ---
+    { id: 4, name: "Tap Leakage Repair", category: "plumber", rating: 4.6, reviews: 89, price: 249, image: "assets/plumber.png", quality: "Budget" },
+    { id: 5, name: "Full Bathroom Installation", category: "plumber", rating: 4.9, reviews: 112, price: 8500, image: "assets/plumber.png", quality: "Standard" },
+    
+    // --- APPLIANCE REPAIR ---
+    { id: 6, name: "AC Filter Cleaning", category: "appliance_repair", rating: 4.7, reviews: 305, price: 499, image: "assets/ac_repair.png?v=2", quality: "Budget" },
+    { id: 7, name: "Comprehensive AC Service", category: "appliance_repair", rating: 4.9, reviews: 850, price: 1299, image: "assets/ac_repair.png?v=2", quality: "Standard" },
+    { id: 8, name: "Washing Machine Motherboard Fix", category: "appliance_repair", rating: 4.5, reviews: 120, price: 3500, image: "assets/ac_repair.png?v=2", quality: "Standard" },
+    
+    // --- CLEANING & PEST ---
+    { id: 9, name: "General Pest Control", category: "cleaning_pest", rating: 4.7, reviews: 412, price: 899, image: "assets/pest_control.png", quality: "Standard" },
+    { id: 10, name: "Deep Home Cleaning (3BHK)", category: "cleaning_pest", rating: 4.9, reviews: 520, price: 5499, image: "assets/pest_control.png", quality: "Premium" },
+    { id: 11, name: "Bathroom Deep Cleaning", category: "cleaning_pest", rating: 4.6, reviews: 230, price: 399, image: "assets/pest_control.png", quality: "Budget" },
+    
+    // --- SOFA & CARPET ---
+    { id: 12, name: "3-Seater Sofa Cleaning", category: "sofa_cleaning", rating: 4.8, reviews: 145, price: 999, image: "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=500&q=80", quality: "Standard" },
+    { id: 13, name: "Luxury Carpet Shampooing", category: "sofa_cleaning", rating: 4.9, reviews: 85, price: 2499, image: "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=500&q=80", quality: "Premium" },
+    
+    // --- COOK ---
+    { id: 14, name: "Traditional Home Cook", category: "cook", rating: 4.7, reviews: 156, price: 8000, image: "assets/cook.png", quality: "Standard" },
+    { id: 15, name: "Private Gourmet Chef", category: "cook", rating: 5.0, reviews: 42, price: 25000, image: "assets/cook.png", quality: "Luxury" },
+    
+    // --- MASSAGE ---
+    { id: 16, name: "Stress Relief Massage", category: "massage", rating: 4.7, reviews: 120, price: 1499, image: "assets/massage.png", quality: "Standard" },
+    { id: 17, name: "Deep Tissue Therapy", category: "massage", rating: 4.9, reviews: 85, price: 2499, image: "assets/massage.png", quality: "Premium" },
+    { id: 18, name: "Luxury Ayurvedic Spa", category: "massage", rating: 5.0, reviews: 30, price: 4500, image: "assets/massage.png", quality: "Luxury" },
+    
+    // --- PAINTING ---
+    { id: 19, name: "Fresh Wall Painting", category: "painting", rating: 4.6, reviews: 305, price: 5999, image: "assets/painter.png?v=4", quality: "Budget" },
+    { id: 20, name: "Textured Accent Walls", category: "painting", rating: 4.9, reviews: 92, price: 12000, image: "assets/painter.png?v=4", quality: "Premium" },
+    
+    // --- SALON ---
+    { id: 21, name: "Men's Basic Haircut", category: "hair_salon", rating: 4.5, reviews: 1500, price: 199, image: "assets/hair_salon.png", quality: "Budget" },
+    { id: 22, name: "Luxury Bridal Makeup", category: "hair_salon", rating: 4.9, reviews: 210, price: 15000, image: "assets/hair_salon.png", quality: "Luxury" },
+    { id: 23, name: "Professional Facial", category: "hair_salon", rating: 4.7, reviews: 450, price: 899, image: "assets/hair_salon.png", quality: "Standard" },
+    
+    // --- RO SERVICE ---
+    { id: 24, name: "RO Water Filter Service", category: "ro_service", rating: 4.8, reviews: 320, price: 499, image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&q=80", quality: "Standard" },
+    { id: 25, name: "RO Membrane Replacement", category: "ro_service", rating: 4.7, reviews: 180, price: 2499, image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&q=80", quality: "Premium" },
+    
+    // --- CARPENTER ---
+    { id: 26, name: "Furniture Repair", category: "carpenter", rating: 4.6, reviews: 95, price: 399, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500&q=80", quality: "Standard" },
+    { id: 27, name: "Custom Wardrobe Design", category: "carpenter", rating: 4.9, reviews: 54, price: 45000, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500&q=80", quality: "Luxury" },
+    
+    // --- YOGA ---
+    { id: 28, name: "Personal Yoga Trainer", category: "yoga", rating: 5.0, reviews: 65, price: 1500, image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=80", quality: "Standard" },
+    
+    // --- TUTOR ---
+    { id: 29, name: "K-10 Home Tutor", category: "tutor", rating: 4.8, reviews: 88, price: 500, image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&q=80", quality: "Standard" },
+    { id: 30, name: "IIT-JEE Entrance Expert", category: "tutor", rating: 5.0, reviews: 42, price: 2500, image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&q=80", quality: "Premium" },
+    
+    // --- VEHICLE CARE ---
+    { id: 31, name: "Full Car Detailing", category: "vehicle_care", rating: 4.8, reviews: 156, price: 2999, image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=500&q=80", quality: "Standard" },
+    { id: 32, name: "Luxury Ceramic Coating", category: "vehicle_care", rating: 5.0, reviews: 24, price: 15000, image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=500&q=80", quality: "Luxury" },
+    
+    // --- SECURITY ---
+    { id: 33, name: "8-Camera CCTV Install", category: "security", rating: 4.9, reviews: 88, price: 12500, image: "https://images.unsplash.com/photo-1557597774-9d2739f85a76?w=500&q=80", quality: "Standard" },
+    
+    // --- CARETAKER ---
+    { id: 34, name: "Elderly Care Assistant", category: "caretaker", rating: 4.9, reviews: 112, price: 18000, image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=500&q=80", quality: "Standard" }
 ];
 
 // App State
@@ -68,6 +123,7 @@ function renderServices(list = ALL_SERVICES) {
         <div class="service-card">
             <div class="card-image">
                 <img src="${s.image}" alt="${s.name}">
+                <div class="quality-badge ${s.quality.toLowerCase()}">${s.quality}</div>
             </div>
             <div class="card-content">
                 <div class="flex-between">
