@@ -219,8 +219,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     document.getElementById('final-book-btn').onclick = () => {
-        ui.hide('step-3'); ui.show('step-4');
-        setTimeout(() => ui.hide('booking-modal'), 3000);
+        const amount = AppState.activeBooking.price + 49;
+        const date = document.getElementById('booking-date').value;
+        const time = document.querySelector('.time-slot.selected').innerText;
+        const txnId = 'UN-' + Math.floor(Math.random() * 1000000000);
+        
+        ui.updateText('confirm-amount', `₹${amount}`);
+        ui.updateText('confirm-service', AppState.activeBooking.name);
+        ui.updateText('confirm-txn-id', txnId);
+        ui.updateText('confirm-datetime', `${date} • ${time}`);
+        
+        ui.hide('step-3'); 
+        ui.show('step-4');
+        lucide.createIcons(); // Ensure check icon is rendered
     };
 
     // Auth Tab Switching

@@ -212,40 +212,38 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
 .time-slot { padding: 0.875rem; border: 1px solid var(--glass-border); border-radius: var(--border-radius-sm); background: var(--bg-secondary); color: var(--text-primary); font-weight: 500; transition: 0.2s; }
 .time-slot:hover, .time-slot.selected { border-color: var(--accent-primary); background: rgba(37, 99, 235, 0.05); color: var(--accent-primary); }
 
-.success-icon-wrap {
-    width: 120px; height: 120px; margin: 0 auto 2rem;
-    background: #10b981; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
-    animation: gpayPulse 2s infinite, gpayPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    position: relative;
+/* GPay Style Confirmation Animations */
+.gpay-confirm-container { text-align: center; padding: 1rem 0; }
+.success-ring-container { position: relative; width: 100px; height: 100px; margin: 0 auto 1.5rem; }
+.success-ring circle {
+    fill: none; stroke: #188038; stroke-width: 5; stroke-linecap: round;
+    transform-origin: center; stroke-dasharray: 315; stroke-dashoffset: 315;
+    animation: ring-draw 1.2s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
-.success-icon-wrap i { color: white; width: 70px; height: 70px; transform: scale(0); animation: gpayCheck 0.5s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.success-checkmark {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+    color: #188038; width: 50px; height: 50px;
+    animation: check-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+}
+@keyframes ring-draw { to { stroke-dashoffset: 0; } }
+@keyframes check-pop { to { transform: translate(-50%, -50%) scale(1); } }
 
-.success-bg-glow {
-    position: absolute; width: 100%; height: 100%;
-    background: rgba(16, 185, 129, 0.2);
-    border-radius: 50%; z-index: -1;
-    animation: gpayGlow 2s infinite;
-}
+.payment-amount { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.25rem; }
+.payment-status { color: #188038; font-weight: 700; font-size: 1.1rem; margin-bottom: 2rem; }
 
-@keyframes gpayPulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-    70% { box-shadow: 0 0 0 30px rgba(16, 185, 129, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+.transaction-card {
+    background: var(--bg-secondary); border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-md); padding: 1.5rem; margin-bottom: 1.5rem;
+    text-align: left; opacity: 0; transform: translateY(10px);
+    animation: slide-up 0.5s ease forwards 1.5s;
 }
-@keyframes gpayPop {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-@keyframes gpayCheck {
-    0% { transform: scale(0) rotate(-45deg); }
-    100% { transform: scale(1) rotate(0deg); }
-}
-@keyframes gpayGlow {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.5); opacity: 0; }
-}
+.transaction-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; }
+.transaction-label { color: var(--text-secondary); font-size: 0.9rem; }
+.transaction-value { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
+.thanks-message { font-size: 1.1rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 1.5rem; opacity: 0; animation: fadeIn 0.5s forwards 2s; }
+
+@keyframes slide-up { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Footer Styles */
 .footer { padding: 5rem 0 3rem; background: var(--bg-card); border-top: 1px solid var(--glass-border); }

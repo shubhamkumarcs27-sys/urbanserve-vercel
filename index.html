@@ -315,17 +315,41 @@
                     Pay</button>
             </div>
 
-            <div class="booking-step hidden" id="step-4" style="text-align: center; padding: 3rem 0;">
-                <div class="success-icon-wrap">
-                    <a href="index.html" class="logo">
-                        <i data-lucide="home"></i>
-                        <span>Urban Needs</span>
-                    </a>
-                    <div class="success-bg-glow"></div>
-                    <i data-lucide="check"></i>
+            <div class="booking-step hidden" id="step-4">
+                <div class="gpay-confirm-container">
+                    <div class="success-ring-container">
+                        <svg class="success-ring" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50"></circle>
+                        </svg>
+                        <i data-lucide="check" class="success-checkmark"></i>
+                    </div>
+                    
+                    <div class="payment-amount" id="confirm-amount">₹0</div>
+                    <div class="payment-status">Booking Successful</div>
+                    
+                    <div class="transaction-card">
+                        <div class="transaction-row">
+                            <span class="transaction-label">Paid to</span>
+                            <span class="transaction-value">Urban Needs</span>
+                        </div>
+                        <div class="transaction-row">
+                            <span class="transaction-label">Service</span>
+                            <span class="transaction-value" id="confirm-service">General Service</span>
+                        </div>
+                        <div class="transaction-row">
+                            <span class="transaction-label">Transaction ID</span>
+                            <span class="transaction-value" id="confirm-txn-id">UN-782934102</span>
+                        </div>
+                        <div class="transaction-row">
+                            <span class="transaction-label">Date & Time</span>
+                            <span class="transaction-value" id="confirm-datetime">May 03, 2026 • 11:30 AM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="thanks-message">thanks for choosing us</div>
+                    
+                    <button class="btn-secondary" onclick="ui.hide('booking-modal')" style="width: 100%; margin-top: 1rem; justify-content: center;">Done</button>
                 </div>
-                <h3 style="margin: 0.5rem 0 0.5rem; font-size: 1.8rem; font-weight: 800;">Booking Confirmed!</h3>
-                <p class="text-secondary">Your professional will arrive on time.</p>
             </div>
         </div>
     </div>
