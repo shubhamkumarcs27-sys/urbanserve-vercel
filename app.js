@@ -191,6 +191,7 @@ function openBooking(sid) {
     document.querySelectorAll('.booking-step').forEach(s => s.classList.add('hidden'));
     ui.show('step-1');
     ui.show('booking-modal');
+    ui.show('close-booking-btn'); // Ensure close button is visible when opening
 }
 
 // --- INITIALIZATION ---
@@ -231,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         ui.hide('step-3'); 
         ui.show('step-4');
+        ui.hide('close-booking-btn'); // Hide close button on success
         lucide.createIcons(); // Ensure check icon is rendered
     };
 
@@ -380,4 +382,10 @@ function showWelcome(name) {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 500);
     }, 5000);
+}
+
+function completeBooking() {
+    ui.hide('booking-modal');
+    // Small timeout to allow modal to close before showing cross again
+    setTimeout(() => ui.show('close-booking-btn'), 300);
 }
