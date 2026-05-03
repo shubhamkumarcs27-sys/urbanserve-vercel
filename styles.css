@@ -419,17 +419,8 @@ body.dark-mode .modal-container { background: var(--bg-card); border-color: var(
     .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .container { padding: 0 1.25rem; }
 
-    /* Dashboard Mobile Polish */
-    .dashboard-container { flex-direction: column; padding: 1rem; }
-    .dashboard-sidebar { width: 100%; margin-bottom: 2rem; border-right: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; }
-    .sidebar-menu { 
-        display: flex; overflow-x: auto; gap: 1rem; padding-bottom: 0.5rem; 
-        scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
-    }
-    .menu-item { margin-bottom: 0; white-space: nowrap; padding: 0.5rem 1rem; }
-    .dashboard-content { padding: 0; }
-    .profile-header { flex-direction: column; text-align: center; gap: 1.5rem; }
-    .profile-info { align-items: center; }
+    /* Dashboard Mobile Polish handled in dashboard.html */
+    /* Dashboard Mobile Polish handled in dashboard.html */
 
     /* Faster Transitions for Mobile Snappiness */
     .page-transition-overlay { transition-duration: 0.3s; }
