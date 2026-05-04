@@ -59,6 +59,23 @@
             <h1 class="heading-1 hero-title">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
             <p class="hero-subtitle">Your trusted destination for booking top-tier professionals for home repair,
                 cleaning, and salon services.</p>
+            
+            <div class="hero-stats reveal stagger-2">
+                <div class="stat-item">
+                    <span class="stat-num">10k+</span>
+                    <span class="stat-label">Happy Users</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">4.8★</span>
+                    <span class="stat-label">Average Rating</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">500+</span>
+                    <span class="stat-label">Service Experts</span>
+                </div>
+            </div>
 
             <!-- Smart Recommendation Card -->
             <div class="smart-search-card reveal stagger-2">
@@ -148,7 +165,38 @@
             </div>
         </div>
     </section>
-
+    <!-- Why Choose Us Section -->
+    <section class="section reveal" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="heading-2">Why <span class="text-gradient">Urban Needs?</span></h2>
+                <p class="text-secondary">The gold standard for home services.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-primary);">
+                        <i data-lucide="verified"></i>
+                    </div>
+                    <h3>Verified Experts</h3>
+                    <p>Every professional undergoes a rigorous 4-step background check and skill assessment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <h3>On-Time Service</h3>
+                    <p>We value your time. If we're late, the service fee is on us. Guaranteed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3>Service Warranty</h3>
+                    <p>30-day post-service warranty on all repairs and installations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Services Grid -->
     <section id="services" class="section reveal">
         <div class="container">
@@ -201,7 +249,50 @@
             </div>
         </div>
     </footer>
-
+    <!-- Testimonials Section -->
+    <section class="section reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="heading-2">What Our <span class="text-gradient">Customers Say</span></h2>
+                <p class="text-secondary">Join over 10,000+ happy households.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">"The sofa cleaning service was exceptional. The professional arrived on time and the results were beyond my expectations. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #FF9A9E;">A</div>
+                        <div class="author-info">
+                            <div class="author-name">Ananya Sharma</div>
+                            <div class="author-meta">New Delhi • 2 days ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">"Fixed my AC within an hour. The booking process was so smooth, and the pricing was very transparent compared to local shops."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #a18cd1;">R</div>
+                        <div class="author-info">
+                            <div class="author-name">Rahul Verma</div>
+                            <div class="author-meta">Mumbai • 1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">"Best salon service at home! The stylist was professional and followed all hygiene protocols. Loved the experience."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #fbc2eb;">S</div>
+                        <div class="author-info">
+                            <div class="author-name">Sneha Kapoor</div>
+                            <div class="author-meta">Bangalore • 3 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Auth Modal -->
     <div class="modal-overlay hidden" id="auth-modal">
         <div class="modal-container">
@@ -395,6 +486,16 @@
 
 
 
+    <!-- Service Detail Modal -->
+    <div class="modal-overlay hidden" id="detail-modal">
+        <div class="modal-container detail-container">
+            <button class="icon-btn modal-close" id="close-detail-btn"><i data-lucide="x"></i></button>
+            <div id="detail-content">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Search Overlay -->
     <div class="search-overlay hidden" id="search-overlay">
         <div class="search-overlay-inner">
@@ -405,6 +506,19 @@
                 <button class="icon-btn" id="search-close"><i data-lucide="x"></i></button>
             </div>
             <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container" id="fab-support">
+        <button class="fab-btn">
+            <i data-lucide="message-circle"></i>
+            <span class="fab-badge"></span>
+        </button>
+        <div class="fab-menu hidden">
+            <a href="#" class="fab-menu-item"><i data-lucide="help-circle"></i> Help Center</a>
+            <a href="#" class="fab-menu-item"><i data-lucide="phone"></i> Call Support</a>
+            <a href="#" class="fab-menu-item"><i data-lucide="whatsapp"></i> WhatsApp Us</a>
         </div>
     </div>
 

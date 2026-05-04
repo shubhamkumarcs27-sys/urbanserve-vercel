@@ -133,13 +133,16 @@ function renderServices(list = ALL_SERVICES) {
                 <h3 class="card-title">${s.name}</h3>
                 <div class="card-footer">
                     <div class="card-price">Starting at<br><span>₹${s.price}</span></div>
-                    <button class="book-btn">Book Now</button>
+                    <div style="display:flex; gap:0.5rem;">
+                        <button class="icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                        <button class="book-btn">Book Now</button>
+                    </div>
                 </div>
             </div>
         </div>
     `).join('');
     lucide.createIcons();
-    attachBookButtons();
+    attachServiceButtons();
 }
 
 // --- ACTIONS ---
@@ -165,13 +168,56 @@ function logout() {
     transitionTo('index.html');
 }
 
-function attachBookButtons() {
-    document.querySelectorAll('.book-btn').forEach((btn, idx) => {
-        btn.onclick = () => {
-            AppState.activeBooking = ALL_SERVICES[idx];
-            openBooking(AppState.activeBooking.id);
-        };
+function attachServiceButtons() {
+    document.querySelectorAll('.service-card').forEach((card, idx) => {
+        const bookBtn = card.querySelector('.book-btn');
+        const viewBtn = card.querySelector('.view-btn');
+        const service = ALL_SERVICES[idx];
+
+        if (bookBtn) {
+            bookBtn.onclick = () => {
+                AppState.activeBooking = service;
+                openBooking(service.id);
+            };
+        }
+        if (viewBtn) {
+            viewBtn.onclick = () => openDetails(service.id);
+        }
     });
+}
+
+function openDetails(sid) {
+    const s = ALL_SERVICES.find(srv => srv.id === sid);
+    const content = document.getElementById('detail-content');
+    if (!content) return;
+
+    content.innerHTML = `
+        <div class="detail-hero">
+            <img src="${s.image}" alt="${s.name}">
+            <div class="detail-badge ${s.quality.toLowerCase()}">${s.quality} Choice</div>
+        </div>
+        <div class="detail-body">
+            <div class="flex-between" style="margin-bottom: 1rem;">
+                <span class="category-tag">${s.category.replace('_', ' ')}</span>
+                <div class="rating">★ ${s.rating} (${s.reviews} reviews)</div>
+            </div>
+            <h2 class="heading-2">${s.name}</h2>
+            <p class="detail-desc">Experience top-tier ${s.category.replace('_', ' ')} service with our verified professionals. This service includes a comprehensive check-up, professional execution, and a 30-day post-service warranty.</p>
+            
+            <div class="detail-features">
+                <div class="detail-feat"><i data-lucide="check-circle"></i> <span>Professional Equipment</span></div>
+                <div class="detail-feat"><i data-lucide="check-circle"></i> <span>Background Verified</span></div>
+                <div class="detail-feat"><i data-lucide="check-circle"></i> <span>30-Day Warranty</span></div>
+            </div>
+
+            <div class="detail-footer">
+                <div class="detail-price">Starting at <span>₹${s.price}</span></div>
+                <button class="btn-primary" onclick="ui.hide('detail-modal'); openBooking(${s.id})">Book This Service</button>
+            </div>
+        </div>
+    `;
+    lucide.createIcons();
+    ui.show('detail-modal');
 }
 
 function openBooking(sid) {
@@ -317,6 +363,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeAuthBtn = document.getElementById('close-auth-btn');
     if (closeAuthBtn) closeAuthBtn.onclick = () => ui.hide('auth-modal');
 
+    const closeDetailBtn = document.getElementById('close-detail-btn');
+    if (closeDetailBtn) closeDetailBtn.onclick = () => ui.hide('detail-modal');
+
     const searchBtn = document.getElementById('search-btn');
     if (searchBtn) searchBtn.onclick = () => ui.show('search-overlay');
 
@@ -408,6 +457,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         };
+    }
+
+    const fabSupport = document.getElementById('fab-support');
+    if (fabSupport) {
+        const fabBtn = fabSupport.querySelector('.fab-btn');
+        const fabMenu = fabSupport.querySelector('.fab-menu');
+        fabBtn.onclick = (e) => {
+            e.stopPropagation();
+            fabMenu.classList.toggle('hidden');
+        };
+        document.addEventListener('click', () => fabMenu.classList.add('hidden'));
     }
 
     // Loading & Welcome Logic
