@@ -233,10 +233,11 @@ function openDetails(sid) {
                     <img src="https://i.pravatar.cc/100?img=${s.id}" alt="Expert">
                     <div class="expert-online"></div>
                 </div>
-                <div class="expert-info">
-                    <div class="expert-name">Top Rated Professional Assigned</div>
-                    <div class="expert-status">Verified • 4.9/5 Average Rating</div>
-                </div>
+                <div id="login-form" class="auth-form active">
+                    <div class="input-group">
+                        <label>Email or Phone Number</label>
+                        <input type="text" id="login-email" required placeholder="e.g. 9876543210 or name@example.com">
+                    </div>
             </div>
 
             <div class="detail-features-grid fade-in-up" style="animation-delay: 0.4s;">
@@ -463,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
 
             if (filtered.length === 0) {
-                searchResults.innerHTML = `<div style="padding: 2rem; text-align: center; color: var(--text-secondary);">No services found for "${query}"</div>`;
+                searchResults.innerHTML = `<div .section { padding: 8rem 0; scroll-margin-top: 80px; }text-align: center; color: var(--text-secondary);">No services found for "${query}"</div>`;
             }
             
             lucide.createIcons();

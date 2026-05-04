@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editForm = document.getElementById('edit-profile-form');
 
     openEditBtn.addEventListener('click', () => {
-        const user = JSON.parse(localStorage.getItem('urbanServeUser'));
+        const user = JSON.parse(localStorage.getItem('urbanNeedsUser'));
         document.getElementById('edit-name').value = user.name;
         document.getElementById('edit-email').value = user.email;
         document.getElementById('edit-phone').value = user.phone;
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     editForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const user = JSON.parse(localStorage.getItem('urbanServeUser'));
+        const user = JSON.parse(localStorage.getItem('urbanNeedsUser'));
         const oldEmail = user.email;
 
         const updatedData = {
@@ -173,6 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="booking-info">
                                 <h4>${b.service}</h4>
                                 <p><i data-lucide="calendar" style="width:14px;"></i> ${b.date} • ${b.time}</p>
+                                <div class="expert-info">
+                                    <div class="expert-name">Top Rated Professional Assigned</div>
+                                    <div class="expert-status">Verified • 4.9/5 Average Rating</div>
+                                </div>
                                 <p><i data-lucide="hash" style="width:14px;"></i> ${b.id}</p>
                             </div>
                             <div style="text-align: right;">
