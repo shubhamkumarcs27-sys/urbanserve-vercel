@@ -573,22 +573,36 @@ body.dark-mode .modal-container { background: var(--bg-card); border-color: var(
 
 /* --- MOBILE RESPONSIVENESS (PHONES) --- */
 @media (max-width: 768px) {
+    /* Global Spacing */
+    .section { padding: 4rem 0; }
+    .section-header { margin-bottom: 3rem; }
+    .container { padding: 0 1.25rem; }
+
     /* Navbar Polish */
     .navbar .container { padding: 0.5rem 1rem; }
-    .nav-links { display: none; } /* Hide secondary links */
+    .nav-links { display: none; }
     .actions { gap: 0.5rem; }
-    .actions .icon-btn:not(#theme-toggle):not(#search-btn) { display: none; } /* Hide extra icons except theme and search */
+    .actions .icon-btn:not(#theme-toggle):not(#search-btn) { display: none; }
     .btn-primary { padding: 0.6rem 1rem; font-size: 0.9rem; }
 
     /* Hero Polish */
     .hero { padding: 4rem 0 2rem; min-height: auto; }
     .heading-1 { font-size: 2.25rem !important; line-height: 1.2; }
     .hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+    
+    .hero-stats { 
+        display: flex; gap: 1rem; padding: 0.75rem 1rem; 
+        border-radius: 20px; width: 100%; justify-content: space-around;
+        margin-bottom: 3rem;
+    }
+    .stat-divider { height: 20px; }
+    .stat-num { font-size: 1.1rem; }
+    .stat-label { font-size: 0.65rem; }
 
     /* Search Card Polish */
-    .smart-search-card { padding: 1.5rem; margin: 0 1rem; }
+    .smart-search-card { padding: 1.5rem; margin: 0; }
     .search-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .search-btn-hero { width: 100%; margin-top: 1rem; }
+    .search-submit { width: 100%; height: 50px; margin-top: 1rem; }
 
     /* Notification Polish */
     #notification-container {
@@ -603,41 +617,27 @@ body.dark-mode .modal-container { background: var(--bg-card); border-color: var(
     .welcome-toast.show { transform: translateY(0); }
 
     /* Modal Polish */
-    .booking-step h4 { font-size: 1.25rem; }
+    /* Grids Stacking */
+    .grid-auto { grid-template-columns: 1fr !important; gap: 1.5rem; }
+    .offers-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+    .features-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
+    .testimonials-slider { grid-template-columns: 1fr !important; gap: 1.5rem; }
 
-    /* Service Cards Polish */
-    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .container { padding: 0 1.25rem; }
+    /* Footer Polish */
+    .footer-grid { grid-template-columns: 1fr !important; gap: 2.5rem; text-align: center; }
+    .footer-logo-section { text-align: center; }
+    .footer-bottom { text-align: center; margin-top: 2rem; }
 
-    /* Dashboard Mobile Polish handled in dashboard.html */
-    /* Dashboard Mobile Polish handled in dashboard.html */
-
-    /* Faster Transitions for Mobile Snappiness */
-    .page-transition-overlay { transition-duration: 0.3s; }
     /* Modal Polish */
-    .modal-overlay { display: flex; align-items: center; justify-content: center; padding: 1rem; }
-    .modal-container { 
-        width: 94%; 
-        max-width: 450px; 
-        height: 90vh; 
-        max-height: 800px; 
-        margin: auto; 
-        border-radius: 24px; 
-        position: relative; 
-        bottom: auto; 
-        padding: 2rem 1.5rem;
-        transform: scale(0.9) translateY(20px);
-        opacity: 0;
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-    }
+    .modal-overlay { padding: 1rem; }
+    .modal-container { width: 100%; max-height: 95vh; padding: 1.5rem; overflow-y: auto; opacity: 1; transform: none; }
+    
     .modal-overlay:not(.hidden) .modal-container {
         transform: scale(1) translateY(0);
         opacity: 1;
     }
-    
+}
+
     .booking-step { flex: 1; display: flex; flex-direction: column; justify-content: center; }
     .booking-step.hidden { display: none; }
     
