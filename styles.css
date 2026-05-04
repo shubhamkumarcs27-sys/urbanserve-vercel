@@ -334,6 +334,17 @@ body.dark-mode .receipt-card { background: #1e293b; }
 
 .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
+/* Offer Badge & Card Refinement */
+.offer-badge { background: rgba(0,0,0,0.1); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 800; color: #000; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1rem; }
+.offer-card h3 { color: #000; font-size: 2rem; margin: 0 0 0.5rem 0; font-weight: 800; }
+.offer-card p { color: rgba(0,0,0,0.7); margin-bottom: 1.5rem; font-weight: 500; font-size: 1rem; }
+
+/* Section Spacing */
+.section { padding: 8rem 0; }
+.section-header { text-align: center; margin-bottom: 5rem; }
+.section-header p { margin-top: 1rem; font-size: 1.1rem; }
+
+
 /* Service Detail Modal */
 .detail-container { max-width: 600px; padding: 0; overflow: hidden; }
 .detail-hero { position: relative; height: 280px; }
