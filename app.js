@@ -210,28 +210,64 @@ function openDetails(sid) {
 
     content.innerHTML = `
         <div class="detail-hero">
-            <img src="${s.image}" alt="${s.name}">
-            <div class="detail-badge ${s.quality.toLowerCase()}">${s.quality} Choice</div>
-        </div>
-        <div class="detail-body">
-            <div class="flex-between" style="margin-bottom: 1rem;">
-                <span class="category-tag">${s.category.replace('_', ' ')}</span>
-                <div class="rating">★ ${s.rating} (${s.reviews} reviews)</div>
+            <img src="${s.image}" alt="${s.name}" class="detail-main-img">
+            <div class="detail-badge-premium ${s.quality.toLowerCase()}">
+                <i data-lucide="award"></i> ${s.quality} Choice
             </div>
-            <h2 class="heading-2">${s.name}</h2>
-            <p class="detail-desc">Experience top-tier ${s.category.replace('_', ' ')} service with our verified professionals. This service includes a comprehensive check-up, professional execution, and a 30-day post-service warranty.</p>
+            <div class="detail-overlay-grad"></div>
+        </div>
+        <div class="detail-body-premium">
+            <div class="detail-meta fade-in-up">
+                <span class="category-tag-premium"><i data-lucide="tag"></i> ${s.category.replace('_', ' ')}</span>
+                <div class="rating-premium">★ ${s.rating} <span class="review-count">(${s.reviews} verified reviews)</span></div>
+            </div>
             
-            <div class="detail-features">
-                <div class="detail-feat"><i data-lucide="check-circle"></i> <span>Professional Equipment</span></div>
-                <div class="detail-feat"><i data-lucide="check-circle"></i> <span>Background Verified</span></div>
-                <div class="detail-feat"><i data-lucide="check-circle"></i> <span>30-Day Warranty</span></div>
+            <h2 class="detail-title fade-in-up" style="animation-delay: 0.1s;">${s.name}</h2>
+            
+            <p class="detail-desc-premium fade-in-up" style="animation-delay: 0.2s;">
+                Experience the gold standard in ${s.category.replace('_', ' ')}. Our certified experts use medical-grade equipment and follow strict hygiene protocols to ensure your 100% satisfaction.
+            </p>
+            
+            <div class="expert-card fade-in-up" style="animation-delay: 0.3s;">
+                <div class="expert-avatar">
+                    <img src="https://i.pravatar.cc/100?img=${s.id}" alt="Expert">
+                    <div class="expert-online"></div>
+                </div>
+                <div class="expert-info">
+                    <div class="expert-name">Top Rated Professional Assigned</div>
+                    <div class="expert-status">Verified • 4.9/5 Average Rating</div>
+                </div>
             </div>
 
-            <div class="detail-footer">
-                <div class="detail-price">Starting at <span>₹${s.price}</span></div>
-                <div style="display:flex; gap:1rem;">
-                    <button class="btn-secondary" onclick="ui.hide('detail-modal')">Back</button>
-                    <button class="btn-primary" onclick="ui.hide('detail-modal'); openBooking(${s.id})">Book This Service</button>
+            <div class="detail-features-grid fade-in-up" style="animation-delay: 0.4s;">
+                <div class="detail-feature-item">
+                    <div class="feat-icon-box"><i data-lucide="shield-check"></i></div>
+                    <span>30-Day Warranty</span>
+                </div>
+                <div class="detail-feature-item">
+                    <div class="feat-icon-box"><i data-lucide="user-check"></i></div>
+                    <span>Background Verified</span>
+                </div>
+                <div class="detail-feature-item">
+                    <div class="feat-icon-box"><i data-lucide="clock"></i></div>
+                    <span>On-Time Arrival</span>
+                </div>
+                <div class="detail-feature-item">
+                    <div class="feat-icon-box"><i data-lucide="sparkles"></i></div>
+                    <span>Quality Guaranteed</span>
+                </div>
+            </div>
+
+            <div class="detail-footer-premium fade-in-up" style="animation-delay: 0.5s;">
+                <div class="price-section">
+                    <div class="price-label">Price starts at</div>
+                    <div class="price-value-large">₹${s.price}</div>
+                </div>
+                <div class="detail-actions">
+                    <button class="btn-secondary-outline" onclick="ui.hide('detail-modal')">Back</button>
+                    <button class="btn-primary-premium" onclick="ui.hide('detail-modal'); openBooking(${s.id})">
+                        Book Now <i data-lucide="arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
