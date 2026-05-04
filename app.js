@@ -99,7 +99,6 @@ function renderNav() {
 
     let html = `
         <button class="icon-btn" onclick="toggleTheme()"><i data-lucide="${AppState.theme === 'dark' ? 'sun' : 'moon'}"></i></button>
-        <button class="icon-btn" onclick="ui.show('search-overlay')"><i data-lucide="search"></i></button>
     `;
 
     if (AppState.user) {
@@ -307,8 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeAuthBtn = document.getElementById('close-auth-btn');
     if (closeAuthBtn) closeAuthBtn.onclick = () => ui.hide('auth-modal');
     
-    const searchCloseBtn = document.getElementById('search-close');
-    if (searchCloseBtn) searchCloseBtn.onclick = () => ui.hide('search-overlay');
+
 
     const openAuthBtn = document.getElementById('open-auth-btn');
     if (openAuthBtn) openAuthBtn.onclick = () => ui.show('auth-modal');
