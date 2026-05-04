@@ -223,11 +223,33 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
 .auth-form.active { display: block; }
 
 /* Categories Scroller */
-.categories-scroll { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none; }
+.categories-scroll { 
+    display: flex; gap: 1rem; overflow-x: auto; padding: 0.5rem 0.5rem 1.5rem; 
+    scrollbar-width: none; margin: 0 -0.5rem;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
 .categories-scroll::-webkit-scrollbar { display: none; }
-.category-pill { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; border-radius: 100px; background: var(--bg-card); border: 1px solid var(--glass-border); color: var(--text-primary); font-weight: 500; white-space: nowrap; transition: 0.2s; }
-.category-pill:hover, .category-pill.active { border-color: var(--accent-primary); background: rgba(37, 99, 235, 0.05); color: var(--accent-primary); }
+.category-pill { 
+    display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; 
+    border-radius: 100px; background: var(--bg-card); border: 1px solid var(--glass-border); 
+    color: var(--text-primary); font-weight: 600; white-space: nowrap; transition: 0.3s;
+    cursor: pointer; user-select: none;
+}
+.category-pill:hover { border-color: var(--accent-primary); transform: translateY(-2px); }
+.category-pill.active { border-color: var(--accent-primary); background: var(--gradient-primary); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
 .category-pill i { width: 18px; height: 18px; }
+
+/* Grid System */
+.grid-auto { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 2rem; 
+}
+@media (max-width: 600px) {
+    .grid-auto { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
 
 /* Offers Section */
 .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }

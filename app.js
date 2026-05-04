@@ -146,6 +146,23 @@ function renderServices(list = ALL_SERVICES) {
 }
 
 // --- ACTIONS ---
+function filterServices(category, el) {
+    // Update UI
+    document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+    if (el) el.classList.add('active');
+
+    if (category === 'all') {
+        renderServices(ALL_SERVICES);
+    } else {
+        const filtered = ALL_SERVICES.filter(s => s.category === category);
+        renderServices(filtered);
+    }
+
+    // Scroll to services
+    const section = document.getElementById('services');
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function toggleTheme() {
     AppState.theme = AppState.theme === 'light' ? 'dark' : 'light';
     document.body.classList.toggle('dark-mode');

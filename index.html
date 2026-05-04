@@ -204,6 +204,16 @@
                 <h2 class="heading-2">Recommended <span class="text-gradient">Services</span></h2>
                 <p class="text-secondary">Handpicked professionals for your needs.</p>
             </div>
+
+            <div class="categories-scroll" style="margin-bottom: 2rem;">
+                <div class="category-pill active" onclick="filterServices('all', this)"><i data-lucide="layers"></i> All</div>
+                <div class="category-pill" onclick="filterServices('cleaning_pest', this)"><i data-lucide="sparkles"></i> Cleaning</div>
+                <div class="category-pill" onclick="filterServices('plumber', this)"><i data-lucide="wrench"></i> Plumber</div>
+                <div class="category-pill" onclick="filterServices('electrician', this)"><i data-lucide="zap"></i> Electrician</div>
+                <div class="category-pill" onclick="filterServices('ac_repair', this)"><i data-lucide="fan"></i> AC Repair</div>
+                <div class="category-pill" onclick="filterServices('hair_salon', this)"><i data-lucide="scissors"></i> Salon</div>
+                <div class="category-pill" onclick="filterServices('cook', this)"><i data-lucide="utensils"></i> Cook</div>
+            </div>
             <div class="services-grid grid-auto" id="services-container">
                 <!-- Service Cards injected via JS -->
             </div>
