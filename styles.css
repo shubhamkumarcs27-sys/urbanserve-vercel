@@ -108,6 +108,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .fab-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--gradient-primary); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
 .fab-btn:hover { transform: scale(1.1) rotate(5deg); }
 .fab-btn i { width: 28px; height: 28px; }
+
+/* Back to Top */
+.back-to-top { position: fixed; bottom: 8rem; right: 2.5rem; width: 50px; height: 50px; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-primary); cursor: pointer; opacity: 0; transform: translateY(20px); transition: 0.3s; z-index: 999; box-shadow: var(--shadow-md); }
+.back-to-top.show { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { background: var(--accent-primary); color: white; transform: translateY(-5px); }
 .fab-badge { position: absolute; top: 12px; right: 12px; width: 12px; height: 12px; background: #10b981; border: 2px solid white; border-radius: 50%; }
 .fab-menu { position: absolute; bottom: 80px; right: 0; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: 0.75rem; width: 180px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.25rem; transform-origin: bottom right; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .fab-menu.hidden { transform: scale(0) translateY(20px); opacity: 0; pointer-events: none; }

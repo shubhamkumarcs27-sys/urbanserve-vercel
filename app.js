@@ -304,6 +304,13 @@ function openBooking(sid) {
 
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Auto-detect system theme
+    if (!localStorage.getItem('theme')) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        AppState.theme = prefersDark ? 'dark' : 'light';
+        localStorage.setItem('theme', AppState.theme);
+    }
+
     if (AppState.theme === 'dark') document.body.classList.add('dark-mode');
     renderNav();
     renderServices();
@@ -509,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const container = document.getElementById('services-container');
                 if (container) {
                     container.innerHTML = `
-                        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem; background: var(--bg-secondary); border-radius: 1.5rem; border: 1px dashed var(--glass-border);">
+                        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem; border-radius: 1.5rem;">
                             <i data-lucide="search-x" style="width: 48px; height: 48px; color: var(--text-secondary); margin-bottom: 1rem;"></i>
                             <h3 class="heading-3">No matching services found</h3>
                             <p style="color: var(--text-secondary);">Try adjusting your filters or browsing all services.</p>

@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Needs | Expert Local Home Services</title>
+    <meta name="description" content="Book expert local home services including cleaning, repair, and salon at home. Trusted by 10k+ happy users.">
+    <meta name="keywords" content="home services, cleaning service, electrician, plumber, salon at home">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Urban Needs | Expert Home Services">
+    <meta property="og:description" content="Get professional help for your home in minutes.">
+    <meta property="og:image" content="assets/logo.png">
+    
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <meta name="description"
         content="Book top-rated local home services including cleaning, repair, and salon services easily with Urban Needs.">
 
@@ -522,7 +531,19 @@
         </div>
     </div>
 
-    <script src="app.js?v=3.0"></script>
-</body>
+    <button id="back-to-top" class="back-to-top">
+        <i data-lucide="arrow-up"></i>
+    </button>
 
+    <script src="app.js?v=3.0"></script>
+    <script>
+        // Back to top logic
+        const btt = document.getElementById('back-to-top');
+        window.onscroll = () => {
+            if (window.scrollY > 500) btt.classList.add('show');
+            else btt.classList.remove('show');
+        };
+        btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    </script>
+</body>
 </html>
