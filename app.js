@@ -99,6 +99,7 @@ function renderNav() {
 
     let html = `
         <button class="icon-btn" onclick="toggleTheme()"><i data-lucide="${AppState.theme === 'dark' ? 'sun' : 'moon'}"></i></button>
+        <button class="icon-btn" onclick="ui.show('search-overlay')"><i data-lucide="search"></i></button>
     `;
 
     if (AppState.user) {
@@ -176,8 +177,14 @@ function attachBookButtons() {
 function openBooking(sid) {
     AppState.activeBooking = ALL_SERVICES.find(s => s.id === sid);
     ui.updateText('booking-title', `Book ${AppState.activeBooking.name}`);
+    ui.updateText('summary-service-name', AppState.activeBooking.name);
     ui.updateText('summary-price', `₹${AppState.activeBooking.price}`);
     ui.updateText('summary-total', `₹${AppState.activeBooking.price + 49}`);
+    
+    // Default date/time for summary
+    const date = document.getElementById('booking-date').value || 'Selected Date';
+    const time = document.querySelector('.time-slot.selected')?.innerText || 'Selected Time';
+    ui.updateText('summary-datetime', `${date} • ${time}`);
 
     // Pre-fill user data if logged in
     if (AppState.user) {
@@ -227,13 +234,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ui.updateText('confirm-amount', `₹${amount}`);
         ui.updateText('confirm-service', AppState.activeBooking.name);
         ui.updateText('confirm-txn-id', txnId);
-        ui.updateText('confirm-datetime', `${date} • ${time}`);
+        ui.updateText('confirm-datetime', time); // Time only for receipt row
+        ui.updateText('receipt-date', new Date(date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }));
+        ui.updateText('receipt-total', `₹${amount}`);
         
         ui.hide('step-3'); 
         ui.show('step-4');
         ui.hide('close-booking-btn'); // Hide close button on success
         lucide.createIcons(); 
-
+        
+        // Trigger Confetti (Mock)
+        createConfetti();
         // Save booking to history
         const bookingData = {
             id: txnId,
@@ -305,8 +316,47 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const closeAuthBtn = document.getElementById('close-auth-btn');
     if (closeAuthBtn) closeAuthBtn.onclick = () => ui.hide('auth-modal');
-    
 
+    const searchBtn = document.getElementById('search-btn');
+    if (searchBtn) searchBtn.onclick = () => ui.show('search-overlay');
+
+    const searchCloseBtn = document.getElementById('search-close');
+    if (searchCloseBtn) searchCloseBtn.onclick = () => ui.hide('search-overlay');
+
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    if (searchInput && searchResults) {
+        searchInput.oninput = (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (!query) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            const filtered = ALL_SERVICES.filter(s => 
+                s.name.toLowerCase().includes(query) || 
+                s.category.toLowerCase().includes(query)
+            );
+
+            searchResults.innerHTML = filtered.map(s => `
+                <div class="search-result-item" onclick="openBooking(${s.id}); ui.hide('search-overlay');">
+                    <img src="${s.image}" class="search-result-img" alt="${s.name}">
+                    <div class="search-result-info">
+                        <div class="search-result-name">${s.name}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">${s.category.replace('_', ' ')} • ₹${s.price}</div>
+                    </div>
+                    <i data-lucide="chevron-right" style="width: 16px; color: var(--text-secondary);"></i>
+                </div>
+            `).join('');
+
+            if (filtered.length === 0) {
+                searchResults.innerHTML = `<div style="padding: 2rem; text-align: center; color: var(--text-secondary);">No services found for "${query}"</div>`;
+            }
+            
+            lucide.createIcons();
+        };
+    }
 
     const openAuthBtn = document.getElementById('open-auth-btn');
     if (openAuthBtn) openAuthBtn.onclick = () => ui.show('auth-modal');
@@ -400,5 +450,41 @@ function showWelcome(name) {
 function completeBooking() {
     ui.hide('booking-modal');
     // Small timeout to allow modal to close before showing cross again
-    setTimeout(() => ui.show('close-booking-btn'), 300);
+    setTimeout(() => {
+        ui.show('close-booking-btn');
+        // Reset steps for next time
+        document.querySelectorAll('.booking-step').forEach(s => s.classList.add('hidden'));
+    }, 300);
+}
+
+function createConfetti() {
+    const container = document.getElementById('confetti');
+    if (!container) return;
+    container.innerHTML = '';
+    const colors = ['#2563eb', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+    
+    for (let i = 0; i < 50; i++) {
+        const div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.width = '10px';
+        div.style.height = '10px';
+        div.style.background = colors[Math.floor(Math.random() * colors.length)];
+        div.style.left = Math.random() * 100 + '%';
+        div.style.top = '-10px';
+        div.style.borderRadius = '2px';
+        div.style.opacity = Math.random();
+        div.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        container.appendChild(div);
+        
+        const duration = 2 + Math.random() * 3;
+        div.animate([
+            { transform: `translate3d(0,0,0) rotate(0deg)`, opacity: 1 },
+            { transform: `translate3d(${(Math.random() - 0.5) * 200}px, 400px, 0) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+            duration: duration * 1000,
+            easing: 'cubic-bezier(0, .9, .57, 1)',
+            fill: 'forwards'
+        });
+    }
 }

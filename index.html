@@ -46,6 +46,7 @@
             </div>
             <div class="actions" id="nav-actions">
                 <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i data-lucide="moon"></i></button>
+                <button class="icon-btn" id="search-btn" aria-label="Search"><i data-lucide="search"></i></button>
                 <button class="btn-primary" id="open-auth-btn"><i data-lucide="user"></i> Sign In</button>
             </div>
         </div>
@@ -292,30 +293,57 @@
             </div>
 
             <div class="booking-step hidden" id="step-3">
-                <h4 style="margin-bottom: 1rem;">Booking Summary</h4>
-                <div class="summary-card"
-                    style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
-                    <div class="flex-between" style="margin-bottom: 0.5rem;">
-                        <span>Service Fee</span>
-                        <span id="summary-price">₹0</span>
+                <div class="billing-header">
+                    <h4 class="billing-title">Payment Summary</h4>
+                    <p class="billing-subtitle">Finalize your booking details</p>
+                </div>
+                
+                <div class="summary-details">
+                    <div class="detail-row">
+                        <span class="detail-label"><i data-lucide="info"></i> Service</span>
+                        <span class="detail-value" id="summary-service-name">General Service</span>
                     </div>
-                    <div class="flex-between" style="margin-bottom: 0.5rem;">
-                        <span>Taxes & Fees</span>
-                        <span>₹49</span>
-                    </div>
-                    <div class="flex-between"
-                        style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem; font-weight: 700; font-size: 1.2rem;">
-                        <span>Total</span>
-                        <span id="summary-total">₹0</span>
+                    <div class="detail-row">
+                        <span class="detail-label"><i data-lucide="calendar"></i> Date & Time</span>
+                        <span class="detail-value" id="summary-datetime">May 05, 2026 • 10:00 AM</span>
                     </div>
                 </div>
-                <button class="btn-primary" id="final-book-btn"
-                    style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">Confirm &
-                    Pay</button>
+
+                <div class="summary-card-premium">
+                    <div class="billing-row">
+                        <span>Service Base Fee</span>
+                        <span id="summary-price" class="price-val">₹0</span>
+                    </div>
+                    <div class="billing-row">
+                        <span>Safety & Service Fee</span>
+                        <span class="price-val">₹49</span>
+                    </div>
+                    <div class="billing-row discount">
+                        <span>Platform Discount</span>
+                        <span class="price-val">-₹0</span>
+                    </div>
+                    <div class="billing-total">
+                        <div class="total-text">
+                            <span>Amount to Pay</span>
+                            <p>Inclusive of all taxes</p>
+                        </div>
+                        <span id="summary-total" class="total-amount">₹0</span>
+                    </div>
+                </div>
+
+                <div class="secure-badge">
+                    <i data-lucide="shield-check"></i>
+                    <span>Secure 256-bit SSL Encrypted Payment</span>
+                </div>
+
+                <button class="btn-primary" id="final-book-btn" style="width: 100%; margin-top: 1rem; height: 60px; font-size: 1.1rem;">
+                    Confirm & Pay <i data-lucide="arrow-right" style="margin-left: 0.5rem;"></i>
+                </button>
             </div>
 
             <div class="booking-step hidden" id="step-4">
-                <div class="gpay-confirm-container">
+                <div class="success-screen">
+                    <div class="confetti-container" id="confetti"></div>
                     <div class="success-ring-container">
                         <svg class="success-ring" viewBox="0 0 120 120">
                             <circle cx="60" cy="60" r="50"></circle>
@@ -324,36 +352,61 @@
                     </div>
                     
                     <div class="payment-amount" id="confirm-amount">₹0</div>
-                    <div class="payment-status">Booking Successful</div>
+                    <div class="payment-status">Booking Confirmed!</div>
                     
-                    <div class="transaction-card">
-                        <div class="transaction-row">
-                            <span class="transaction-label">Paid to</span>
-                            <span class="transaction-value">Urban Needs</span>
+                    <div class="receipt-card">
+                        <div class="receipt-header">
+                            <span class="receipt-title">Transaction Receipt</span>
+                            <span class="receipt-date" id="receipt-date">May 05, 2026</span>
                         </div>
-                        <div class="transaction-row">
-                            <span class="transaction-label">Service</span>
-                            <span class="transaction-value" id="confirm-service">General Service</span>
-                        </div>
-                        <div class="transaction-row">
-                            <span class="transaction-label">Transaction ID</span>
-                            <span class="transaction-value" id="confirm-txn-id">UN-782934102</span>
-                        </div>
-                        <div class="transaction-row">
-                            <span class="transaction-label">Date & Time</span>
-                            <span class="transaction-value" id="confirm-datetime">May 03, 2026 • 11:30 AM</span>
+                        <div class="receipt-body">
+                            <div class="receipt-row">
+                                <span class="label">Booking ID</span>
+                                <span class="value" id="confirm-txn-id">UN-782934102</span>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="label">Service</span>
+                                <span class="value" id="confirm-service">General Service</span>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="label">Scheduled for</span>
+                                <span class="value" id="confirm-datetime">11:30 AM</span>
+                            </div>
+                            <div class="receipt-divider"></div>
+                            <div class="receipt-row total">
+                                <span class="label">Total Paid</span>
+                                <span class="value" id="receipt-total">₹0</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="thanks-message">thanks for choosing us!</div>
-                    
-                    <button class="btn-secondary" onclick="completeBooking()" style="width: 100%; margin-top: 1rem; justify-content: center;">Done</button>
+                    <div class="action-grid">
+                        <button class="btn-secondary" onclick="completeBooking()">
+                            <i data-lucide="home"></i> Done
+                        </button>
+                        <button class="btn-primary" onclick="window.print()" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--glass-border);">
+                            <i data-lucide="download"></i> Receipt
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
+
+    <!-- Search Overlay -->
+    <div class="search-overlay hidden" id="search-overlay">
+        <div class="search-overlay-inner">
+            <div class="search-bar-wrap">
+                <i data-lucide="search" class="search-overlay-icon"></i>
+                <input type="text" id="search-input" class="search-overlay-input"
+                    placeholder="Search services… e.g. electrician, plumber">
+                <button class="icon-btn" id="search-close"><i data-lucide="x"></i></button>
+            </div>
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
 
     <script src="app.js?v=3.0"></script>
 </body>
