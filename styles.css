@@ -167,6 +167,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 
 
+/* Search Overlay */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 3000; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px);
+  display: flex; align-items: flex-start; justify-content: center; padding-top: 10vh; transition: opacity 0.25s ease;
+}
+body.dark-mode .search-overlay { background: rgba(15, 23, 42, 0.92); }
+.search-overlay.hidden { opacity: 0; pointer-events: none; }
+.search-overlay-inner { width: 100%; max-width: 680px; padding: 0 1.5rem; }
+.search-bar-wrap { display: flex; align-items: center; gap: 1rem; background: var(--bg-card); border: 1.5px solid var(--accent-primary); border-radius: var(--border-radius-lg); padding: 1rem 1.5rem; }
+.search-overlay-input { flex: 1; border: none; background: transparent; font-size: 1.2rem; color: var(--text-primary); outline: none; }
+.search-results { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem; max-height: 60vh; overflow-y: auto; }
+.search-result-item { display: flex; align-items: center; gap: 1rem; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--border-radius-md); padding: 0.875rem 1.25rem; cursor: pointer; transition: 0.2s; }
+.search-result-item:hover { border-color: var(--accent-primary); transform: translateX(4px); }
+.search-result-img { width: 56px; height: 56px; border-radius: var(--border-radius-sm); object-fit: cover; }
+.search-result-info { flex: 1; }
+.search-result-name { font-weight: 600; font-size: 1rem; }
+
 /* Auth Modal */
 .modal-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: center; z-index: 2000; transition: 0.3s; }
 body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
@@ -274,6 +291,10 @@ body.dark-mode .modal-overlay { background: rgba(15,23,42,0.85); }
   .booking-container { max-height: 90vh; overflow-y: auto; }
   .time-slots { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
   
+  .search-overlay-inner { width: 95%; padding: 0 1rem; }
+  .search-bar-wrap { padding: 0.75rem 1rem; }
+  .search-overlay-input { font-size: 1rem; }
+  
 
   
 
@@ -370,7 +391,7 @@ body.dark-mode .modal-container { background: var(--bg-card); border-color: var(
     .navbar .container { padding: 0.5rem 1rem; }
     .nav-links { display: none; } /* Hide secondary links */
     .actions { gap: 0.5rem; }
-    .actions .icon-btn:not(#theme-toggle) { display: none; } /* Hide extra icons to save space */
+    .actions .icon-btn:not(#theme-toggle):not(#search-btn) { display: none; } /* Hide extra icons except theme and search */
     .btn-primary { padding: 0.6rem 1rem; font-size: 0.9rem; }
 
     /* Hero Polish */
@@ -441,7 +462,14 @@ body.dark-mode .modal-container { background: var(--bg-card); border-color: var(
     .transaction-value { font-size: 0.85rem; }
     .success-ring-container { width: 80px; height: 80px; }
 
-
+    /* Search Overlay Polish */
+    .search-overlay-inner {
+        transform: translateY(-20px);
+        transition: transform 0.3s ease;
+    }
+    .search-overlay:not(.hidden) .search-overlay-inner {
+        transform: translateY(0);
+    }
 }
 
 /* Smoothness Optimizations */
