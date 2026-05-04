@@ -24,8 +24,8 @@ const ALL_SERVICES = [
     { id: 11, name: "Bathroom Deep Cleaning", category: "cleaning_pest", rating: 4.6, reviews: 230, price: 399, image: "assets/pest_control.png", quality: "Budget" },
     
     // --- SOFA & CARPET ---
-    { id: 12, name: "3-Seater Sofa Cleaning", category: "sofa_cleaning", rating: 4.8, reviews: 145, price: 999, image: "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=500&q=80", quality: "Standard" },
-    { id: 13, name: "Luxury Carpet Shampooing", category: "sofa_cleaning", rating: 4.9, reviews: 85, price: 2499, image: "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=500&q=80", quality: "Premium" },
+    { id: 12, name: "3-Seater Sofa Cleaning", category: "sofa_cleaning", rating: 4.8, reviews: 145, price: 999, image: "assets/sofa_cleaning.png", quality: "Standard" },
+    { id: 13, name: "Luxury Carpet Shampooing", category: "sofa_cleaning", rating: 4.9, reviews: 85, price: 2499, image: "assets/sofa_cleaning.png", quality: "Premium" },
     
     // --- COOK ---
     { id: 14, name: "Traditional Home Cook", category: "cook", rating: 4.7, reviews: 156, price: 8000, image: "assets/cook.png", quality: "Standard" },
@@ -46,29 +46,29 @@ const ALL_SERVICES = [
     { id: 23, name: "Professional Facial", category: "hair_salon", rating: 4.7, reviews: 450, price: 899, image: "assets/hair_salon.png", quality: "Standard" },
     
     // --- RO SERVICE ---
-    { id: 24, name: "RO Water Filter Service", category: "ro_service", rating: 4.8, reviews: 320, price: 499, image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&q=80", quality: "Standard" },
-    { id: 25, name: "RO Membrane Replacement", category: "ro_service", rating: 4.7, reviews: 180, price: 2499, image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&q=80", quality: "Premium" },
+    { id: 24, name: "RO Water Filter Service", category: "ro_service", rating: 4.8, reviews: 320, price: 499, image: "assets/ro_service.png", quality: "Standard" },
+    { id: 25, name: "RO Membrane Replacement", category: "ro_service", rating: 4.7, reviews: 180, price: 2499, image: "assets/ro_service.png", quality: "Premium" },
     
     // --- CARPENTER ---
-    { id: 26, name: "Furniture Repair", category: "carpenter", rating: 4.6, reviews: 95, price: 399, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500&q=80", quality: "Standard" },
-    { id: 27, name: "Custom Wardrobe Design", category: "carpenter", rating: 4.9, reviews: 54, price: 45000, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500&q=80", quality: "Luxury" },
+    { id: 26, name: "Furniture Repair", category: "carpenter", rating: 4.6, reviews: 95, price: 399, image: "assets/carpenter.png", quality: "Standard" },
+    { id: 27, name: "Custom Wardrobe Design", category: "carpenter", rating: 4.9, reviews: 54, price: 45000, image: "assets/carpenter.png", quality: "Luxury" },
     
     // --- YOGA ---
-    { id: 28, name: "Personal Yoga Trainer", category: "yoga", rating: 5.0, reviews: 65, price: 1500, image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=80", quality: "Standard" },
+    { id: 28, name: "Personal Yoga Trainer", category: "yoga", rating: 5.0, reviews: 65, price: 1500, image: "assets/yoga.png", quality: "Standard" },
     
     // --- TUTOR ---
-    { id: 29, name: "K-10 Home Tutor", category: "tutor", rating: 4.8, reviews: 88, price: 500, image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&q=80", quality: "Standard" },
-    { id: 30, name: "IIT-JEE Entrance Expert", category: "tutor", rating: 5.0, reviews: 42, price: 2500, image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&q=80", quality: "Premium" },
+    { id: 29, name: "K-10 Home Tutor", category: "tutor", rating: 4.8, reviews: 88, price: 500, image: "assets/tutor.png", quality: "Standard" },
+    { id: 30, name: "IIT-JEE Entrance Expert", category: "tutor", rating: 5.0, reviews: 42, price: 2500, image: "assets/tutor.png", quality: "Premium" },
     
     // --- VEHICLE CARE ---
-    { id: 31, name: "Full Car Detailing", category: "vehicle_care", rating: 4.8, reviews: 156, price: 2999, image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=500&q=80", quality: "Standard" },
-    { id: 32, name: "Luxury Ceramic Coating", category: "vehicle_care", rating: 5.0, reviews: 24, price: 15000, image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=500&q=80", quality: "Luxury" },
+    { id: 31, name: "Full Car Detailing", category: "vehicle_care", rating: 4.8, reviews: 156, price: 2999, image: "assets/vehicle_care.png", quality: "Standard" },
+    { id: 32, name: "Luxury Ceramic Coating", category: "vehicle_care", rating: 5.0, reviews: 24, price: 15000, image: "assets/vehicle_care.png", quality: "Luxury" },
     
     // --- SECURITY ---
-    { id: 33, name: "8-Camera CCTV Install", category: "security", rating: 4.9, reviews: 88, price: 12500, image: "https://images.unsplash.com/photo-1557597774-9d2739f85a76?w=500&q=80", quality: "Standard" },
+    { id: 33, name: "8-Camera CCTV Install", category: "security", rating: 4.9, reviews: 88, price: 12500, image: "assets/security.png", quality: "Standard" },
     
     // --- CARETAKER ---
-    { id: 34, name: "Elderly Care Assistant", category: "caretaker", rating: 4.9, reviews: 112, price: 18000, image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=500&q=80", quality: "Standard" }
+    { id: 34, name: "Elderly Care Assistant", category: "caretaker", rating: 4.9, reviews: 112, price: 18000, image: "assets/caretaker.png", quality: "Standard" }
 ];
 
 // App State
