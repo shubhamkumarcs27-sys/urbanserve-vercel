@@ -212,7 +212,10 @@ function openDetails(sid) {
 
             <div class="detail-footer">
                 <div class="detail-price">Starting at <span>₹${s.price}</span></div>
-                <button class="btn-primary" onclick="ui.hide('detail-modal'); openBooking(${s.id})">Book This Service</button>
+                <div style="display:flex; gap:1rem;">
+                    <button class="btn-secondary" onclick="ui.hide('detail-modal')">Back</button>
+                    <button class="btn-primary" onclick="ui.hide('detail-modal'); openBooking(${s.id})">Book This Service</button>
+                </div>
             </div>
         </div>
     `;
@@ -365,6 +368,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeDetailBtn = document.getElementById('close-detail-btn');
     if (closeDetailBtn) closeDetailBtn.onclick = () => ui.hide('detail-modal');
+
+    // Close modals on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.onclick = (e) => {
+            if (e.target === overlay) ui.hide(overlay.id);
+        };
+    });
 
     const searchBtn = document.getElementById('search-btn');
     if (searchBtn) searchBtn.onclick = () => ui.show('search-overlay');
