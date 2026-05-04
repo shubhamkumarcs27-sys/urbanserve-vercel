@@ -122,24 +122,6 @@
         </div>
     </header>
 
-    <!-- Categories Scroller -->
-    <section class="categories-section reveal stagger-3"
-        style="padding: 2rem 0; border-bottom: 1px solid var(--glass-border);">
-        <div class="container">
-            <div class="categories-scroll" id="category-scroller">
-                <button class="category-pill active" data-filter="all"><i data-lucide="grid"></i> All</button>
-                <button class="category-pill" data-filter="cleaning_pest"><i data-lucide="spray-can"></i>
-                    Cleaning</button>
-                <button class="category-pill" data-filter="plumber"><i data-lucide="wrench"></i> Plumber</button>
-                <button class="category-pill" data-filter="electrician"><i data-lucide="zap"></i> Electrician</button>
-                <button class="category-pill" data-filter="appliance_repair"><i data-lucide="fan"></i> AC
-                    Repair</button>
-                <button class="category-pill" data-filter="hair_salon"><i data-lucide="scissors"></i> Salon</button>
-                <button class="category-pill" data-filter="driver"><i data-lucide="car"></i> Driver</button>
-            </div>
-        </div>
-    </section>
-
     <!-- Offers Section -->
     <section class="offers-section reveal stagger-4" style="padding-top: 4rem;">
         <div class="container">
@@ -213,6 +195,8 @@
                 <div class="category-pill" onclick="filterServices('ac_repair', this)"><i data-lucide="fan"></i> AC Repair</div>
                 <div class="category-pill" onclick="filterServices('hair_salon', this)"><i data-lucide="scissors"></i> Salon</div>
                 <div class="category-pill" onclick="filterServices('cook', this)"><i data-lucide="utensils"></i> Cook</div>
+                <div class="category-pill" onclick="filterServices('driver', this)"><i data-lucide="car"></i> Driver</div>
+                <div class="category-pill" onclick="filterServices('painter', this)"><i data-lucide="palette"></i> Painter</div>
             </div>
             <div class="services-grid grid-auto" id="services-container">
                 <!-- Service Cards injected via JS -->
