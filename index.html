@@ -1,43 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urban Needs | Expert Local Home Services</title>
-    <meta name="description" content="Book expert local home services including cleaning, repair, and salon at home. Trusted by 10k+ happy users.">
-    <meta name="keywords" content="home services, cleaning service, electrician, plumber, salon at home">
-    
+    <meta
+      name="description"
+      content="Book expert local home services including cleaning, repair, and salon at home. Trusted by 10k+ happy users."
+    />
+    <meta
+      name="keywords"
+      content="home services, cleaning service, electrician, plumber, salon at home"
+    />
+
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Urban Needs | Expert Home Services">
-    <meta property="og:description" content="Get professional help for your home in minutes.">
-    <meta property="og:image" content="assets/logo.png">
-    
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <meta name="description"
-        content="Book top-rated local home services including cleaning, repair, and salon services easily with Urban Needs.">
+    <meta property="og:title" content="Urban Needs | Expert Home Services" />
+    <meta
+      property="og:description"
+      content="Get professional help for your home in minutes."
+    />
+    <meta property="og:image" content="assets/logo.png" />
+
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <meta
+      name="description"
+      content="Book top-rated local home services including cleaning, repair, and salon services easily with Urban Needs."
+    />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="styles.css?v=3.0">
-</head>
+    <link rel="stylesheet" href="styles.css?v=3.0" />
+  </head>
 
-<body>
+  <body>
     <!-- Loading Overlay -->
     <div id="loading-overlay">
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-            <h2 class="loader-text">Urban Needs</h2>
-        </div>
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <h2 class="loader-text">Urban Needs</h2>
+      </div>
     </div>
 
     <!-- Notification Container -->
@@ -48,502 +58,730 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="container flex-between">
-            <a href="#" class="logo">Urban<span class="text-gradient">Needs</span></a>
-            <div class="nav-links">
-                <a href="#services" class="nav-link">Services</a>
-            </div>
-            <div class="actions" id="nav-actions">
-                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i data-lucide="moon"></i></button>
-                <button class="icon-btn" id="search-btn" aria-label="Search"><i data-lucide="search"></i></button>
-                <button class="btn-primary" id="open-auth-btn"><i data-lucide="user"></i> Sign In</button>
-            </div>
+      <div class="container flex-between">
+        <a href="#" class="logo"
+          >Urban<span class="text-gradient">Needs</span></a
+        >
+        <div class="nav-links">
+          <a href="#services" class="nav-link">Services</a>
         </div>
+        <div class="actions" id="nav-actions">
+          <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
+          <button class="icon-btn" id="search-btn" aria-label="Search">
+            <i data-lucide="search"></i>
+          </button>
+          <button class="btn-primary" id="open-auth-btn">
+            <i data-lucide="user"></i> Sign In
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero reveal stagger-1" id="hero-section">
-        <div class="hero-bg"></div>
-        <div class="container hero-content text-center">
-            <h1 class="heading-1 hero-title">Expert Home Services,<br><span class="text-gradient">On Demand</span></h1>
-            <p class="hero-subtitle">Your trusted destination for booking top-tier professionals for home repair,
-                cleaning, and salon services.</p>
-            
-            <div class="hero-stats reveal stagger-2">
-                <div class="stat-item">
-                    <span class="stat-num">10k+</span>
-                    <span class="stat-label">Happy Users</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">4.8★</span>
-                    <span class="stat-label">Average Rating</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">500+</span>
-                    <span class="stat-label">Service Experts</span>
-                </div>
-            </div>
+      <div class="hero-bg"></div>
+      <div class="container hero-content text-center">
+        <h1 class="heading-1 hero-title">
+          Expert Home Services,<br /><span class="text-gradient"
+            >On Demand</span
+          >
+        </h1>
+        <p class="hero-subtitle">
+          Your trusted destination for booking top-tier professionals for home
+          repair, cleaning, and salon services.
+        </p>
 
-            <!-- Smart Recommendation Card -->
-            <div class="smart-search-card reveal stagger-2">
-                <div class="search-grid">
-                    <div class="input-group">
-                        <label for="event-type">What service do you need?</label>
-                        <select id="event-type">
-                            <option value="">Select Service</option>
-                            <option value="driver">Driver</option>
-                            <option value="security">Security</option>
-                            <option value="cook">Cook</option>
-                            <option value="babysitter">Babysitter</option>
-                            <option value="laundry">Laundry</option>
-                            <option value="plumber">Plumber</option>
-                            <option value="electrician">Electrician</option>
-                            <option value="carpenter">Carpenter</option>
-                            <option value="housekeeping">Housekeeping</option>
-                            <option value="appliance_repair">Appliance & AC Repair</option>
-                            <option value="ro_service">RO & Water Purifier</option>
-                            <option value="massage">Massage & Spa</option>
-                            <option value="cleaning_pest">Cleaning & Pest Control</option>
-                            <option value="sofa_cleaning">Sofa & Carpet Cleaning</option>
-                            <option value="caretaker">Caretaker</option>
-                            <option value="painting">Painting</option>
-                            <option value="hair_salon">Hair Salon</option>
-                            <option value="yoga">Yoga & Fitness</option>
-                            <option value="tutor">Home Tutors</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="budget">Estimated Budget</label>
-                        <select id="budget">
-                            <option value="">Select Budget</option>
-                            <option value="budget">Under ₹1,000</option>
-                            <option value="standard">₹1,000 - ₹5,000</option>
-                            <option value="mid">₹5,000 - ₹15,000</option>
-                            <option value="premium">₹15,000 - ₹50,000</option>
-                            <option value="luxury">₹50,000+</option>
-                        </select>
-                    </div>
-                    <button class="btn-primary search-submit" id="recommend-btn">Get Recommendations</button>
-                </div>
-            </div>
+        <div class="hero-stats reveal stagger-2">
+          <div class="stat-item">
+            <span class="stat-num">10k+</span>
+            <span class="stat-label">Happy Users</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">4.8★</span>
+            <span class="stat-label">Average Rating</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Service Experts</span>
+          </div>
         </div>
+
+        <!-- Smart Recommendation Card -->
+        <div class="smart-search-card reveal stagger-2">
+          <div class="search-grid">
+            <div class="input-group">
+              <label for="event-type">What service do you need?</label>
+              <select id="event-type">
+                <option value="">Select Service</option>
+                <option value="driver">Driver</option>
+                <option value="security">Security</option>
+                <option value="cook">Cook</option>
+                <option value="babysitter">Babysitter</option>
+                <option value="laundry">Laundry</option>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="carpenter">Carpenter</option>
+                <option value="housekeeping">Housekeeping</option>
+                <option value="appliance_repair">Appliance & AC Repair</option>
+                <option value="ro_service">RO & Water Purifier</option>
+                <option value="massage">Massage & Spa</option>
+                <option value="cleaning_pest">Cleaning & Pest Control</option>
+                <option value="sofa_cleaning">Sofa & Carpet Cleaning</option>
+                <option value="caretaker">Caretaker</option>
+                <option value="painting">Painting</option>
+                <option value="hair_salon">Hair Salon</option>
+                <option value="yoga">Yoga & Fitness</option>
+                <option value="tutor">Home Tutors</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="budget">Estimated Budget</label>
+              <select id="budget">
+                <option value="">Select Budget</option>
+                <option value="budget">Under ₹1,000</option>
+                <option value="standard">₹1,000 - ₹5,000</option>
+                <option value="mid">₹5,000 - ₹15,000</option>
+                <option value="premium">₹15,000 - ₹50,000</option>
+                <option value="luxury">₹50,000+</option>
+              </select>
+            </div>
+            <button class="btn-primary search-submit" id="recommend-btn">
+              Get Recommendations
+            </button>
+          </div>
+        </div>
+      </div>
     </header>
 
-
     <!-- Why Choose Us Section -->
-    <section class="section reveal" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="heading-2">Why <span class="text-gradient">Urban Needs?</span></h2>
-                <p class="text-secondary">The gold standard for home services.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-primary);">
-                        <i data-lucide="verified"></i>
-                    </div>
-                    <h3>Verified Experts</h3>
-                    <p>Every professional undergoes a rigorous 4-step background check and skill assessment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
-                        <i data-lucide="clock"></i>
-                    </div>
-                    <h3>On-Time Service</h3>
-                    <p>We value your time. If we're late, the service fee is on us. Guaranteed.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
-                        <i data-lucide="shield-check"></i>
-                    </div>
-                    <h3>Service Warranty</h3>
-                    <p>30-day post-service warranty on all repairs and installations.</p>
-                </div>
-            </div>
+    <section class="section reveal" style="background: var(--bg-secondary)">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="heading-2">
+            Why <span class="text-gradient">Urban Needs?</span>
+          </h2>
+          <p class="text-secondary">The gold standard for home services.</p>
         </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div
+              class="feature-icon"
+              style="
+                background: rgba(37, 99, 235, 0.1);
+                color: var(--accent-primary);
+              "
+            >
+              <i data-lucide="verified"></i>
+            </div>
+            <h3>Verified Experts</h3>
+            <p>
+              Every professional undergoes a rigorous 4-step background check
+              and skill assessment.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div
+              class="feature-icon"
+              style="background: rgba(16, 185, 129, 0.1); color: #10b981"
+            >
+              <i data-lucide="clock"></i>
+            </div>
+            <h3>On-Time Service</h3>
+            <p>
+              We value your time. If we're late, the service fee is on us.
+              Guaranteed.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div
+              class="feature-icon"
+              style="background: rgba(245, 158, 11, 0.1); color: #f59e0b"
+            >
+              <i data-lucide="shield-check"></i>
+            </div>
+            <h3>Service Warranty</h3>
+            <p>
+              30-day post-service warranty on all repairs and installations.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- Services Grid -->
     <section id="services" class="section reveal">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="heading-2">Recommended <span class="text-gradient">Services</span></h2>
-                <p class="text-secondary">Handpicked professionals for your needs.</p>
-            </div>
-
-            <div class="categories-scroll" style="margin-bottom: 2rem;">
-                <div class="category-pill active" onclick="filterServices('all', this)"><i data-lucide="layers"></i> All</div>
-                <div class="category-pill" onclick="filterServices('cleaning_pest', this)"><i data-lucide="sparkles"></i> Cleaning</div>
-                <div class="category-pill" onclick="filterServices('plumber', this)"><i data-lucide="wrench"></i> Plumber</div>
-                <div class="category-pill" onclick="filterServices('electrician', this)"><i data-lucide="zap"></i> Electrician</div>
-                <div class="category-pill" onclick="filterServices('ac_repair', this)"><i data-lucide="fan"></i> AC Repair</div>
-                <div class="category-pill" onclick="filterServices('hair_salon', this)"><i data-lucide="scissors"></i> Salon</div>
-                <div class="category-pill" onclick="filterServices('cook', this)"><i data-lucide="utensils"></i> Cook</div>
-                <div class="category-pill" onclick="filterServices('driver', this)"><i data-lucide="car"></i> Driver</div>
-                <div class="category-pill" onclick="filterServices('painter', this)"><i data-lucide="palette"></i> Painter</div>
-            </div>
-            <div class="services-grid grid-auto" id="services-container">
-                <!-- Service Cards injected via JS -->
-            </div>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="heading-2">
+            Recommended <span class="text-gradient">Services</span>
+          </h2>
+          <p class="text-secondary">Handpicked professionals for your needs.</p>
         </div>
+
+        <div class="categories-scroll" style="margin-bottom: 2rem">
+          <div
+            class="category-pill active"
+            onclick="filterServices('all', this)"
+          >
+            <i data-lucide="layers"></i> All
+          </div>
+          <div
+            class="category-pill"
+            onclick="filterServices('cleaning_pest', this)"
+          >
+            <i data-lucide="sparkles"></i> Cleaning
+          </div>
+          <div class="category-pill" onclick="filterServices('plumber', this)">
+            <i data-lucide="wrench"></i> Plumber
+          </div>
+          <div
+            class="category-pill"
+            onclick="filterServices('electrician', this)"
+          >
+            <i data-lucide="zap"></i> Electrician
+          </div>
+          <div
+            class="category-pill"
+            onclick="filterServices('ac_repair', this)"
+          >
+            <i data-lucide="fan"></i> AC Repair
+          </div>
+          <div
+            class="category-pill"
+            onclick="filterServices('hair_salon', this)"
+          >
+            <i data-lucide="scissors"></i> Salon
+          </div>
+          <div class="category-pill" onclick="filterServices('cook', this)">
+            <i data-lucide="utensils"></i> Cook
+          </div>
+          <div class="category-pill" onclick="filterServices('driver', this)">
+            <i data-lucide="car"></i> Driver
+          </div>
+          <div class="category-pill" onclick="filterServices('painter', this)">
+            <i data-lucide="palette"></i> Painter
+          </div>
+        </div>
+        <div class="services-grid grid-auto" id="services-container">
+          <!-- Service Cards injected via JS -->
+        </div>
+      </div>
     </section>
 
     <!-- Special Offers -->
-    <section class="section reveal" style="padding-top: 0;">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="heading-2">Special <span class="text-gradient">Offers</span></h2>
-                <p class="text-secondary">Exclusive deals just for you.</p>
-            </div>
-            <div class="offers-grid">
-                <div class="offer-card" style="background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);">
-                    <div class="offer-content">
-                        <span class="offer-badge">NEW USER</span>
-                        <h3>Flat 50% Off</h3>
-                        <p>On your first salon booking</p>
-                        <button class="btn-primary" style="background: white; color: #000; margin-top: 1rem;">Claim Now</button>
-                    </div>
-                </div>
-                <div class="offer-card" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
-                    <div class="offer-content">
-                        <span class="offer-badge">SUMMER SPECIAL</span>
-                        <h3>AC Servicing</h3>
-                        <p>Starting at just ₹499</p>
-                        <button class="btn-primary" style="background: white; color: #000; margin-top: 1rem;">Book Now</button>
-                    </div>
-                </div>
-            </div>
+    <section class="section reveal" style="padding-top: 0">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="heading-2">
+            Special <span class="text-gradient">Offers</span>
+          </h2>
+          <p class="text-secondary">Exclusive deals just for you.</p>
         </div>
+        <div class="offers-grid">
+          <div
+            class="offer-card"
+            style="
+              background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            "
+          >
+            <div class="offer-content">
+              <span class="offer-badge">NEW USER</span>
+              <h3>Flat 50% Off</h3>
+              <p>On your first salon booking</p>
+              <button
+                class="btn-primary"
+                style="background: white; color: #000; margin-top: 1rem"
+              >
+                Claim Now
+              </button>
+            </div>
+          </div>
+          <div
+            class="offer-card"
+            style="
+              background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            "
+          >
+            <div class="offer-content">
+              <span class="offer-badge">SUMMER SPECIAL</span>
+              <h3>AC Servicing</h3>
+              <p>Starting at just ₹499</p>
+              <button
+                class="btn-primary"
+                style="background: white; color: #000; margin-top: 1rem"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="section reveal" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="heading-2">What Our <span class="text-gradient">Customers Say</span></h2>
-                <p class="text-secondary">Join over 10,000+ happy households.</p>
-            </div>
-            <div class="testimonials-slider">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"The sofa cleaning service was exceptional. The professional arrived on time and the results were beyond my expectations. Highly recommended!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background: #FF9A9E;">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Ananya Sharma</div>
-                            <div class="author-meta">New Delhi • 2 days ago</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"Fixed my AC within an hour. The booking process was so smooth, and the pricing was very transparent compared to local shops."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background: #a18cd1;">R</div>
-                        <div class="author-info">
-                            <div class="author-name">Rahul Verma</div>
-                            <div class="author-meta">Mumbai • 1 week ago</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"Best salon service at home! The stylist was professional and followed all hygiene protocols. Loved the experience."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background: #fbc2eb;">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sneha Kapoor</div>
-                            <div class="author-meta">Bangalore • 3 days ago</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section reveal" style="background: var(--bg-secondary)">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="heading-2">
+            What Our <span class="text-gradient">Customers Say</span>
+          </h2>
+          <p class="text-secondary">Join over 10,000+ happy households.</p>
         </div>
+        <div class="testimonials-slider">
+          <div class="testimonial-card">
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "The sofa cleaning service was exceptional. The professional
+              arrived on time and the results were beyond my expectations.
+              Highly recommended!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: #ff9a9e">A</div>
+              <div class="author-info">
+                <div class="author-name">Ananya Sharma</div>
+                <div class="author-meta">New Delhi • 2 days ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "Fixed my AC within an hour. The booking process was so smooth,
+              and the pricing was very transparent compared to local shops."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: #a18cd1">R</div>
+              <div class="author-info">
+                <div class="author-name">Rahul Verma</div>
+                <div class="author-meta">Mumbai • 1 week ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "Best salon service at home! The stylist was professional and
+              followed all hygiene protocols. Loved the experience."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: #fbc2eb">S</div>
+              <div class="author-info">
+                <div class="author-name">Sneha Kapoor</div>
+                <div class="author-meta">Bangalore • 3 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-logo-section">
-                <a href="#" class="logo" style="font-size: 2rem;">Urban<span class="text-gradient">Needs</span></a>
-            </div>
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4 class="footer-heading">Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-heading">Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Cleaning</a></li>
-                        <li><a href="#">Repairs</a></li>
-                        <li><a href="#">Salon</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-heading">Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; Copyright 2026 Urban Needs Limited. All rights reserved.</p>
-            </div>
+      <div class="container">
+        <div class="footer-logo-section">
+          <a href="#" class="logo" style="font-size: 2rem"
+            >Urban<span class="text-gradient">Needs</span></a
+          >
         </div>
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="footer-heading">Company</h4>
+            <ul class="footer-links">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Services</h4>
+            <ul class="footer-links">
+              <li><a href="#">Cleaning</a></li>
+              <li><a href="#">Repairs</a></li>
+              <li><a href="#">Salon</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Support</h4>
+            <ul class="footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; Copyright 2026 Urban Needs Limited. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Auth Modal -->
     <div class="modal-overlay hidden" id="auth-modal">
-        <div class="modal-container">
-            <button class="icon-btn modal-close" id="close-auth-btn"><i data-lucide="x"></i></button>
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-target="login-form">Login</button>
-                <button class="auth-tab" data-target="register-form">Register</button>
-            </div>
-            <form id="login-form" class="auth-form active">
-                <div class="input-group">
-                    <label>Email or Phone Number</label>
-                    <input type="text" id="login-email" required>
-                </div>
-                <div class="input-group" style="margin-top: 1rem;">
-                    <label>Password</label>
-                    <input type="password" id="login-password" required>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Sign In</button>
-            </form>
-            <form id="register-form" class="auth-form">
-                <div class="input-group">
-                    <label>Full Name</label>
-                    <input type="text" id="reg-name" required>
-                </div>
-                <div class="input-group" style="margin-top: 1rem;">
-                    <label>Email Address</label>
-                    <input type="email" id="reg-email" required>
-                </div>
-                <div class="input-group" style="margin-top: 1rem;">
-                    <label>Phone Number</label>
-                    <input type="tel" id="reg-phone" required pattern="[0-9]{10}" maxlength="10"
-                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
-                        placeholder="10-digit number">
-                </div>
-                <div class="input-group" style="margin-top: 1rem;">
-                    <label>Password</label>
-                    <input type="password" id="reg-password" required minlength="8">
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Register</button>
-            </form>
+      <div class="modal-container">
+        <button class="icon-btn modal-close" id="close-auth-btn">
+          <i data-lucide="x"></i>
+        </button>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-target="login-form">
+            Login
+          </button>
+          <button class="auth-tab" data-target="register-form">Register</button>
         </div>
+        <form id="login-form" class="auth-form active">
+          <div class="input-group">
+            <label>Email or Phone Number</label>
+            <input type="text" id="login-email" required />
+          </div>
+          <div class="input-group" style="margin-top: 1rem">
+            <label>Password</label>
+            <input type="password" id="login-password" required />
+          </div>
+          <button
+            type="submit"
+            class="btn-primary"
+            style="width: 100%; margin-top: 1.5rem"
+          >
+            Sign In
+          </button>
+        </form>
+        <form id="register-form" class="auth-form">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" required />
+          </div>
+          <div class="input-group" style="margin-top: 1rem">
+            <label>Email Address</label>
+            <input type="email" id="reg-email" required />
+          </div>
+          <div class="input-group" style="margin-top: 1rem">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              id="reg-phone"
+              required
+              pattern="[0-9]{10}"
+              maxlength="10"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)
+              "
+              placeholder="10-digit number"
+            />
+          </div>
+          <div class="input-group" style="margin-top: 1rem">
+            <label>Password</label>
+            <input type="password" id="reg-password" required minlength="8" />
+          </div>
+          <button
+            type="submit"
+            class="btn-primary"
+            style="width: 100%; margin-top: 1.5rem"
+          >
+            Register
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- Booking Modal -->
     <div class="modal-overlay hidden" id="booking-modal">
-        <div class="modal-container booking-container">
-            <button class="icon-btn modal-close" id="close-booking-btn"><i data-lucide="x"></i></button>
-            <h2 class="heading-2" id="booking-title" style="margin-bottom: 1rem; font-size: 1.8rem;">Book Service</h2>
+      <div class="modal-container booking-container">
+        <button class="icon-btn modal-close" id="close-booking-btn">
+          <i data-lucide="x"></i>
+        </button>
+        <h2
+          class="heading-2"
+          id="booking-title"
+          style="margin-bottom: 1rem; font-size: 1.8rem"
+        >
+          Book Service
+        </h2>
 
-            <div class="booking-step" id="step-1">
-                <h4 style="margin-bottom: 1rem;">Select a Date & Time</h4>
-                <div class="input-group" style="margin-bottom: 1.5rem;">
-                    <input type="date" id="booking-date" required>
-                </div>
-                <div class="time-slots">
-                    <button class="time-slot">09:00 AM</button>
-                    <button class="time-slot">11:30 AM</button>
-                    <button class="time-slot">02:00 PM</button>
-                    <button class="time-slot">04:30 PM</button>
-                </div>
-                <button class="btn-primary" id="confirm-time-btn" style="width: 100%; margin-top: 2rem;">Continue to
-                    Summary</button>
-            </div>
-
-            <div class="booking-step hidden" id="step-2">
-                <h4 style="margin-bottom: 1rem;">Customer Details</h4>
-                <div class="input-group" style="margin-bottom: 1rem;">
-                    <label>Full Name <span style="color: #ef4444;">*</span></label>
-                    <input type="text" id="booking-name" required placeholder="e.g. shubham kr">
-                </div>
-                <div class="input-group" style="margin-bottom: 1rem;">
-                    <label>Phone Number <span style="color: #ef4444;">*</span></label>
-                    <input type="tel" id="booking-phone" required placeholder="10-digit mobile number" maxlength="10"
-                        pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
-                </div>
-                <div class="input-group" style="margin-bottom: 1rem;">
-                    <label>Service Address <span style="color: #ef4444;">*</span></label>
-                    <textarea id="booking-address" required placeholder="House/Flat No., Building Name, Street Area"
-                        rows="2"
-                        style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.75rem 1.25rem; border-radius: var(--border-radius-sm); font-family: inherit; resize: vertical;"></textarea>
-                </div>
-                <div class="input-group" style="margin-bottom: 1rem;">
-                    <label>Landmark <span
-                            style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 400;">(Optional)</span></label>
-                    <input type="text" id="booking-landmark" placeholder="e.g. Near Apollo Hospital">
-                </div>
-                <button class="btn-primary" id="confirm-details-btn" style="width: 100%; margin-top: 1rem;">Review
-                    Booking</button>
-            </div>
-
-            <div class="booking-step hidden" id="step-3">
-                <div class="billing-header">
-                    <h4 class="billing-title">Payment Summary</h4>
-                    <p class="billing-subtitle">Finalize your booking details</p>
-                </div>
-                
-                <div class="summary-details">
-                    <div class="detail-row">
-                        <span class="detail-label"><i data-lucide="info"></i> Service</span>
-                        <span class="detail-value" id="summary-service-name">General Service</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label"><i data-lucide="calendar"></i> Date & Time</span>
-                        <span class="detail-value" id="summary-datetime">May 05, 2026 • 10:00 AM</span>
-                    </div>
-                </div>
-
-                <div class="summary-card-premium">
-                    <div class="billing-row">
-                        <span>Service Base Fee</span>
-                        <span id="summary-price" class="price-val">₹0</span>
-                    </div>
-                    <div class="billing-row">
-                        <span>Safety & Service Fee</span>
-                        <span class="price-val">₹49</span>
-                    </div>
-                    <div class="billing-row discount">
-                        <span>Platform Discount</span>
-                        <span class="price-val">-₹0</span>
-                    </div>
-                    <div class="billing-total">
-                        <div class="total-text">
-                            <span>Amount to Pay</span>
-                            <p>Inclusive of all taxes</p>
-                        </div>
-                        <span id="summary-total" class="total-amount">₹0</span>
-                    </div>
-                </div>
-
-                <div class="secure-badge">
-                    <i data-lucide="shield-check"></i>
-                    <span>Secure 256-bit SSL Encrypted Payment</span>
-                </div>
-
-                <button class="btn-primary" id="final-book-btn" style="width: 100%; margin-top: 1rem; height: 60px; font-size: 1.1rem;">
-                    Confirm & Pay <i data-lucide="arrow-right" style="margin-left: 0.5rem;"></i>
-                </button>
-            </div>
-
-            <div class="booking-step hidden" id="step-4">
-                <div class="success-screen">
-                    <div class="confetti-container" id="confetti"></div>
-                    <div class="success-ring-container">
-                        <svg class="success-ring" viewBox="0 0 120 120">
-                            <circle cx="60" cy="60" r="50"></circle>
-                        </svg>
-                        <i data-lucide="check" class="success-checkmark"></i>
-                    </div>
-                    
-                    <div class="payment-amount" id="confirm-amount">₹0</div>
-                    <div class="payment-status">Booking Confirmed!</div>
-                    
-                    <div class="receipt-card">
-                        <div class="receipt-header">
-                            <span class="receipt-title">Transaction Receipt</span>
-                            <span class="receipt-date" id="receipt-date">May 05, 2026</span>
-                        </div>
-                        <div class="receipt-body">
-                            <div class="receipt-row">
-                                <span class="label">Booking ID</span>
-                                <span class="value" id="confirm-txn-id">UN-782934102</span>
-                            </div>
-                            <div class="receipt-row">
-                                <span class="label">Service</span>
-                                <span class="value" id="confirm-service">General Service</span>
-                            </div>
-                            <div class="receipt-row">
-                                <span class="label">Scheduled for</span>
-                                <span class="value" id="confirm-datetime">11:30 AM</span>
-                            </div>
-                            <div class="receipt-divider"></div>
-                            <div class="receipt-row total">
-                                <span class="label">Total Paid</span>
-                                <span class="value" id="receipt-total">₹0</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="action-grid">
-                        <button class="btn-secondary" onclick="completeBooking()">
-                            <i data-lucide="home"></i> Done
-                        </button>
-                        <button class="btn-primary" onclick="window.print()" style="background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--glass-border);">
-                            <i data-lucide="download"></i> Receipt
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="booking-step" id="step-1">
+          <h4 style="margin-bottom: 1rem">Select a Date & Time</h4>
+          <div class="input-group" style="margin-bottom: 1.5rem">
+            <input type="date" id="booking-date" required />
+          </div>
+          <div class="time-slots">
+            <button class="time-slot">09:00 AM</button>
+            <button class="time-slot">11:30 AM</button>
+            <button class="time-slot">02:00 PM</button>
+            <button class="time-slot">04:30 PM</button>
+          </div>
+          <button
+            class="btn-primary"
+            id="confirm-time-btn"
+            style="width: 100%; margin-top: 2rem"
+          >
+            Continue to Summary
+          </button>
         </div>
+
+        <div class="booking-step hidden" id="step-2">
+          <h4 style="margin-bottom: 1rem">Customer Details</h4>
+          <div class="input-group" style="margin-bottom: 1rem">
+            <label>Full Name <span style="color: #ef4444">*</span></label>
+            <input
+              type="text"
+              id="booking-name"
+              required
+              placeholder="e.g. shubham kr"
+            />
+          </div>
+          <div class="input-group" style="margin-bottom: 1rem">
+            <label>Phone Number <span style="color: #ef4444">*</span></label>
+            <input
+              type="tel"
+              id="booking-phone"
+              required
+              placeholder="10-digit mobile number"
+              maxlength="10"
+              pattern="[0-9]{10}"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)
+              "
+            />
+          </div>
+          <div class="input-group" style="margin-bottom: 1rem">
+            <label>Service Address <span style="color: #ef4444">*</span></label>
+            <textarea
+              id="booking-address"
+              required
+              placeholder="House/Flat No., Building Name, Street Area"
+              rows="2"
+              style="
+                width: 100%;
+                background: var(--bg-secondary);
+                border: 1px solid var(--glass-border);
+                color: var(--text-primary);
+                padding: 0.75rem 1.25rem;
+                border-radius: var(--border-radius-sm);
+                font-family: inherit;
+                resize: vertical;
+              "
+            ></textarea>
+          </div>
+          <div class="input-group" style="margin-bottom: 1rem">
+            <label
+              >Landmark
+              <span
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.8rem;
+                  font-weight: 400;
+                "
+                >(Optional)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="booking-landmark"
+              placeholder="e.g. Near Apollo Hospital"
+            />
+          </div>
+          <button
+            class="btn-primary"
+            id="confirm-details-btn"
+            style="width: 100%; margin-top: 1rem"
+          >
+            Review Booking
+          </button>
+        </div>
+
+        <div class="booking-step hidden" id="step-3">
+          <div class="billing-header">
+            <h4 class="billing-title">Payment Summary</h4>
+            <p class="billing-subtitle">Finalize your booking details</p>
+          </div>
+
+          <div class="summary-details">
+            <div class="detail-row">
+              <span class="detail-label"
+                ><i data-lucide="info"></i> Service</span
+              >
+              <span class="detail-value" id="summary-service-name"
+                >General Service</span
+              >
+            </div>
+            <div class="detail-row">
+              <span class="detail-label"
+                ><i data-lucide="calendar"></i> Date & Time</span
+              >
+              <span class="detail-value" id="summary-datetime"
+                >May 05, 2026 • 10:00 AM</span
+              >
+            </div>
+          </div>
+
+          <div class="summary-card-premium">
+            <div class="billing-row">
+              <span>Service Base Fee</span>
+              <span id="summary-price" class="price-val">₹0</span>
+            </div>
+            <div class="billing-row">
+              <span>Safety & Service Fee</span>
+              <span class="price-val">₹49</span>
+            </div>
+            <div class="billing-row discount">
+              <span>Platform Discount</span>
+              <span class="price-val">-₹0</span>
+            </div>
+            <div class="billing-total">
+              <div class="total-text">
+                <span>Amount to Pay</span>
+                <p>Inclusive of all taxes</p>
+              </div>
+              <span id="summary-total" class="total-amount">₹0</span>
+            </div>
+          </div>
+
+          <div class="secure-badge">
+            <i data-lucide="shield-check"></i>
+            <span>Secure 256-bit SSL Encrypted Payment</span>
+          </div>
+
+          <button
+            class="btn-primary"
+            id="final-book-btn"
+            style="
+              width: 100%;
+              margin-top: 1rem;
+              height: 60px;
+              font-size: 1.1rem;
+            "
+          >
+            Confirm & Pay
+            <i data-lucide="arrow-right" style="margin-left: 0.5rem"></i>
+          </button>
+        </div>
+
+        <div class="booking-step hidden" id="step-4">
+          <div class="success-screen">
+            <div class="confetti-container" id="confetti"></div>
+            <div class="success-ring-container">
+              <svg class="success-ring" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="50"></circle>
+              </svg>
+              <i data-lucide="check" class="success-checkmark"></i>
+            </div>
+
+            <div class="payment-amount" id="confirm-amount">₹0</div>
+            <div class="payment-status">Booking Confirmed!</div>
+
+            <div class="receipt-card">
+              <div class="receipt-header">
+                <span class="receipt-title">Transaction Receipt</span>
+                <span class="receipt-date" id="receipt-date">May 05, 2026</span>
+              </div>
+              <div class="receipt-body">
+                <div class="receipt-row">
+                  <span class="label">Booking ID</span>
+                  <span class="value" id="confirm-txn-id">UN-782934102</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="label">Service</span>
+                  <span class="value" id="confirm-service"
+                    >General Service</span
+                  >
+                </div>
+                <div class="receipt-row">
+                  <span class="label">Scheduled for</span>
+                  <span class="value" id="confirm-datetime">11:30 AM</span>
+                </div>
+                <div class="receipt-divider"></div>
+                <div class="receipt-row total">
+                  <span class="label">Total Paid</span>
+                  <span class="value" id="receipt-total">₹0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="action-grid">
+              <button class="btn-secondary" onclick="completeBooking()">
+                <i data-lucide="home"></i> Done
+              </button>
+              <button
+                class="btn-primary"
+                onclick="window.print()"
+                style="
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  border: 1px solid var(--glass-border);
+                "
+              >
+                <i data-lucide="download"></i> Receipt
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-
 
     <!-- Service Detail Modal -->
     <div class="modal-overlay hidden" id="detail-modal">
-        <div class="modal-container detail-container">
-            <button class="icon-btn modal-close" id="close-detail-btn"><i data-lucide="x"></i></button>
-            <div id="detail-content">
-                <!-- Content injected via JS -->
-            </div>
+      <div class="modal-container detail-container">
+        <button class="icon-btn modal-close" id="close-detail-btn">
+          <i data-lucide="x"></i>
+        </button>
+        <div id="detail-content">
+          <!-- Content injected via JS -->
         </div>
+      </div>
     </div>
 
     <!-- Search Overlay -->
     <div class="search-overlay hidden" id="search-overlay">
-        <div class="search-overlay-inner">
-            <div class="search-bar-wrap">
-                <i data-lucide="search" class="search-overlay-icon"></i>
-                <input type="text" id="search-input" class="search-overlay-input"
-                    placeholder="Search services… e.g. electrician, plumber">
-                <button class="icon-btn" id="search-close"><i data-lucide="x"></i></button>
-            </div>
-            <div class="search-results" id="search-results"></div>
+      <div class="search-overlay-inner">
+        <div class="search-bar-wrap">
+          <i data-lucide="search" class="search-overlay-icon"></i>
+          <input
+            type="text"
+            id="search-input"
+            class="search-overlay-input"
+            placeholder="Search services… e.g. electrician, plumber"
+          />
+          <button class="icon-btn" id="search-close">
+            <i data-lucide="x"></i>
+          </button>
         </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
     </div>
 
     <!-- Floating Action Button -->
     <div class="fab-container" id="fab-support">
-        <button class="fab-btn">
-            <i data-lucide="message-circle"></i>
-            <span class="fab-badge"></span>
-        </button>
-        <div class="fab-menu hidden">
-            <a href="#" class="fab-menu-item"><i data-lucide="help-circle"></i> Help Center</a>
-            <a href="#" class="fab-menu-item"><i data-lucide="phone"></i> Call Support</a>
-            <a href="#" class="fab-menu-item"><i data-lucide="whatsapp"></i> WhatsApp Us</a>
-        </div>
+      <button class="fab-btn">
+        <i data-lucide="message-circle"></i>
+        <span class="fab-badge"></span>
+      </button>
+      <div class="fab-menu hidden">
+        <a href="#" class="fab-menu-item"
+          ><i data-lucide="help-circle"></i> Help Center</a
+        >
+        <a href="#" class="fab-menu-item"
+          ><i data-lucide="phone"></i> Call Support</a
+        >
+        <a href="#" class="fab-menu-item"
+          ><i data-lucide="whatsapp"></i> WhatsApp Us</a
+        >
+      </div>
     </div>
 
     <button id="back-to-top" class="back-to-top">
-        <i data-lucide="arrow-up"></i>
+      <i data-lucide="arrow-up"></i>
     </button>
 
     <script src="app.js?v=3.0"></script>
     <script>
-        // Back to top logic
-        const btt = document.getElementById('back-to-top');
-        window.onscroll = () => {
-            if (window.scrollY > 500) btt.classList.add('show');
-            else btt.classList.remove('show');
-        };
-        btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Back to top logic
+      const btt = document.getElementById("back-to-top");
+      window.onscroll = () => {
+        if (window.scrollY > 500) btt.classList.add("show");
+        else btt.classList.remove("show");
+      };
+      btt.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
     </script>
-</body>
+  </body>
 </html>

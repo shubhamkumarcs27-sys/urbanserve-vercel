@@ -1,392 +1,530 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Profile | Urban Needs</title>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
+      .dashboard-container {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2rem;
+        padding: 4rem 0;
+        min-height: 80vh;
+      }
+
+      .sidebar {
+        background: var(--bg-card);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--border-radius-lg);
+        padding: 2rem;
+        height: fit-content;
+      }
+
+      .profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .sidebar-menu {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .menu-item {
+        padding: 0.75rem 1rem;
+        border-radius: var(--border-radius-sm);
+        color: var(--text-secondary);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: var(--transition-normal);
+      }
+
+      .menu-item:hover,
+      .menu-item.active {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-primary);
+      }
+
+      .content-panel {
+        background: var(--bg-card);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--border-radius-lg);
+        padding: 2.5rem;
+      }
+
+      .info-group {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .info-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .info-value {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .booking-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--border-radius-md);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition-normal);
+      }
+      .booking-card:hover {
+        border-color: var(--accent-primary);
+        transform: translateX(5px);
+      }
+      .booking-info h4 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+      .booking-info p {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .booking-status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+      }
+
+      @media (max-width: 768px) {
         .dashboard-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            padding: 4rem 0;
-            min-height: 80vh;
+          grid-template-columns: 1fr;
+          padding: 1.5rem 0;
         }
-
         .sidebar {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            height: fit-content;
+          text-align: center;
+          padding: 1.5rem;
+          margin-bottom: 1rem;
         }
-
         .profile-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+          margin: 0 auto 1.5rem;
         }
-
         .sidebar-menu {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+          flex-direction: column;
+          overflow-x: visible;
+          margin-top: 1.5rem;
+          gap: 0.5rem;
         }
-
         .menu-item {
-            padding: 0.75rem 1rem;
-            border-radius: var(--border-radius-sm);
-            color: var(--text-secondary);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: var(--transition-normal);
+          width: 100%;
+          justify-content: center;
+          padding: 0.875rem 1.5rem;
+          background: var(--bg-secondary);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--border-radius-sm);
         }
-
-        .menu-item:hover,
         .menu-item.active {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
+          background: var(--accent-primary);
+          color: white;
+          border-color: var(--accent-primary);
         }
-
         .content-panel {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
+          padding: 1.5rem;
+          border-radius: var(--border-radius-lg);
         }
-
         .info-group {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--glass-border);
+          margin-bottom: 1.25rem;
+          padding-bottom: 1.25rem;
         }
-
-        .info-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .info-value {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .booking-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius-md);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition-normal);
-        }
-        .booking-card:hover { border-color: var(--accent-primary); transform: translateX(5px); }
-        .booking-info h4 { margin: 0; font-size: 1.1rem; }
-        .booking-info p { margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.4rem; }
-        .booking-status {
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-container {
-                grid-template-columns: 1fr;
-                padding: 1.5rem 0;
-            }
-            .sidebar {
-                text-align: center;
-                padding: 1.5rem;
-                margin-bottom: 1rem;
-            }
-            .profile-avatar {
-                margin: 0 auto 1.5rem;
-            }
-            .sidebar-menu {
-                flex-direction: column;
-                overflow-x: visible;
-                margin-top: 1.5rem;
-                gap: 0.5rem;
-            }
-            .menu-item {
-                width: 100%;
-                justify-content: center;
-                padding: 0.875rem 1.5rem;
-                background: var(--bg-secondary);
-                border: 1px solid var(--glass-border);
-                border-radius: var(--border-radius-sm);
-            }
-            .menu-item.active {
-                background: var(--accent-primary);
-                color: white;
-                border-color: var(--accent-primary);
-            }
-            .content-panel {
-                padding: 1.5rem;
-                border-radius: var(--border-radius-lg);
-            }
-            .info-group {
-                margin-bottom: 1.25rem;
-                padding-bottom: 1.25rem;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="page-transition" class="page-transition-overlay"></div>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="container flex-between">
-            <a href="index.html" class="logo">Urban<span class="text-gradient">Needs</span></a>
-            <div class="nav-links">
-                <a href="index.html#services" class="nav-link">Services</a>
-            </div>
-            <div class="actions">
-                <button class="icon-btn" onclick="transitionTo('index.html')"><i data-lucide="home"></i></button>
-                <button class="btn-danger" onclick="logout()"><i data-lucide="log-out"></i> <span>Sign Out</span></button>
-            </div>
+      <div class="container flex-between">
+        <a href="index.html" class="logo"
+          >Urban<span class="text-gradient">Needs</span></a
+        >
+        <div class="nav-links">
+          <a href="index.html#services" class="nav-link">Services</a>
         </div>
+        <div class="actions">
+          <button class="icon-btn" onclick="transitionTo('index.html')">
+            <i data-lucide="home"></i>
+          </button>
+          <button class="btn-danger" onclick="logout()">
+            <i data-lucide="log-out"></i> <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <div class="container dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="profile-avatar" id="avatar-initial">U</div>
-            <h2 class="heading-2" id="profile-name" style="font-size: 1.5rem; margin-bottom:0.2rem;">User Name</h2>
-            <p class="text-secondary" id="profile-email-small">user@example.com</p>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="profile-avatar" id="avatar-initial">U</div>
+        <h2
+          class="heading-2"
+          id="profile-name"
+          style="font-size: 1.5rem; margin-bottom: 0.2rem"
+        >
+          User Name
+        </h2>
+        <p class="text-secondary" id="profile-email-small">user@example.com</p>
 
-            <div class="sidebar-menu">
-                <button class="menu-item active" id="menu-info"><i data-lucide="user"></i> Personal Info</button>
-                <button class="menu-item" id="menu-bookings"><i data-lucide="calendar"></i> My Bookings</button>
-                <button class="menu-item" id="menu-settings"><i data-lucide="settings"></i> Settings</button>
+        <div class="sidebar-menu">
+          <button class="menu-item active" id="menu-info">
+            <i data-lucide="user"></i> Personal Info
+          </button>
+          <button class="menu-item" id="menu-bookings">
+            <i data-lucide="calendar"></i> My Bookings
+          </button>
+          <button class="menu-item" id="menu-settings">
+            <i data-lucide="settings"></i> Settings
+          </button>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <main class="content-panel">
+        <!-- View Profile Section -->
+        <div id="profile-view">
+          <div
+            class="flex-between"
+            style="margin-bottom: 2rem; align-items: center"
+          >
+            <h2 class="heading-2" style="font-size: 1.8rem; margin: 0">
+              Personal Information
+            </h2>
+            <button
+              class="btn-secondary"
+              id="open-edit-btn"
+              style="padding: 0.5rem 1rem; font-size: 0.9rem"
+            >
+              <i data-lucide="edit-3" style="width: 16px"></i> Edit Profile
+            </button>
+          </div>
+
+          <div class="info-group">
+            <div class="info-label">Full Name</div>
+            <div class="info-value" id="display-name">Loading...</div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-label">Email Address</div>
+            <div class="info-value" id="display-email">Loading...</div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-label">Phone Number</div>
+            <div class="info-value" id="display-phone">Loading...</div>
+          </div>
+
+          <div class="info-group" style="border: none">
+            <div class="info-label">Account Status</div>
+            <div
+              class="info-value"
+              style="
+                color: #10b981;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+              "
+            >
+              <i data-lucide="check-circle" style="width: 18px"></i> Verified
             </div>
-        </aside>
+          </div>
+        </div>
 
-        <!-- Content -->
-        <main class="content-panel">
-            <!-- View Profile Section -->
-            <div id="profile-view">
-                <div class="flex-between" style="margin-bottom: 2rem; align-items: center;">
-                    <h2 class="heading-2" style="font-size: 1.8rem; margin: 0;">Personal Information</h2>
-                    <button class="btn-secondary" id="open-edit-btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
-                        <i data-lucide="edit-3" style="width: 16px;"></i> Edit Profile
-                    </button>
-                </div>
-
-                <div class="info-group">
-                    <div class="info-label">Full Name</div>
-                    <div class="info-value" id="display-name">Loading...</div>
-                </div>
-
-                <div class="info-group">
-                    <div class="info-label">Email Address</div>
-                    <div class="info-value" id="display-email">Loading...</div>
-                </div>
-
-                <div class="info-group">
-                    <div class="info-label">Phone Number</div>
-                    <div class="info-value" id="display-phone">Loading...</div>
-                </div>
-
-                <div class="info-group" style="border: none;">
-                    <div class="info-label">Account Status</div>
-                    <div class="info-value" style="color: #10b981; display:flex; align-items:center; gap:0.5rem;">
-                        <i data-lucide="check-circle" style="width: 18px;"></i> Verified
-                    </div>
-                </div>
-            </div>
-
-            <!-- Edit Profile Section -->
-            <div id="settings-view" class="hidden">
-                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Edit Profile</h2>
-                <form id="edit-profile-form">
-                    <div class="input-group" style="margin-bottom: 1.25rem;">
-                        <label for="edit-name" class="info-label">Full Name</label>
-                        <input type="text" id="edit-name" required>
-                    </div>
-
-                    <div class="input-group" style="margin-bottom: 1.25rem;">
-                        <label for="edit-email" class="info-label">Email Address</label>
-                        <input type="email" id="edit-email" required>
-                    </div>
-
-                    <div class="input-group" style="margin-bottom: 2rem;">
-                        <label for="edit-phone" class="info-label">Phone Number</label>
-                        <input type="tel" id="edit-phone" required pattern="[0-9]{10}" maxlength="10"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
-                            placeholder="10-digit mobile number">
-                    </div>
-
-                    <div style="display: flex; gap: 1rem;">
-                        <button type="submit" class="btn-primary">Save Changes</button>
-                        <button type="button" class="btn-secondary" id="cancel-edit-btn">Cancel</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- My Bookings Section -->
-            <div id="bookings-view" class="hidden">
-                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">My Bookings</h2>
-                <div class="empty-state" style="text-align: center; padding: 4rem 2rem;">
-                    <i data-lucide="calendar-x"
-                        style="width: 48px; height: 48px; color: var(--text-secondary); margin-bottom: 1rem;"></i>
-                    <p class="text-secondary">You have no upcoming or past bookings.</p>
-                </div>
-            </div>
-
-            <!-- Saved Services Section -->
-            <div id="saved-view" class="hidden">
-                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">Saved Services</h2>
-                <div class="empty-state" style="text-align: center; padding: 4rem 2rem;">
-                    <i data-lucide="heart"
-                        style="width: 48px; height: 48px; color: var(--text-secondary); margin-bottom: 1rem;"></i>
-                    <p class="text-secondary">You haven't saved any services yet.</p>
-                </div>
+        <!-- Edit Profile Section -->
+        <div id="settings-view" class="hidden">
+          <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem">
+            Edit Profile
+          </h2>
+          <form id="edit-profile-form">
+            <div class="input-group" style="margin-bottom: 1.25rem">
+              <label for="edit-name" class="info-label">Full Name</label>
+              <input type="text" id="edit-name" required />
             </div>
 
-            <!-- App Settings Section -->
-            <div id="app-settings-view" class="hidden">
-                <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem;">App Settings</h2>
-                <div class="info-group">
-                    <div class="flex-between">
-                        <div>
-                            <div class="info-value">Push Notifications</div>
-                            <div class="info-label">Stay updated on your booking status</div>
-                        </div>
-                        <input type="checkbox" checked style="width: 20px; height: 20px;">
-                    </div>
-                </div>
-                <div class="info-group" style="border: none;">
-                    <div class="flex-between">
-                        <div>
-                            <div class="info-value">Newsletter</div>
-                            <div class="info-label">Receive offers and new service alerts</div>
-                        </div>
-                        <input type="checkbox" style="width: 20px; height: 20px;">
-                    </div>
-                </div>
+            <div class="input-group" style="margin-bottom: 1.25rem">
+              <label for="edit-email" class="info-label">Email Address</label>
+              <input type="email" id="edit-email" required />
             </div>
-        </main>
+
+            <div class="input-group" style="margin-bottom: 2rem">
+              <label for="edit-phone" class="info-label">Phone Number</label>
+              <input
+                type="tel"
+                id="edit-phone"
+                required
+                pattern="[0-9]{10}"
+                maxlength="10"
+                oninput="
+                  this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)
+                "
+                placeholder="10-digit mobile number"
+              />
+            </div>
+
+            <div style="display: flex; gap: 1rem">
+              <button type="submit" class="btn-primary">Save Changes</button>
+              <button type="button" class="btn-secondary" id="cancel-edit-btn">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- My Bookings Section -->
+        <div id="bookings-view" class="hidden">
+          <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem">
+            My Bookings
+          </h2>
+          <div
+            class="empty-state"
+            style="text-align: center; padding: 4rem 2rem"
+          >
+            <i
+              data-lucide="calendar-x"
+              style="
+                width: 48px;
+                height: 48px;
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <p class="text-secondary">You have no upcoming or past bookings.</p>
+          </div>
+        </div>
+
+        <!-- Saved Services Section -->
+        <div id="saved-view" class="hidden">
+          <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem">
+            Saved Services
+          </h2>
+          <div
+            class="empty-state"
+            style="text-align: center; padding: 4rem 2rem"
+          >
+            <i
+              data-lucide="heart"
+              style="
+                width: 48px;
+                height: 48px;
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <p class="text-secondary">You haven't saved any services yet.</p>
+          </div>
+        </div>
+
+        <!-- App Settings Section -->
+        <div id="app-settings-view" class="hidden">
+          <h2 class="heading-2" style="font-size: 1.8rem; margin-bottom: 2rem">
+            App Settings
+          </h2>
+          <div class="info-group">
+            <div class="flex-between">
+              <div>
+                <div class="info-value">Push Notifications</div>
+                <div class="info-label">
+                  Stay updated on your booking status
+                </div>
+              </div>
+              <input
+                type="checkbox"
+                checked
+                style="width: 20px; height: 20px"
+              />
+            </div>
+          </div>
+          <div class="info-group" style="border: none">
+            <div class="flex-between">
+              <div>
+                <div class="info-value">Newsletter</div>
+                <div class="info-label">
+                  Receive offers and new service alerts
+                </div>
+              </div>
+              <input type="checkbox" style="width: 20px; height: 20px" />
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-logo-section">
-                <a href="#" class="logo" style="font-size: 2rem;">Urban<span class="text-gradient">Needs</span></a>
-            </div>
-
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4 class="footer-heading">Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms & conditions</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Anti-discrimination policy</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4 class="footer-heading">For customers</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">UC reviews</a></li>
-                        <li><a href="#">Categories near you</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4 class="footer-heading">For professionals</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Register as a professional</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4 class="footer-heading">Social links</h4>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Twitter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                            </svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="WhatsApp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
-                                </path>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="app-links">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
-                            alt="Download on the App Store" class="app-badge">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                            alt="Get it on Google Play" class="app-badge">
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Urban Needs. All rights reserved.</p>
-            </div>
+      <div class="container">
+        <div class="footer-logo-section">
+          <a href="#" class="logo" style="font-size: 2rem"
+            >Urban<span class="text-gradient">Needs</span></a
+          >
         </div>
+
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="footer-heading">Company</h4>
+            <ul class="footer-links">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Investor Relations</a></li>
+              <li><a href="#">Terms & conditions</a></li>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Anti-discrimination policy</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">For customers</h4>
+            <ul class="footer-links">
+              <li><a href="#">UC reviews</a></li>
+              <li><a href="#">Categories near you</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">For professionals</h4>
+            <ul class="footer-links">
+              <li><a href="#">Register as a professional</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Social links</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                  <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                </svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Facebook">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Instagram">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="WhatsApp">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+            <div class="app-links">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                alt="Download on the App Store"
+                class="app-badge"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                alt="Get it on Google Play"
+                class="app-badge"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Urban Needs. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script src="dashboard.js?v=3.0"></script>
-</body>
-
+  </body>
 </html>
